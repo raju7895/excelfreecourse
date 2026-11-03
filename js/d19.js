@@ -1,0 +1,80 @@
+const F19 = [
+  {
+    id: "PMT", name: "PMT", category: "financial", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the fixed periodic payment for a loan or investment.", hi: "Loan ya investment ki fixed periodic payment nikalta hai." },
+    syntax: { en: '=PMT(rate, nper, pv, [fv], [type])', hi: '=PMT(rate, nper, pv, [fv], [type])' },
+    explain: { en: "PMT needs the periodic rate, the number of periods and the present value. The result includes both principal and interest.", hi: "PMT ko periodic rate, periods ki sankhya aur present value chahiye. Result me principal aur interest dono shamil hote hain." },
+    dataset: { cells: "A1:B3", values: "Loan,1000\nMonths,12\nAnnual Rate,0.1", inputs: [ { ref: "A1", value: "Loan" }, { ref: "B1", value: "1000" }, { ref: "A2", value: "Months" }, { ref: "B2", value: "12" }, { ref: "A3", value: "Annual Rate" }, { ref: "B3", value: "0.1" } ] },
+    formula: '=PMT(B3/12, B2, -B1)', output: "87.92",
+    steps: { en: [ "Divide the annual rate by 12 for a monthly rate.", "Enter the number of monthly payments.", "Enter the loan amount as a negative pv so the payment comes out positive." ], hi: [ ["Monthly rate ke liye annual rate ko 12 se divide karo.", "Monthly payments ki sankhya likho.", "Loan amount ko negative pv do taaki payment positive aaye."] ] },
+    office: { en: "Used to calculate home loan, car loan and equipment EMI before signing an agreement.", hi: "Home loan, car loan aur equipment EMI nikalne ke liye use hota hai, agreement sign karne se pehle." },
+    mistakes: { en: [ "Using an annual rate with monthly periods gives a wrong EMI.", "Forgetting the minus sign on pv reverses the payment sign." ], hi: [ ["Annual rate ko monthly periods ke saath use karne se EMI galat aati hai.", "pv par minus sign bhoolne se payment ka sign ulta ho jata hai."] ] },
+    tips: { en: [ "Keep rate and nper in the same unit: both monthly or both annual." ], hi: [ ["Rate aur nper ka unit same rakho: dono monthly ya dono annual."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "IPMT", name: "IPMT", category: "financial", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the interest portion of a specific loan payment.", hi: "Loan ki kisi specific payment ka interest hissa nikalta hai." },
+    syntax: { en: '=IPMT(rate, per, nper, pv, [fv], [type])', hi: '=IPMT(rate, per, nper, pv, [fv], [type])' },
+    explain: { en: "IPMT uses the same inputs as PMT but returns only the interest part of one period. Period numbers start at 1.", hi: "IPMT PMT jaise inputs leta hai lekin sirf ek period ka interest hissa deta hai. Period number 1 se shuru hota hai." },
+    dataset: { cells: "A1:B3", values: "Loan,1000\nMonths,12\nAnnual Rate,0.1", inputs: [ { ref: "A1", value: "Loan" }, { ref: "B1", value: "1000" }, { ref: "A2", value: "Months" }, { ref: "B2", value: "12" }, { ref: "A3", value: "Annual Rate" }, { ref: "B3", value: "0.1" } ] },
+    formula: '=IPMT(B3/12, 1, B2, -B1)', output: "8.33",
+    steps: { en: [ "Enter the periodic rate.", "Enter the period number, starting from 1.", "Enter nper and pv exactly as you did for PMT." ], hi: [ ["Periodic rate likho.", "Period number likho, 1 se shuru.", "Nper aur pv waise hi likho jaise PMT me kiya tha."] ] },
+    office: { en: "Used to split each EMI into interest and principal for an amortization schedule.", hi: "Amortization schedule ke liye har EMI ko interest aur principal me todne ke liye use hota hai." },
+    mistakes: { en: [ "Using period 0 returns an error; the first period is 1.", "Mixing annual rate with monthly periods gives an incorrect split." ], hi: [ ["Period 0 use karne par error aata hai; pehla period 1 hota hai.", "Annual rate ko monthly periods ke saath milane se split galat hota hai."] ] },
+    tips: { en: [ "IPMT + PPMT always equals the PMT amount for the same period." ], hi: [ ["Same period ke liye IPMT + PPMT hamesha PMT ke barabar hota hai."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "PPMT", name: "PPMT", category: "financial", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the principal portion of a specific loan payment.", hi: "Loan ki kisi specific payment ka principal hissa nikalta hai." },
+    syntax: { en: '=PPMT(rate, per, nper, pv, [fv], [type])', hi: '=PPMT(rate, per, nper, pv, [fv], [type])' },
+    explain: { en: "PPMT returns the part of the payment that actually reduces the loan balance.", hi: "PPMT payment ka wo hissa deta hai jo loan balance ko actually kam karta hai." },
+    dataset: { cells: "A1:B3", values: "Loan,1000\nMonths,12\nAnnual Rate,0.1", inputs: [ { ref: "A1", value: "Loan" }, { ref: "B1", value: "1000" }, { ref: "A2", value: "Months" }, { ref: "B2", value: "12" }, { ref: "A3", value: "Annual Rate" }, { ref: "B3", value: "0.1" } ] },
+    formula: '=PPMT(B3/12, 1, B2, -B1)', output: "79.58",
+    steps: { en: [ "Use the same rate, nper and pv as PMT.", "Enter the period you want to inspect.", "Press Enter to get only the principal part." ], hi: [ ["PMT jaise rate, nper aur pv use karo.", "Jis period ko dekhna hai wo likho.", "Enter dabao aur sirf principal hissa pao."] ] },
+    office: { en: "Used in loan schedules to show how much of each EMI reduces the outstanding amount.", hi: "Loan schedules me dikhane ke liye use hota hai ki har EMI se outstanding amount kitna kam hota hai." },
+    mistakes: { en: [ "PPMT does not include interest, so do not add it to IPMT twice.", "The period must be between 1 and nper." ], hi: [ ["PPMT me interest shamil nahi hota, isliye IPMT ke saath double mat add karo.", "Period 1 aur nper ke beech hona chahiye."] ] },
+    tips: { en: [ "Build a two-column amortization table with IPMT and PPMT side by side." ], hi: [ ["IPMT aur PPMT ko side by side rakh kar do-column amortization table banao."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "FV", name: "FV", category: "financial", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the future value of a series of equal payments or a lump sum.", hi: "Barabar payments ki series ya lump sum ka future value nikalta hai." },
+    syntax: { en: '=FV(rate, nper, pmt, [pv], [type])', hi: '=FV(rate, nper, pmt, [pv], [type])' },
+    explain: { en: "FV compounds each payment forward to the end of the term. Use a negative pmt for money you pay in.", hi: "FV har payment ko term ke end tak compound karta hai. Jo paisa aap dete hain uske liye negative pmt use karo." },
+    dataset: { cells: "A1:B3", values: "Monthly Deposit,1000\nMonths,12\nAnnual Rate,0.1", inputs: [ { ref: "A1", value: "Monthly Deposit" }, { ref: "B1", value: "1000" }, { ref: "A2", value: "Months" }, { ref: "B2", value: "12" }, { ref: "A3", value: "Annual Rate" }, { ref: "B3", value: "0.1" } ] },
+    formula: '=FV(B3/12, B2, -B1, 0)', output: "12565.57",
+    steps: { en: [ "Enter the periodic rate and number of periods.", "Enter the recurring deposit as a negative pmt.", "Leave pv as 0 when there is no starting amount." ], hi: [ ["Periodic rate aur periods ki sankhya likho.", "Recurring deposit ko negative pmt likho.", "Starting amount na ho to pv 0 rakho."] ] },
+    office: { en: "Used to project the maturity value of a recurring deposit or SIP.", hi: "Recurring deposit ya SIP ki maturity value project karne ke liye use hota hai." },
+    mistakes: { en: [ "A positive pmt produces a negative future value.", "The rate and nper must use the same period unit." ], hi: [ ["Positive pmt negative future value deta hai.", "Rate aur nper ka period unit same hona chahiye."] ] },
+    tips: { en: [ "Add type 1 when deposits are made at the start of each month." ], hi: [ ["Jab deposit har month ke shuru me ho to type 1 add karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "PV", name: "PV", category: "financial", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the present value of future equal payments or a lump sum.", hi: "Future barabar payments ya lump sum ka present value nikalta hai." },
+    syntax: { en: '=PV(rate, nper, pmt, [fv], [type])', hi: '=PV(rate, nper, pmt, [fv], [type])' },
+    explain: { en: "PV discounts future payments back to today. It answers how much a stream of payments is worth right now.", hi: "PV future payments ko aaj ki value me discount karta hai. Ye batata hai ki payments ki stream aaj kitni worth hai." },
+    dataset: { cells: "A1:B3", values: "Monthly Income,1000\nMonths,12\nAnnual Rate,0.1", inputs: [ { ref: "A1", value: "Monthly Income" }, { ref: "B1", value: "1000" }, { ref: "A2", value: "Months" }, { ref: "B2", value: "12" }, { ref: "A3", value: "Annual Rate" }, { ref: "B3", value: "0.1" } ] },
+    formula: '=PV(B3/12, B2, -B1, 0)', output: "11374.51",
+    steps: { en: [ "Enter the periodic discount rate.", "Enter the number of payments and the payment amount.", "Leave fv as 0 when there is no final lump sum." ], hi: [ ["Periodic discount rate likho.", "Payments ki sankhya aur payment amount likho.", "Final lump sum na ho to fv 0 rakho."] ] },
+    office: { en: "Used to value a lease, pension or any fixed income stream.", hi: "Lease, pension ya kisi fixed income stream ki value nikalne ke liye use hota hai." },
+    mistakes: { en: [ "Using an annual rate for monthly payments overstates the present value.", "The payment sign must be opposite to the result you expect." ], hi: [ ["Monthly payments ke liye annual rate use karne se present value zyada aa jati hai.", "Payment ka sign expected result ke opposite hona chahiye."] ] },
+    tips: { en: [ "PV is the mirror image of FV; use the same inputs and swap the result." ], hi: [ ["PV FV ka mirror hai; same inputs use karo aur result swap karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "NPV", name: "NPV", category: "financial", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the net present value of a series of future cash flows.", hi: "Future cash flows ki series ka net present value nikalta hai." },
+    syntax: { en: '=NPV(rate, value1, [value2], ...)', hi: '=NPV(rate, value1, [value2], ...)' },
+    explain: { en: "NPV discounts each value by one extra period, starting from period 1. The initial investment is usually added outside the function.", hi: "NPV har value ko ek extra period se discount karta hai, period 1 se shuru karke. Initial investment aam taur par function ke bahar add ki jati hai." },
+    dataset: { cells: "A1:B3", values: "Year 1,100\nYear 2,200\nYear 3,50", inputs: [ { ref: "A1", value: "Year 1" }, { ref: "B1", value: "100" }, { ref: "A2", value: "Year 2" }, { ref: "B2", value: "200" }, { ref: "A3", value: "Year 3" }, { ref: "B3", value: "50" } ] },
+    formula: '=NPV(0.1, B1:B3)', output: "293.76",
+    steps: { en: [ "Enter the discount rate first.", "Select the future cash flows in order.", "Add the initial investment outside the NPV result if required." ], hi: [ ["Pehle discount rate likho.", "Future cash flows order me select karo.", "Zaroorat ho to initial investment NPV result ke bahar add karo."] ] },
+    office: { en: "Used to check whether a project creates value at the company's cost of capital.", hi: "Ye check karne ke liye use hota hai ki project company ke cost of capital par value banata hai ya nahi." },
+    mistakes: { en: [ "Including the Year 0 investment inside NPV discounts it twice.", "A negative NPV does not automatically mean the project is impossible; check the assumptions." ], hi: [ ["Year 0 investment ko NPV ke andar dalne se wo do baar discount ho jati hai.", "Negative NPV ka matlab hamesha project impossible nahi hota; assumptions check karo."] ] },
+    tips: { en: [ "Use XNPV when cash flow dates are irregular." ], hi: [ ["Jab cash flow dates irregular hon to XNPV use karo."] ] },
+    version: "Excel 2007+"
+  }
+];

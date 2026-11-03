@@ -1,0 +1,93 @@
+const F15 = [
+  {
+    id: "STDEV.S", name: "STDEV.S", category: "stats", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns standard deviation for a sample.", hi: "Sample ke liye standard deviation nikalta hai." },
+    syntax: { en: '=STDEV.S(number1, [number2], ...)', hi: '=STDEV.S(number1, [number2], ...)' },
+    explain: { en: "STDEV.S calculates sample standard deviation.", hi: "STDEV.S sample standard deviation nikaata hai." },
+    dataset: { cells: "A1:A5", values: "5, 10, 15, 20, 25", inputs: [ { ref: "A1", value: "5" }, { ref: "A2", value: "10" }, { ref: "A3", value: "15" }, { ref: "A4", value: "20" }, { ref: "A5", value: "25" } ] },
+    formula: "=STDEV.S(A1:A5)", output: "7.91",
+    steps: { en: [ "Select the range.", "Type =STDEV.S(A1:A5).", "Press Enter." ], hi: [ ["Range select karo.", "=STDEV.S(A1:A5) likhna.", "Enter dabao."] ] },
+    office: { en: "Used for data consistency checks.", hi: "Data consistency check ke liye use hota hai." },
+    mistakes: { en: [ "Sample vs population." ], hi: [ ["Sample aur population mein farq."] ] },
+    tips: { en: [ "STDEV.P for whole data." ], hi: [ ["Poora data ke liye STDEV.P use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "STDEV.P", name: "STDEV.P", category: "stats", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns standard deviation for a population.", hi: "Population ke liye standard deviation nikalta hai." },
+    syntax: { en: '=STDEV.P(number1, [number2], ...)', hi: '=STDEV.P(number1, [number2], ...)' },
+    explain: { en: "STDEV.P calculates population standard deviation.", hi: "STDEV.P population standard deviation nikaata hai." },
+    dataset: { cells: "A1:A5", values: "5, 10, 15, 20, 25", inputs: [ { ref: "A1", value: "5" }, { ref: "A2", value: "10" }, { ref: "A3", value: "15" }, { ref: "A4", value: "20" }, { ref: "A5", value: "25" } ] },
+    formula: "=STDEV.P(A1:A5)", output: "7.07",
+    steps: { en: [ "Select the range.", "Type =STDEV.P(A1:A5).", "Press Enter." ], hi: [ ["Range select karo.", "=STDEV.P(A1:A5) likhna.", "Enter dabao."] ] },
+    office: { en: "Used for company wide analysis.", hi: "Company wide analysis ke liye use hota hai." },
+    mistakes: { en: [ "Sample vs population." ], hi: [ ["Sample aur population mein farq."] ] },
+    tips: { en: [ "STDEV.S for samples." ], hi: [ ["Samples ke liye STDEV.S use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "VAR.S", name: "VAR.S", category: "stats", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns variance for a sample.", hi: "Sample ke liye variance nikalta hai." },
+    syntax: { en: '=VAR.S(number1, [number2], ...)', hi: '=VAR.S(number1, [number2], ...)' },
+    explain: { en: "VAR.S calculates sample variance.", hi: "VAR.S sample variance nikaata hai." },
+    dataset: { cells: "A1:A5", values: "5, 10, 15, 20, 25", inputs: [ { ref: "A1", value: "5" }, { ref: "A2", value: "10" }, { ref: "A3", value: "15" }, { ref: "A4", value: "20" }, { ref: "A5", value: "25" } ] },
+    formula: "=VAR.S(A1:A5)", output: "62.5",
+    steps: { en: [ "Select the range.", "Type =VAR.S(A1:A5).", "Press Enter." ], hi: [ ["Range select karo.", "=VAR.S(A1:A5) likhna.", "Enter dabao."] ] },
+    office: { en: "Used for risk analysis.", hi: "Risk analysis ke liye use hota hai." },
+    mistakes: { en: [ "Sample vs population." ], hi: [ ["Sample aur population mein farq."] ] },
+    tips: { en: [ "Use VAR.P for population." ], hi: [ ["Population ke liye VAR.P use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "VAR.P", name: "VAR.P", category: "stats", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns variance for a population.", hi: "Population ke liye variance nikalta hai." },
+    syntax: { en: '=VAR.P(number1, [number2], ...)', hi: '=VAR.P(number1, [number2], ...)' },
+    explain: { en: "VAR.P calculates population variance.", hi: "VAR.P population variance nikaata hai." },
+    dataset: { cells: "A1:A5", values: "5, 10, 15, 20, 25", inputs: [ { ref: "A1", value: "5" }, { ref: "A2", value: "10" }, { ref: "A3", value: "15" }, { ref: "A4", value: "20" }, { ref: "A5", value: "25" } ] },
+    formula: "=VAR.P(A1:A5)", output: "50",
+    steps: { en: [ "Select the range.", "Type =VAR.P(A1:A5).", "Press Enter." ], hi: [ ["Range select karo.", "=VAR.P(A1:A5) likhna.", "Enter dabao."] ] },
+    office: { en: "Used for company wide variance." , hi: "Company wide variance ke liye use hota hai."},
+    mistakes: { en: [ "Sample vs population." ], hi: [ ["Sample aur population mein farq."] ] },
+    tips: { en: [ "Use VAR.S for samples." ], hi: [ ["Samples ke liye VAR.S use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "CORREL", name: "CORREL", category: "stats", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns correlation between two ranges.", hi: "Do ranges ke beech correlation nikalta hai." },
+    syntax: { en: '=CORREL(array1, array2)', hi: '=CORREL(array1, array2)' },
+    explain: { en: "CORREL measures relationship.", hi: "CORREL relationship ko measure karta hai." },
+    dataset: { cells: "A1:B5", values: "5,20\n10,40\n15,60\n20,80\n25,100", inputs: [ { ref: "A1", value: "5" }, { ref: "B1", value: "20" }, { ref: "A2", value: "10" }, { ref: "B2", value: "40" }, { ref: "A3", value: "15" }, { ref: "B3", value: "60" }, { ref: "A4", value: "20" }, { ref: "B4", value: "80" }, { ref: "A5", value: "25" }, { ref: "B5", value: "100" } ] },
+    formula: '=CORREL(A1:A5, B1:B5)', output: "1",
+    steps: { en: [ "Add two ranges.", "Use =CORREL(A1:A5, B1:B5).", "Press Enter." ], hi: [ ["Do ranges dein.", "=CORREL(A1:A5, B1:B5) likhna.", "Enter dabao."] ] },
+    office: { en: "Used for sales and region analysis.", hi: "Sales aur region analysis ke liye use hota hai." },
+    mistakes: { en: [ "Ranges must be same size." ], hi: [ ["Ranges ka size same hona chahiye."] ] },
+    tips: { en: [ "Value 1 means perfect positive." ], hi: [ ["1 matlab perfect positive correlation."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "FREQUENCY", name: "FREQUENCY", category: "stats", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns frequency distribution of values.", hi: "Values ki frequency distribution nikalta hai." },
+    syntax: { en: '=FREQUENCY(data_array, bins_array)', hi: '=FREQUENCY(data_array, bins_array)' },
+    explain: { en: "FREQUENCY counts values in bins.", hi: "FREQUENCY bins me values count karta hai." },
+    dataset: { cells: "A1:A5", values: "5\n10\n15\n20\n25", inputs: [ { ref: "A1", value: "5" }, { ref: "A2", value: "10" }, { ref: "A3", value: "15" }, { ref: "A4", value: "20" }, { ref: "A5", value: "25" } ] },
+    formula: '=FREQUENCY(A1:A5, {0, 10, 20, 30})', output: "{0;2;2;1;0}",
+    steps: { en: [ "Add data and bins.", "Use =FREQUENCY(A1:A5, {0,10,20,30}).", "Press Enter." ], hi: [ ["Data aur bins dein.", "=FREQUENCY(A1:A5, {0,10,20,30}) likhna.", "Enter dabao."] ] },
+    office: { en: "Used for histograms.", hi: "Histograms ke liye use hota hai." },
+    mistakes: { en: [ "Ctrl+Shift+Enter in old Excel." ], hi: [ ["Purane Excel me Ctrl+Shift+Enter chahiye."] ] },
+    tips: { en: [ "Results spill down automatically in Microsoft 365." ], hi: [ ["Microsoft 365 me results apne aap neeche spill hote hain."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "FORECAST.LINEAR", name: "FORECAST.LINEAR", category: "stats", level: "Advanced", m365: false, version: "Excel 2016 / Microsoft 365",
+    purpose: { en: "Returns linear forecast.", hi: "Linear forecast nikalta hai." },
+    syntax: { en: '=FORECAST.LINEAR(x, known_y, known_x)', hi: '=FORECAST.LINEAR(x, known_y, known_x)' },
+    explain: { en: "FORECAST.LINEAR predicts a value.", hi: "FORECAST.LINEAR ek value predict karta hai." },
+    dataset: { cells: "A1:B5", values: "10,1\n20,2\n30,3\n40,4\n50,5", inputs: [ { ref: "A1", value: "10" }, { ref: "B1", value: "1" }, { ref: "A2", value: "20" }, { ref: "B2", value: "2" }, { ref: "A3", value: "30" }, { ref: "B3", value: "3" }, { ref: "A4", value: "40" }, { ref: "B4", value: "4" }, { ref: "A5", value: "50" }, { ref: "B5", value: "5" } ] },
+    formula: '=FORECAST.LINEAR(6, A1:A5, B1:B5)', output: "60",
+    steps: { en: [ "Add x, known y and known x.", "Use =FORECAST.LINEAR(6, A1:A5, B1:B5).", "Press Enter." ], hi: [ ["X, known Y aur known X dein.", "=FORECAST.LINEAR(6, A1:A5, B1:B5) likhna.", "Enter dabao."] ] },
+    office: { en: "Used for sales trend prediction.", hi: "Sales trend prediction ke liye use hota hai." },
+    mistakes: { en: [ "Known ranges same size." ], hi: [ ["Known ranges ka size same hona chahiye."] ] },
+    tips: { en: [ "Better with multiple known points." ], hi: [ ["Zada points ke saath better hai."] ] },
+    version: "Excel 2016 / Microsoft 365"
+  }
+];

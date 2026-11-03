@@ -1,0 +1,80 @@
+const F22 = [
+  {
+    id: "total-sales", name: "Total Sales Calculation", category: "practical", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Adds all sales values for a period.", hi: "Kis period ki saari sales values ko add karta hai." },
+    syntax: { en: '=SUM(SalesRange)', hi: '=SUM(SalesRange)' },
+    explain: { en: "SUM ignores text and blank cells, so a clean amount column gives the period total directly.", hi: "SUM text aur blank cells ignore karta hai, isliye saaf amount column se period ka total seedha mil jata hai." },
+    dataset: { cells: "B2:B6", values: "500\n700\n300\n900\n400", inputs: [ { ref: "B2", value: "500" }, { ref: "B3", value: "700" }, { ref: "B4", value: "300" }, { ref: "B5", value: "900" }, { ref: "B6", value: "400" } ] },
+    formula: '=SUM(B2:B6)', output: "2800",
+    steps: { en: [ "Select the sales amount column.", "Type =SUM(B2:B6).", "Press Enter to get the period total." ], hi: [ ["Sales amount column select karo.", "=SUM(B2:B6) likho.", "Enter dabao aur period total pao."] ] },
+    office: { en: "Used in daily, weekly and monthly sales reports.", hi: "Daily, weekly aur monthly sales reports me use hota hai." },
+    mistakes: { en: [ "Including the header row gives #VALUE! in some setups; sum only the amount cells.", "A wrong sheet reference silently totals the wrong data." ], hi: [ ["Header row shamil karne se kuch setups me #VALUE! aata hai; sirf amount cells ka sum karo.", "Galat sheet reference chupchaap galat data total kar deta hai."] ] },
+    tips: { en: [ "Use SUMIFS when you need region, product or date filters." ], hi: [ ["Region, product ya date filters chahiye to SUMIFS use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "gross-sales", name: "Gross Sales", category: "practical", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Calculates sales before any discount is applied.", hi: "Kisi discount se pehle ki sales nikalta hai." },
+    syntax: { en: '=SUM(GrossRange)', hi: '=SUM(GrossRange)' },
+    explain: { en: "Gross sales are the full invoice value. Discounts and returns are deducted later to get net sales.", hi: "Gross sales poori invoice value hoti hai. Net sales ke liye discount aur returns baad me ghatae jate hain." },
+    dataset: { cells: "B2:B6", values: "500\n700\n300\n900\n400", inputs: [ { ref: "B2", value: "500" }, { ref: "B3", value: "700" }, { ref: "B4", value: "300" }, { ref: "B5", value: "900" }, { ref: "B6", value: "400" } ] },
+    formula: '=SUM(B2:B6)', output: "2800",
+    steps: { en: [ "Use the invoice amount column.", "Sum the column with SUM.", "Do not subtract discounts in this step." ], hi: [ ["Invoice amount column use karo.", "SUM se column ka total nikaalo.", "Is step me discount mat ghatao."] ] },
+    office: { en: "Used for revenue reporting and sales tax workings.", hi: "Revenue reporting aur sales tax workings ke liye use hota hai." },
+    mistakes: { en: [ "Confusing gross with net and reporting a lower revenue.", "Mixing credit notes into the gross column." ], hi: [ ["Gross aur net me confusion karke kam revenue report karna.", "Credit notes ko gross column me mila dena."] ] },
+    tips: { en: [ "Keep gross, discount and net in three separate columns for clean reporting." ], hi: [ ["Saaf reporting ke liye gross, discount aur net teen alag columns me rakho."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "net-sales", name: "Net Sales", category: "practical", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Calculates sales after subtracting discounts.", hi: "Discount ghata kar net sales nikalta hai." },
+    syntax: { en: '=SUM(GrossRange) - SUM(DiscountRange)', hi: '=SUM(GrossRange) - SUM(DiscountRange)' },
+    explain: { en: "Net sales equal total gross sales minus total discounts. Both ranges must have the same number of rows.", hi: "Net sales total gross sales me se total discount ke barabar hoti hai. Dono ranges ki rows barabar honi chahiye." },
+    dataset: { cells: "B2:C6", values: "500,50\n700,70\n300,30\n900,90\n400,40", inputs: [ { ref: "B2", value: "500" }, { ref: "C2", value: "50" }, { ref: "B3", value: "700" }, { ref: "C3", value: "70" }, { ref: "B4", value: "300" }, { ref: "C4", value: "30" }, { ref: "B5", value: "900" }, { ref: "C5", value: "90" }, { ref: "B6", value: "400" }, { ref: "C6", value: "40" } ] },
+    formula: '=SUM(B2:B6) - SUM(C2:C6)', output: "2520",
+    steps: { en: [ "Sum the gross column.", "Sum the discount column.", "Subtract discount from gross." ], hi: [ ["Gross column ka sum nikaalo.", "Discount column ka sum nikaalo.", "Gross me se discount ghatao."] ] },
+    office: { en: "Used for final revenue figures and profit calculations.", hi: "Final revenue figures aur profit calculations ke liye use hota hai." },
+    mistakes: { en: [ "Forgetting to include some discount rows.", "Subtracting a percentage instead of the discount amount." ], hi: [ ["Kuch discount rows include karna bhoolna.", "Discount amount ki jagah percentage ghata dena."] ] },
+    tips: { en: [ "Add a check cell that compares gross minus net with the discount total." ], hi: [ ["Ek check cell banao jo gross minus net ko discount total se compare kare."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "pending-orders", name: "Pending Orders", category: "practical", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Counts orders whose status is still Pending.", hi: "Un orders ki ginti karta hai jinka status abhi Pending hai." },
+    syntax: { en: '=COUNTIF(StatusRange, "Pending")', hi: '=COUNTIF(StatusRange, "Pending")' },
+    explain: { en: "COUNTIF counts cells that exactly match the given status text.", hi: "COUNTIF un cells ko count karta hai jo diye gaye status text se exactly match karti hain." },
+    dataset: { cells: "A2:A5", values: "Pending\nPending\nDelivered\nPending", inputs: [ { ref: "A2", value: "Pending" }, { ref: "A3", value: "Pending" }, { ref: "A4", value: "Delivered" }, { ref: "A5", value: "Pending" } ] },
+    formula: '=COUNTIF(A2:A5, "Pending")', output: "3",
+    steps: { en: [ "Select the status column.", "Type =COUNTIF(A2:A5, \"Pending\").", "Press Enter to get the pending count." ], hi: [ ["Status column select karo.", "=COUNTIF(A2:A5, \"Pending\") likho.", "Enter dabao aur pending count pao."] ] },
+    office: { en: "Used in order tracking and dispatch dashboards.", hi: "Order tracking aur dispatch dashboards me use hota hai." },
+    mistakes: { en: [ "Status text must be spelled consistently; \"pending \" with a space is a different value.", "Text criteria must be inside quotes." ], hi: [ ["Status text ki spelling consistent honi chahiye; space ke saath \"pending \" alag value hai.", "Text criteria quotes ke andar hona chahiye."] ] },
+    tips: { en: [ "Use COUNTIFS to add a second condition such as region or priority." ], hi: [ ["Region ya priority jaisi doosri condition ke liye COUNTIFS use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "delivered-orders", name: "Delivered Orders", category: "practical", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Counts orders that have been delivered.", hi: "Un orders ki ginti karta hai jo deliver ho chuke hain." },
+    syntax: { en: '=COUNTIF(StatusRange, "Delivered")', hi: '=COUNTIF(StatusRange, "Delivered")' },
+    explain: { en: "The same COUNTIF pattern works for any status value, including Delivered.", hi: "Wahi COUNTIF pattern kisi bhi status value ke liye kaam karta hai, Delivered ke liye bhi." },
+    dataset: { cells: "A2:A5", values: "Pending\nPending\nDelivered\nPending", inputs: [ { ref: "A2", value: "Pending" }, { ref: "A3", value: "Pending" }, { ref: "A4", value: "Delivered" }, { ref: "A5", value: "Pending" } ] },
+    formula: '=COUNTIF(A2:A5, "Delivered")', output: "1",
+    steps: { en: [ "Select the same status column.", "Change the criteria to \"Delivered\".", "Press Enter." ], hi: [ ["Wahi status column select karo.", "Criteria ko \"Delivered\" me badlo.", "Enter dabao."] ] },
+    office: { en: "Used in delivery reports and SLA tracking.", hi: "Delivery reports aur SLA tracking me use hota hai." },
+    mistakes: { en: [ "Counting Delivered and Dispatched as the same status.", "Forgetting to update the criteria when copying the pending formula." ], hi: [ ["Delivered aur Dispatched ko same status samajhna.", "Pending formula copy karte waqt criteria update karna bhoolna."] ] },
+    tips: { en: [ "Use a cell reference instead of hard-coded text so the report is reusable." ], hi: [ ["Report reusable banane ke liye hard-coded text ki jagah cell reference use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "delivery-percentage", name: "Delivery Percentage", category: "practical", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Calculates the share of orders that were delivered.", hi: "Kitne hisse orders deliver huye ye calculate karta hai." },
+    syntax: { en: '=COUNTIF(StatusRange, "Delivered") / COUNTA(StatusRange)', hi: '=COUNTIF(StatusRange, "Delivered") / COUNTA(StatusRange)' },
+    explain: { en: "Divide the delivered count by the total non-blank order count, then format the result as a percentage.", hi: "Delivered count ko total non-blank order count se divide karo, phir result ko percentage me format karo." },
+    dataset: { cells: "A2:A5", values: "Pending\nPending\nDelivered\nPending", inputs: [ { ref: "A2", value: "Pending" }, { ref: "A3", value: "Pending" }, { ref: "A4", value: "Delivered" }, { ref: "A5", value: "Pending" } ] },
+    formula: '=COUNTIF(A2:A5, "Delivered") / COUNTA(A2:A5)', output: "25%",
+    steps: { en: [ "Count delivered orders.", "Count all non-blank statuses.", "Divide and format as a percentage." ], hi: [ ["Delivered orders count karo.", "Saare non-blank statuses count karo.", "Divide karo aur percentage me format karo."] ] },
+    office: { en: "Used for delivery KPI and SLA compliance tracking.", hi: "Delivery KPI aur SLA compliance tracking ke liye use hota hai." },
+    mistakes: { en: [ "Dividing by COUNTA of the whole column counts headers and notes.", "Forgetting to apply percentage formatting shows 0.25 instead of 25%." ], hi: [ ["Poori column ke COUNTA se divide karne par headers aur notes bhi count ho jate hain.", "Percentage formatting na lagane par 25% ki jagah 0.25 dikhta hai."] ] },
+    tips: { en: [ "Wrap the division in IFERROR to avoid #DIV/0! when the list is empty." ], hi: [ ["List khaali ho to #DIV/0! se bachne ke liye division ko IFERROR me wrap karo."] ] },
+    version: "Excel 2007+"
+  }
+];

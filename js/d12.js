@@ -1,0 +1,80 @@
+const F12 = [
+  {
+    id: "SUMIF", name: "SUMIF", category: "conditional", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Adds numbers based on a single condition.", hi: "Ek condition ke mutabik numbers add karta hai." },
+    syntax: { en: '=SUMIF(range, criteria, [sum_range])', hi: '=SUMIF(range, criteria, [sum_range])' },
+    explain: { en: "SUMIF sums values matching one condition.", hi: "SUMIF ek condition ke mutabik sum nikaata hai." },
+    dataset: { cells: "A1:C4", values: "City,Rep,Sales\nNorth,Delhi,100\nSouth,Mumbai,150\nNorth,Delhi,50", inputs: [ { ref: "A1", value: "City" }, { ref: "B1", value: "Rep" }, { ref: "C1", value: "Sales" }, { ref: "A2", value: "North" }, { ref: "B2", value: "Delhi" }, { ref: "C2", value: "100" }, { ref: "A3", value: "South" }, { ref: "B3", value: "Mumbai" }, { ref: "C3", value: "150" }, { ref: "A4", value: "North" }, { ref: "B4", value: "Delhi" }, { ref: "C4", value: "50" } ] },
+    formula: '=SUMIF(A2:A4, "North", C2:C4)', output: "150",
+    steps: { en: [ "Add range, criteria and sum range.", "Use =SUMIF(A2:A4, \"North\", C2:C4).", "Press Enter." ], hi: [ ["Range, criteria aur sum range dein.", "=SUMIF(A2:A4, \"North\", C2:C4) likhna.", "Enter dabao."] ] },
+    office: { en: "Used to total sales by region.", hi: "Sales ko region ke mutabik total karne ke liye use hota hai." },
+    mistakes: { en: [ "Forgetting sum_range." ], hi: [ ["Sum range bhoolna."] ] },
+    tips: { en: [ "Use SUMIFS for multiple conditions." ], hi: [ ["Multiple conditions ke liye SUMIFS use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "SUMIFS", name: "SUMIFS", category: "conditional", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Adds numbers based on multiple conditions.", hi: "Multiple conditions ke mutabik numbers add karta hai." },
+    syntax: { en: '=SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)', hi: '=SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)' },
+    explain: { en: "SUMIFS sums with multiple criteria.", hi: "SUMIFS multiple criteria ke mutabik sum karta hai." },
+    dataset: { cells: "A1:C4", values: "City,Rep,Sales\nNorth,Delhi,100\nSouth,Mumbai,150\nNorth,Delhi,50", inputs: [ { ref: "A1", value: "City" }, { ref: "B1", value: "Rep" }, { ref: "C1", value: "Sales" }, { ref: "A2", value: "North" }, { ref: "B2", value: "Delhi" }, { ref: "C2", value: "100" }, { ref: "A3", value: "South" }, { ref: "B3", value: "Mumbai" }, { ref: "C3", value: "150" }, { ref: "A4", value: "North" }, { ref: "B4", value: "Delhi" }, { ref: "C4", value: "50" } ] },
+    formula: '=SUMIFS(C2:C4, A2:A4, "North", B2:B4, "Delhi")', output: "150",
+    steps: { en: [ "Add sum range and pairs of criteria.", "Use =SUMIFS(C2:C4, A2:A4, \"North\", B2:B4, \"Delhi\").", "Press Enter." ], hi: [ ["Sum range aur criteria pairs dein.", "=SUMIFS(C2:C4, A2:A4, \"North\", B2:B4, \"Delhi\") likhna.", "Enter dabao."] ] },
+    office: { en: "Used for complex sales reports.", hi: "Complex sales reports ke liye use hota hai." },
+    mistakes: { en: [ "Criteria ranges must match." ], hi: [ ["Criteria ranges match honi chahiye."] ] },
+    tips: { en: [ "More powerful than SUMIF." ], hi: [ ["SUMIF se zyada powerful hai."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "COUNTIF", name: "COUNTIF", category: "conditional", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Counts cells that meet one condition.", hi: "Ek condition ke mutabik cells ki ginti karta hai." },
+    syntax: { en: '=COUNTIF(range, criteria)', hi: '=COUNTIF(range, criteria)' },
+    explain: { en: "COUNTIF counts matching cells.", hi: "COUNTIF matching cells count karta hai." },
+    dataset: { cells: "A1:C4", values: "City,Rep,Sales\nNorth,Delhi,100\nSouth,Mumbai,150\nNorth,Delhi,50", inputs: [ { ref: "A1", value: "City" }, { ref: "B1", value: "Rep" }, { ref: "C1", value: "Sales" }, { ref: "A2", value: "North" }, { ref: "B2", value: "Delhi" }, { ref: "C2", value: "100" }, { ref: "A3", value: "South" }, { ref: "B3", value: "Mumbai" }, { ref: "C3", value: "150" }, { ref: "A4", value: "North" }, { ref: "B4", value: "Delhi" }, { ref: "C4", value: "50" } ] },
+    formula: '=COUNTIF(A2:A4, "North")', output: "2",
+    steps: { en: [ "Add range and criteria.", "Use =COUNTIF(A2:A4, \"North\").", "Press Enter." ], hi: [ ["Range aur criteria dein.", "=COUNTIF(A2:A4, \"North\") likhna.", "Enter dabao."] ] },
+    office: { en: "Used for counting targets achieved.", hi: "Targets achieve ki ginti karne ke liye use hota hai." },
+    mistakes: { en: [ "Criteria text needs quotes." ], hi: [ ["Criteria text ke liye quotes chahiye."] ] },
+    tips: { en: [ "Use COUNTIFS for multiple conditions." ], hi: [ ["Multiple conditions ke liye COUNTIFS use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "COUNTIFS", name: "COUNTIFS", category: "conditional", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Counts cells that meet multiple conditions.", hi: "Multiple conditions ke mutabik cells ki ginti karta hai." },
+    syntax: { en: '=COUNTIFS(criteria_range1, criteria1, [criteria_range2, criteria2], ...)', hi: '=COUNTIFS(criteria_range1, criteria1, [criteria_range2, criteria2], ...)' },
+    explain: { en: "COUNTIFS counts with multiple criteria.", hi: "COUNTIFS multiple criteria ke mutabik count karta hai." },
+    dataset: { cells: "A1:C4", values: "City,Rep,Sales\nNorth,Delhi,100\nSouth,Mumbai,150\nNorth,Delhi,50", inputs: [ { ref: "A1", value: "City" }, { ref: "B1", value: "Rep" }, { ref: "C1", value: "Sales" }, { ref: "A2", value: "North" }, { ref: "B2", value: "Delhi" }, { ref: "C2", value: "100" }, { ref: "A3", value: "South" }, { ref: "B3", value: "Mumbai" }, { ref: "C3", value: "150" }, { ref: "A4", value: "North" }, { ref: "B4", value: "Delhi" }, { ref: "C4", value: "50" } ] },
+    formula: '=COUNTIFS(A2:A4, "North", C2:C4, ">=100")', output: "1",
+    steps: { en: [ "Add criteria ranges and criteria.", "Use =COUNTIFS(A2:A4, \"North\", C2:C4, \">=100\").", "Press Enter." ], hi: [ ["Criteria ranges aur criteria dein.", "=COUNTIFS(A2:A4, \"North\", C2:C4, \">=100\") likhna.", "Enter dabao."] ] },
+    office: { en: "Used for quality checks.", hi: "Quality checks ke liye use hota hai." },
+    mistakes: { en: [ "At least one criteria needed." ], hi: [ ["Kam se kam ek criteria chahiye."] ] },
+    tips: { en: [ "Great for filtering data." ], hi: [ ["Data filter karne ke liye zaroori hai."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "AVERAGEIF", name: "AVERAGEIF", category: "conditional", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns average of numbers meeting a condition.", hi: "Condition ke mutabik numberon ki avg nikalta hai." },
+    syntax: { en: '=AVERAGEIF(range, criteria, [average_range])', hi: '=AVERAGEIF(range, criteria, [average_range])' },
+    explain: { en: "AVERAGEIF averages matching numbers.", hi: "AVERAGEIF matching numbers ka avg nikaata hai." },
+    dataset: { cells: "A1:C4", values: "City,Rep,Sales\nNorth,Delhi,100\nSouth,Mumbai,150\nNorth,Delhi,50", inputs: [ { ref: "A1", value: "City" }, { ref: "B1", value: "Rep" }, { ref: "C1", value: "Sales" }, { ref: "A2", value: "North" }, { ref: "B2", value: "Delhi" }, { ref: "C2", value: "100" }, { ref: "A3", value: "South" }, { ref: "B3", value: "Mumbai" }, { ref: "C3", value: "150" }, { ref: "A4", value: "North" }, { ref: "B4", value: "Delhi" }, { ref: "C4", value: "50" } ] },
+    formula: '=AVERAGEIF(A2:A4, "North", C2:C4)', output: "75",
+    steps: { en: [ "Add range, criteria and average range.", "Use =AVERAGEIF(A2:A4, \"North\", C2:C4).", "Press Enter." ], hi: [ ["Range, criteria aur average range dein.", "=AVERAGEIF(A2:A4, \"North\", C2:C4) likhna.", "Enter dabao."] ] },
+    office: { en: "Used for regional performance averages.", hi: "Regional performance ke averages ke liye use hota hai." },
+    mistakes: { en: [ "Division by zero if no match." ], hi: [ ["Koi match na ho to division by zero."] ] },
+    tips: { en: [ "Use AVERAGEIFS for multiple conditions." ], hi: [ ["Multiple conditions ke liye AVERAGEIFS use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "AVERAGEIFS", name: "AVERAGEIFS", category: "conditional", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns average with multiple conditions.", hi: "Multiple conditions ke mutabik avg nikalta hai." },
+    syntax: { en: '=AVERAGEIFS(average_range, criteria_range1, criteria1, ...)', hi: '=AVERAGEIFS(average_range, criteria_range1, criteria1, ...)' },
+    explain: { en: "AVERAGEIFS averages with criteria.", hi: "AVERAGEIFS criteria ke mutabik avg karta hai." },
+    dataset: { cells: "A1:C4", values: "City,Rep,Sales\nNorth,Delhi,100\nSouth,Mumbai,150\nNorth,Delhi,50", inputs: [ { ref: "A1", value: "City" }, { ref: "B1", value: "Rep" }, { ref: "C1", value: "Sales" }, { ref: "A2", value: "North" }, { ref: "B2", value: "Delhi" }, { ref: "C2", value: "100" }, { ref: "A3", value: "South" }, { ref: "B3", value: "Mumbai" }, { ref: "C3", value: "150" }, { ref: "A4", value: "North" }, { ref: "B4", value: "Delhi" }, { ref: "C4", value: "50" } ] },
+    formula: '=AVERAGEIFS(C2:C4, A2:A4, "North", B2:B4, "Delhi")', output: "75",
+    steps: { en: [ "Add average range and criteria pairs.", "Use =AVERAGEIFS(C2:C4, A2:A4, \"North\", B2:B4, \"Delhi\").", "Press Enter." ], hi: [ ["Average range aur criteria pairs dein.", "=AVERAGEIFS(C2:C4, A2:A4, \"North\", B2:B4, \"Delhi\") likhna.", "Enter dabao."] ] },
+    office: { en: "Used for filtered averages.", hi: "Filtered averages ke liye use hota hai." },
+    mistakes: { en: [ "Criteria count must match." ], hi: [ ["Criteria ki ginti sahi honi chahiye."] ] },
+    tips: { en: [ "More flexible than AVERAGEIF." ], hi: [ ["AVERAGEIF se zyada flexible hai."] ] },
+    version: "Excel 2007+"
+  }
+];
