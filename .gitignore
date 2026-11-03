@@ -1,0 +1,6 @@
+# Not part of the website
+node_modules/
+assets/preview/
+*.log
+.DS_Store
+Thumbs.db

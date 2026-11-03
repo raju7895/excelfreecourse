@@ -1,0 +1,93 @@
+const F07 = [
+  {
+    id: "YEAR", name: "YEAR", category: "date", level: "Basic", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the year of a date.", hi: "Date ki year nikalta hai." },
+    syntax: { en: '=YEAR(date_value)', hi: '=YEAR(date_value)' },
+    explain: { en: "YEAR extracts year from a date.", hi: "YEAR date se year nikalta hai." },
+    dataset: { cells: "A1", values: "2020-01-15", inputs: [ { ref: "A1", value: "2020-01-15" } ] },
+    formula: '=YEAR(A1)', output: "2020",
+    steps: { en: [ "Pass the date.", "Use =YEAR(A1).", "Press Enter." ], hi: [ ["Date pass karo.", "=YEAR(A1) likhna.", "Enter dabao."] ] },
+    office: { en: "Used for annual reports.", hi: "Annual reports ke liye use hota hai." },
+    mistakes: { en: [ "None." ], hi: [ ["Koi nahi."] ] },
+    tips: { en: [ "Combine with MONTH for full dates." ], hi: [ ["Poora date nikalne ke liye MONTH bhi use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "HOUR", name: "HOUR", category: "date", level: "Basic", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the hour of a time.", hi: "Time ki hour nikalti hai." },
+    syntax: { en: '=HOUR(time_value)', hi: '=HOUR(time_value)' },
+    explain: { en: "HOUR extracts hour from a time.", hi: "HOUR time se hour nikalti hai." },
+    dataset: { cells: "A1", values: "14:30:00", inputs: [ { ref: "A1", value: "14:30:00" } ] },
+    formula: '=HOUR(A1)', output: "14",
+    steps: { en: [ "Pass the time.", "Use =HOUR(A1).", "Press Enter." ], hi: [ ["Time pass karo.", "=HOUR(A1) likhna.", "Enter dabao."] ] },
+    office: { en: "Used to check shift start times.", hi: "Shift start time check karne ke liye use hota hai." },
+    mistakes: { en: [ "Time must be valid." ], hi: [ ["Time valid hona chahiye."] ] },
+    tips: { en: [ "Combine with MINUTE and SECOND." ], hi: [ ["MINUTE aur SECOND bhi use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "MINUTE", name: "MINUTE", category: "date", level: "Basic", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the minute of a time.", hi: "Time ki minute nikalti hai." },
+    syntax: { en: '=MINUTE(time_value)', hi: '=MINUTE(time_value)' },
+    explain: { en: "MINUTE extracts minute from a time.", hi: "MINUTE time se minute nikalti hai." },
+    dataset: { cells: "A1", values: "14:30:00", inputs: [ { ref: "A1", value: "14:30:00" } ] },
+    formula: '=MINUTE(A1)', output: "30",
+    steps: { en: [ "Pass the time.", "Use =MINUTE(A1).", "Press Enter." ], hi: [ ["Time pass karo.", "=MINUTE(A1) likhna.", "Enter dabao."] ] },
+    office: { en: "Used to log punch-in times.", hi: "Punch in time log karte waqt use hota hai." },
+    mistakes: { en: [ "None." ], hi: [ ["Koi nahi."] ] },
+    tips: { en: [ "Combine with HOUR for full time." ], hi: [ ["Poora time nikalne ke liye HOUR bhi use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "SECOND", name: "SECOND", category: "date", level: "Basic", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the second of a time.", hi: "Time ki second nikalti hai." },
+    syntax: { en: '=SECOND(time_value)', hi: '=SECOND(time_value)' },
+    explain: { en: "SECOND extracts second from a time.", hi: "SECOND time se second nikalti hai." },
+    dataset: { cells: "A1", values: "14:30:00", inputs: [ { ref: "A1", value: "14:30:00" } ] },
+    formula: '=SECOND(A1)', output: "0",
+    steps: { en: [ "Pass the time.", "Use =SECOND(A1).", "Press Enter." ], hi: [ ["Time pass karo.", "=SECOND(A1) likhna.", "Enter dabao."] ] },
+    office: { en: "Used for precise time tracking." , hi: "Precise time tracking ke liye use hota hai."},
+    mistakes: { en: [ "None." ], hi: [ ["Koi nahi."] ] },
+    tips: { en: [ "Useful for overtime seconds." ], hi: [ ["Overtime seconds ke liye useful hai."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "DATEDIF", name: "DATEDIF", category: "date", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the difference between two dates in years, months or days.", hi: "Do dates ke beech antardhan ko years, months ya days me deta hai." },
+    syntax: { en: '=DATEDIF(start_date, end_date, unit)', hi: '=DATEDIF(start_date, end_date, unit)' },
+    explain: { en: "DATEDIF calculates date difference.", hi: "DATEDIF dates ka antardhan nikaalta hai." },
+    dataset: { cells: "A1", values: "2019-01-01", inputs: [ { ref: "A1", value: "2019-01-01" } ] },
+    formula: '=DATEDIF(A1, DATE(2020, 1, 1), "Y")', output: "1",
+    steps: { en: [ "Pass start date, end date and unit.", "Use =DATEDIF(A1, DATE(2020,1,1), \"Y\").", "Press Enter." ], hi: [ ["Start, end aur unit dein.", "=DATEDIF(A1, DATE(2020,1,1), \"Y\") likhna.", "Enter dabao."] ] },
+    office: { en: "Used to calculate tenure or age.", hi: "Tenure ya age nikalne ke liye use hota hai." },
+    mistakes: { en: [ "Unit codes must be right: Y, M, D, YM, YMD." ], hi: [ ["Unit codes sahi honi chahiye: Y, M, D, YM, YMD."] ] },
+    tips: { en: [ "Available in Excel 2016+ only." ], hi: [ ["Sirf Excel 2016+ par available hai."] ] },
+    version: "Excel 2016+"
+  },
+  {
+    id: "DAYS", name: "DAYS", category: "date", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the number of days between two dates.", hi: "Do dates ke beech din ki ginti karta hai." },
+    syntax: { en: '=DAYS(end_date, start_date)', hi: '=DAYS(end_date, start_date)' },
+    explain: { en: "DAYS calculates days between dates.", hi: "DAYS dates ke beech din nikaata hai." },
+    dataset: { cells: "A1", values: "2018-01-01", inputs: [ { ref: "A1", value: "2018-01-01" } ] },
+    formula: '=DAYS(DATE(2019, 1, 1), A1)', output: "365",
+    steps: { en: [ "Pass end date first.", "Use =DAYS(DATE(2019,1,1), A1).", "Press Enter." ], hi: [ ["End date pehle dein.", "=DAYS(DATE(2019,1,1), A1) likhna.", "Enter dabao."] ] },
+    office: { en: "Used to calculate tenure.", hi: "Tenure nikalne ke liye use hota hai." },
+    mistakes: { en: [ "Arguments swapped." ], hi: [ ["Arguments koshish se badal gaye."] ] },
+    tips: { en: [ "Handles leap years correctly." ], hi: [ ["Leap year sahi se handle karta hai."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "DAYS360", name: "DAYS360", category: "date", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns days between dates using 30-day months.", hi: "Do dates ke beech din 30 din month ke hisaab se nikalta hai." },
+    syntax: { en: '=DAYS360(start_date, end_date, [method])', hi: '=DAYS360(start_date, end_date, [method])' },
+    explain: { en: "DAYS360 uses 30-day year convention.", hi: "DAYS360 30 din wala saal use karta hai." },
+    dataset: { cells: "A1", values: "2019-01-01", inputs: [ { ref: "A1", value: "2019-01-01" } ] },
+    formula: '=DAYS360(A1, DATE(2020, 1, 1))', output: "360",
+    steps: { en: [ "Pass both dates.", "Use =DAYS360(A1, DATE(2020,1,1)).", "Press Enter." ], hi: [ ["Dono dates dein.", "=DAYS360(A1, DATE(2020,1,1)) likhna.", "Enter dabao."] ] },
+    office: { en: "Used for loan calculations.", hi: "Loan calculations ke liye use hota hai." },
+    mistakes: { en: [ "Method argument optional." ], hi: [ ["Method optional hai."] ] },
+    tips: { en: [ "Method 1 or 0 both work." ], hi: [ ["Method 1 ya 0 dono kaam karte hain."] ] },
+    version: "Excel 2007+"
+  }
+];

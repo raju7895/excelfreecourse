@@ -1,0 +1,80 @@
+const F06 = [
+  {
+    id: "TODAY", name: "TODAY", category: "date", level: "Basic", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the current date.", hi: "Current date return karta hai." },
+    syntax: { en: "=TODAY()", hi: "=TODAY()" },
+    explain: { en: "TODAY gives today's date.", hi: "TODAY aaj ki date deta hai." },
+    dataset: { cells: "A1", values: "2026-11-02", inputs: [ { ref: "A1", value: "2026-11-02" } ] },
+    formula: "=TODAY()", output: "2026-11-02",
+    steps: { en: [ "No arguments needed.", "Use =TODAY().", "Press Enter." ], hi: [ ["Koi argument nahi.", "=TODAY() likhna.", "Enter dabao."] ] },
+    office: { en: "Used to build dynamic report dates.", hi: "Dynamic report dates banane ke liye use hota hai." },
+    mistakes: { en: [ "Nothing to forget." ], hi: [ ["Koi bhoolna nahi."] ] },
+    tips: { en: [ "It updates automatically." ], hi: [ ["Ye khud update hota rehta hai."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "NOW", name: "NOW", category: "date", level: "Basic", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns current date and time.", hi: "Current date aur time return karta hai." },
+    syntax: { en: "=NOW()", hi: "=NOW()" },
+    explain: { en: "NOW returns current date and time.", hi: "NOW aaj ki date aur time deta hai." },
+    dataset: { cells: "A1", values: "2026-11-02 05:13", inputs: [ { ref: "A1", value: "2026-11-02 05:13" } ] },
+    formula: "=NOW()", output: "2026-11-02 05:13",
+    steps: { en: [ "No arguments needed.", "Use =NOW().", "Press Enter." ], hi: [ ["Koi argument nahi.", "=NOW() likhna.", "Enter dabao."] ] },
+    office: { en: "Used for time stamp entries.", hi: "Time stamp entries ke liye use hota hai." },
+    mistakes: { en: [ "Nothing to forget." ], hi: [ ["Koi bhoolna nahi."] ] },
+    tips: { en: [ "It updates automatically." ], hi: [ ["Ye khud update hota rehta hai."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "DATE", name: "DATE", category: "date", level: "Basic", m365: false, version: "Excel 2007+",
+    purpose: { en: "Creates a date from year, month and day.", hi: "Year, month aur day se date banata hai." },
+    syntax: { en: '=DATE(year, month, day)', hi: '=DATE(year, month, day)' },
+    explain: { en: "DATE builds a date value.", hi: "DATE date banata hai." },
+    dataset: { cells: "A1", values: "2020-01-01", inputs: [ { ref: "A1", value: "2020-01-01" } ] },
+    formula: '=DATE(2020, 1, 1)', output: "43831",
+    steps: { en: [ "Enter year, month and day.", "Use =DATE(2020, 1, 1).", "Press Enter." ], hi: [ ["Year, month aur day dein.", "=DATE(2020, 1, 1) likhna.", "Enter dabao."] ] },
+    office: { en: "Used to schedule follow-up dates.", hi: "Follow up dates plan karne ke liye use hota hai." },
+    mistakes: { en: [ "Month number is 1-12." ], hi: [ ["Month number 1 se 12 hota hai."] ] },
+    tips: { en: [ "Day zero rolls back to previous month." ], hi: [ ["Day zero to piche wale month par jane se hota hai."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "TIME", name: "TIME", category: "date", level: "Basic", m365: false, version: "Excel 2007+",
+    purpose: { en: "Creates a time from hour, minute and second.", hi: "Hour, minute aur second se time banata hai." },
+    syntax: { en: '=TIME(hour, minute, second)', hi: '=TIME(hour, minute, second)' },
+    explain: { en: "TIME builds a fraction of a day.", hi: "TIME din ka fraction banata hai." },
+    dataset: { cells: "A1", values: "14:30:00", inputs: [ { ref: "A1", value: "14:30:00" } ] },
+    formula: '=TIME(14, 30, 0)', output: "0.604167",
+    steps: { en: [ "Enter hour, minute and second.", "Use =TIME(14, 30, 0).", "Press Enter." ], hi: [ ["Hour, minute aur second dein.", "=TIME(14, 30, 0) likhna.", "Enter dabao."] ] },
+    office: { en: "Used to schedule shifts.", hi: "Shifts schedule karte waqt use hota hai." },
+    mistakes: { en: [ "Hour range is 0-23." ], hi: [ ["Hour 0 se 23 ka hota hai."] ] },
+    tips: { en: [ "Seconds optional." ], hi: [ ["Seconds optional hai."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "DAY", name: "DAY", category: "date", level: "Basic", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the day of a date.", hi: "Date ki day nikalta hai." },
+    syntax: { en: '=DAY(date_value)', hi: '=DAY(date_value)' },
+    explain: { en: "DAY extracts day from a date.", hi: "DAY date se day nikalta hai." },
+    dataset: { cells: "A1", values: "2020-01-15", inputs: [ { ref: "A1", value: "2020-01-15" } ] },
+    formula: '=DAY(A1)', output: "15",
+    steps: { en: [ "Pass the date.", "Use =DAY(A1).", "Press Enter." ], hi: [ ["Date pass karo.", "=DAY(A1) likhna.", "Enter dabao."] ] },
+    office: { en: "Used to filter orders by day.", hi: "Orders ke day ke mutabik filter karne ke liye use hota hai." },
+    mistakes: { en: [ "Date must be valid." ], hi: [ ["Date valid honi chahiye."] ] },
+    tips: { en: [ "Combine with MONTH and YEAR for full date parts." ], hi: [ ["Poora date nikalne ke liye MONTH aur YEAR bhi use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "MONTH", name: "MONTH", category: "date", level: "Basic", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the month number of a date.", hi: "Date ki month number nikalta hai." },
+    syntax: { en: '=MONTH(date_value)', hi: '=MONTH(date_value)' },
+    explain: { en: "MONTH extracts month from a date.", hi: "MONTH date se month nikalta hai." },
+    dataset: { cells: "A1", values: "2020-01-15", inputs: [ { ref: "A1", value: "2020-01-15" } ] },
+    formula: '=MONTH(A1)', output: "1",
+    steps: { en: [ "Pass the date.", "Use =MONTH(A1).", "Press Enter." ], hi: [ ["Date pass karo.", "=MONTH(A1) likhna.", "Enter dabao."] ] },
+    office: { en: "Used to group sales by month.", hi: "Sales ko month ke mutabik group karne ke liye use hota hai." },
+    mistakes: { en: [ "Returns 1-12." ], hi: [ ["Yeh 1 se 12 deta hai."] ] },
+    tips: { en: [ "Combine with YEAR for year-month." ], hi: [ ["Year-month ke liye YEAR bhi use karo."] ] },
+    version: "Excel 2007+"
+  }
+];

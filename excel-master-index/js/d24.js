@@ -1,0 +1,80 @@
+const F24 = [
+  {
+    id: "target-achievement", name: "Target Achievement Percentage", category: "practical", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Calculates actual sales as a percentage of the target.", hi: "Actual sales ko target ke percentage ke roop me calculate karta hai." },
+    syntax: { en: '=(Actual / Target) * 100', hi: '=(Actual / Target) * 100' },
+    explain: { en: "Divide actual by target and multiply by 100 to read the result as a percentage number.", hi: "Actual ko target se divide karke 100 se multiply karo taaki result percentage number ke roop me padha ja sake." },
+    dataset: { cells: "A1:B2", values: "Actual,120\nTarget,100", inputs: [ { ref: "A1", value: "Actual" }, { ref: "B1", value: "120" }, { ref: "A2", value: "Target" }, { ref: "B2", value: "100" } ] },
+    formula: '=(B1 / B2) * 100', output: "120%",
+    steps: { en: [ "Enter actual and target in two cells.", "Divide actual by target.", "Multiply by 100, or format the division as a percentage." ], hi: [ ["Actual aur target do cells me likho.", "Actual ko target se divide karo.", "100 se multiply karo, ya division ko percentage me format karo."] ] },
+    office: { en: "Used for sales target tracking, KRA scorecards and KPI dashboards.", hi: "Sales target tracking, KRA scorecards aur KPI dashboards ke liye use hota hai." },
+    mistakes: { en: [ "Dividing target by actual reverses the meaning.", "A zero target produces #DIV/0!." ], hi: [ ["Target ko actual se divide karne se matlab ulta ho jata hai.", "Zero target par #DIV/0! aata hai."] ] },
+    tips: { en: [ "Use IFERROR to show 0% when the target is not yet assigned." ], hi: [ ["Target abhi assign na ho to 0% dikhane ke liye IFERROR use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "employee-performance-ranking", name: "Employee Performance Ranking", category: "practical", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Ranks an employee's score against the whole team.", hi: "Employee ke score ko poori team ke against rank deta hai." },
+    syntax: { en: '=RANK.EQ(Score, ScoreRange, 0)', hi: '=RANK.EQ(Score, ScoreRange, 0)' },
+    explain: { en: "RANK.EQ gives the highest score rank 1 when the order argument is 0. Equal scores share the same rank.", hi: "Order argument 0 hone par RANK.EQ sabse zyada score ko rank 1 deta hai. Barabar scores same rank share karte hain." },
+    dataset: { cells: "A1:B6", values: "Name,Score\nRahul,90\nPriya,80\nArjun,95\nMeera,70\nKaran,85", inputs: [ { ref: "A1", value: "Name" }, { ref: "B1", value: "Score" }, { ref: "A2", value: "Rahul" }, { ref: "B2", value: "90" }, { ref: "A3", value: "Priya" }, { ref: "B3", value: "80" }, { ref: "A4", value: "Arjun" }, { ref: "B4", value: "95" }, { ref: "A5", value: "Meera" }, { ref: "B5", value: "70" }, { ref: "A6", value: "Karan" }, { ref: "B6", value: "85" } ] },
+    formula: '=RANK.EQ(B2, B2:B6, 0)', output: "2",
+    steps: { en: [ "Select the employee's score as the first argument.", "Use the full score range as the second argument.", "Use 0 for descending rank, where the highest score is rank 1." ], hi: [ ["Employee ka score pehla argument banao.", "Poori score range doosra argument banao.", "Descending rank ke liye 0 use karo, jahan highest score rank 1 hota hai."] ] },
+    office: { en: "Used for performance appraisals, incentives and team scorecards.", hi: "Performance appraisals, incentives aur team scorecards ke liye use hota hai." },
+    mistakes: { en: [ "Not locking the score range before copying the formula down.", "Using 1 by mistake, which ranks the lowest score first." ], hi: [ ["Formula neeche copy karne se pehle score range lock na karna.", "Galti se 1 use karna, jisse sabse kam score pehle rank hota hai."] ] },
+    tips: { en: [ "Use RANK.AVG when tied scores should share an average rank." ], hi: [ ["Tied scores ko average rank dene ke liye RANK.AVG use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "highest-lowest-performer", name: "Highest and Lowest Performer", category: "practical", level: "Advanced", m365: false, version: "Excel 2007+",
+    purpose: { en: "Returns the name of the top performer using INDEX and MATCH.", hi: "INDEX aur MATCH se top performer ka naam deta hai." },
+    syntax: { en: '=INDEX(NameRange, MATCH(MAX(ScoreRange), ScoreRange, 0))', hi: '=INDEX(NameRange, MATCH(MAX(ScoreRange), ScoreRange, 0))' },
+    explain: { en: "MAX finds the highest score, MATCH finds its position, and INDEX returns the name from that position.", hi: "MAX sabse zyada score dhundta hai, MATCH uski position dhundta hai, aur INDEX us position se naam deta hai." },
+    dataset: { cells: "A1:B6", values: "Name,Score\nRahul,90\nPriya,80\nArjun,95\nMeera,70\nKaran,85", inputs: [ { ref: "A1", value: "Name" }, { ref: "B1", value: "Score" }, { ref: "A2", value: "Rahul" }, { ref: "B2", value: "90" }, { ref: "A3", value: "Priya" }, { ref: "B3", value: "80" }, { ref: "A4", value: "Arjun" }, { ref: "B4", value: "95" }, { ref: "A5", value: "Meera" }, { ref: "B5", value: "70" }, { ref: "A6", value: "Karan" }, { ref: "B6", value: "85" } ] },
+    formula: '=INDEX(A2:A6, MATCH(MAX(B2:B6), B2:B6, 0))', output: '"Arjun"',
+    steps: { en: [ "Use MAX to find the highest score.", "Use MATCH with 0 to find its exact position.", "Use INDEX on the name column to return the matching name." ], hi: [ ["Highest score dhundne ke liye MAX use karo.", "Exact position dhundne ke liye MATCH with 0 use karo.", "Matching naam return karne ke liye name column par INDEX use karo."] ] },
+    office: { en: "Used for employee of the month, awards and weekly performance reviews.", hi: "Employee of the month, awards aur weekly performance reviews ke liye use hota hai." },
+    mistakes: { en: [ "The name and score ranges must be the same size.", "MAX on a range that includes text may ignore the text silently." ], hi: [ ["Name aur score ranges ka size same hona chahiye.", "Text wali range par MAX text ko chupchaap ignore kar sakta hai."] ] },
+    tips: { en: [ "For the lowest performer, replace MAX with MIN." ], hi: [ ["Lowest performer ke liye MAX ki jagah MIN use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "attendance-percentage", name: "Attendance Percentage", category: "practical", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Calculates present days as a percentage of working days.", hi: "Present days ko working days ke percentage ke roop me calculate karta hai." },
+    syntax: { en: '=(PresentDays / WorkingDays) * 100', hi: '=(PresentDays / WorkingDays) * 100' },
+    explain: { en: "Divide the number of present days by the total working days and multiply by 100.", hi: "Present days ko total working days se divide karo aur 100 se multiply karo." },
+    dataset: { cells: "A1:B3", values: "Present Days,18\nWorking Days,20", inputs: [ { ref: "A1", value: "Present Days" }, { ref: "B1", value: "18" }, { ref: "A2", value: "Working Days" }, { ref: "B2", value: "20" } ] },
+    formula: '=(B1 / B2) * 100', output: "90%",
+    steps: { en: [ "Count present days.", "Count total working days for the same period.", "Divide and multiply by 100." ], hi: [ ["Present days count karo.", "Usi period ke total working days count karo.", "Divide karo aur 100 se multiply karo."] ] },
+    office: { en: "Used for HR dashboards, payroll checks and attendance compliance.", hi: "HR dashboards, payroll checks aur attendance compliance ke liye use hota hai." },
+    mistakes: { en: [ "Using calendar days instead of working days.", "Not excluding paid leave if the policy counts it as present." ], hi: [ ["Working days ki jagah calendar days use karna.", "Agar policy paid leave ko present maanti hai to use exclude na karna."] ] },
+    tips: { en: [ "Use COUNTIF on a P/A column to build present days automatically." ], hi: [ ["P/A column par COUNTIF use karke present days apne aap nikaalo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "working-hours-calculation", name: "Working Hours Calculation", category: "practical", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Adds total hours worked in a period.", hi: "Ek period me kaam ki total hours ko add karta hai." },
+    syntax: { en: '=SUM(HoursRange)', hi: '=SUM(HoursRange)' },
+    explain: { en: "SUM adds every numeric hour value. Use a decimal hour column or subtract start and end times first.", hi: "SUM har numeric hour value ko add karta hai. Decimal hours ka column use karo ya pehle start aur end time subtract karo." },
+    dataset: { cells: "B2:B6", values: "6\n9\n7\n10\n5", inputs: [ { ref: "B2", value: "6" }, { ref: "B3", value: "9" }, { ref: "B4", value: "7" }, { ref: "B5", value: "10" }, { ref: "B6", value: "5" } ] },
+    formula: '=SUM(B2:B6)', output: "37",
+    steps: { en: [ "Put each day's hours in a separate cell.", "Select the hours column.", "Use SUM on the column." ], hi: [ ["Har din ki hours alag cell me likho.", "Hours column select karo.", "Column par SUM use karo."] ] },
+    office: { en: "Used for attendance reports, payroll and project time sheets.", hi: "Attendance reports, payroll aur project time sheets ke liye use hota hai." },
+    mistakes: { en: [ "Adding time values directly can show a time such as 13:00 instead of total hours; format the result as [h]:mm.", "Mixing decimal hours and Excel time values in one column." ], hi: [ ["Time values ko direct add karne par total hours ki jagah 13:00 jaisa time dikh sakta hai; result ko [h]:mm format karo.", "Ek column me decimal hours aur Excel time values mila dena."] ] },
+    tips: { en: [ "Use SUMPRODUCT to calculate (End - Start) * 24 for each row in one formula." ], hi: [ ["Har row ke liye (End - Start) * 24 ek hi formula me nikalne ke liye SUMPRODUCT use karo."] ] },
+    version: "Excel 2007+"
+  },
+  {
+    id: "salary-calculation", name: "Salary Calculation", category: "practical", level: "Intermediate", m365: false, version: "Excel 2007+",
+    purpose: { en: "Calculates net salary after adding allowances and subtracting deductions.", hi: "Allowances add karke aur deductions ghata kar net salary nikalta hai." },
+    syntax: { en: '=Basic + Allowance - Deduction', hi: '=Basic + Allowance - Deduction' },
+    explain: { en: "Net salary is basic pay plus allowances minus deductions such as PF, professional tax and loan recovery.", hi: "Net salary basic pay plus allowances minus deductions hoti hai, jaise PF, professional tax aur loan recovery." },
+    dataset: { cells: "A1:B3", values: "Basic,30000\nAllowance,12000\nDeduction,2000", inputs: [ { ref: "A1", value: "Basic" }, { ref: "B1", value: "30000" }, { ref: "A2", value: "Allowance" }, { ref: "B2", value: "12000" }, { ref: "A3", value: "Deduction" }, { ref: "B3", value: "2000" } ] },
+    formula: '=B1 + B2 - B3', output: "40000",
+    steps: { en: [ "Enter basic pay.", "Add total allowances.", "Subtract total deductions." ], hi: [ ["Basic pay likho.", "Total allowances add karo.", "Total deductions ghatao."] ] },
+    office: { en: "Used for payroll processing, offer letters and salary slips.", hi: "Payroll processing, offer letters aur salary slips ke liye use hota hai." },
+    mistakes: { en: [ "Forgetting statutory deductions such as PF or professional tax.", "Adding a percentage allowance without calculating its amount first." ], hi: [ ["PF ya professional tax jaisi statutory deductions bhoolna.", "Percentage allowance ko pehle amount me convert kiye bina add karna."] ] },
+    tips: { en: [ "Keep earnings and deductions in separate blocks so the salary slip stays auditable." ], hi: [ ["Earnings aur deductions alag blocks me rakho taaki salary slip auditable rahe."] ] },
+    version: "Excel 2007+"
+  }
+];
