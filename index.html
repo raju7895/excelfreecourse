@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excel Master Index – Basic to Advanced</title>
+  <meta name="description" content="Excel Master Index – a complete Microsoft Excel formula library from Basic to Advanced with English and Hindi explanations, examples, playground, comparisons and practice tests." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-lang="en">
+  <div class="site-watermark" aria-hidden="true">UTKARSH&nbsp;BAJPAI</div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button class="brand" id="brandBtn" aria-label="Excel Master Index Home">
+        <span class="brand-mark">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 14v3c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-4"></path><path d="M7 10v3c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2V8"></path></svg>
+        </span>
+        <span class="brand-text">Excel Master Index<small>Basic to Advanced</small></span>
+      </button>
+      <div class="search-box">
+        <div class="search-drop" id="searchDrop" hidden></div>
+        <span class="search-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.8-3.8"></path></svg>
+        </span>
+        <input id="searchInput" type="text" placeholder="Search formulas like SUM, VLOOKUP, IF, XLOOKUP..." autocomplete="off" />
+        <button id="searchGo" type="button" title="Search" aria-label="Search">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.8-3.8"></path></svg>
+        </button>
+      </div>
+      <div class="topbar-right">
+        <div class="progress-pill" title="Your learning progress">
+          <span>Progress</span>
+          <b id="progressText">0%</b>
+        </div>
+        <button id="langToggle" class="lang-btn" title="Switch language / Bhasha badlo">English</button>
+      </div>
+    </div>
+    <nav class="mainnav" id="mainNav">
+      <button class="nav-btn active" data-nav="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg>
+        Home
+      </button>
+      <button class="nav-btn" data-nav="categories">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3H22z"/></svg>
+        Categories
+      </button>
+      <button class="nav-btn" data-nav="playground">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.5L8.5 19a2 2 0 0 0 1.8 3h5.4a2 2 0 0 0 1.8-3L14 9.5V2"/><path d="M8.5 22h7"/></svg>
+        Playground
+      </button>
+      <button class="nav-btn" data-nav="comparisons">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 21h14"/><path d="M7 21l5-14 5 14z"/></svg>
+        Comparisons
+      </button>
+      <button class="nav-btn" data-nav="projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V8l6-2 6 2v14"/><path d="M16 14V8l-2-1.5-2 1.5v7"/><path d="M2 11l10-8 10 8"/></svg>
+        Office Projects
+      </button>
+      <button class="nav-btn" data-nav="test">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M9 13h6"/><path d="M9 17h4"/></svg>
+        Practice Test
+      </button>
+      <button class="nav-btn" data-nav="compatibility">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+        Compatibility
+      </button>
+      <button class="nav-btn bonus-nav" data-nav="bonus" title="BONUS – Premium Excel Resources">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M5 12v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"></path><path d="M12 8v13"></path><path d="M12 8c-1.5 0-4.5-.5-4.5-3a2.5 2.5 0 0 1 4.5 0"></path><path d="M12 8c1.5 0 4.5-.5 4.5-3a2.5 2.5 0 0 0-4.5 0"></path></svg>
+        Bonus
+      </button>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-badge">Microsoft Excel Formula Encyclopedia</div>
+      <h1>Excel Master Index <span>– Basic to Advanced</span></h1>
+      <p class="hero-sub">From beginner basics like SUM and IF to advanced powerhouse functions like XLOOKUP, FILTER, LET and LAMBDA – every formula explained in professional English and simple Hindi, with real examples.</p>
+      <form class="hero-search" id="heroSearchForm" onsubmit="return false;">
+        <div class="search-drop hero-drop" id="heroDrop" hidden></div>
+        <span class="search-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.8-3.8"></path></svg>
+        </span>
+        <input id="heroSearch" type="text" placeholder="Search formulas like SUM, VLOOKUP, XLOOKUP, FILTER, LET..." autocomplete="off" />
+        <button id="heroSearchGo" type="submit">Search</button>
+        <button id="heroSearchClear" type="button" class="hero-clear" aria-label="Clear search">×</button>
+      </form>
+      <div class="hero-actions">
+        <button class="btn btn-primary btn-lg" id="ctaBrowse">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3H22z"/></svg>
+          Browse Formulas
+        </button>
+        <button class="btn btn-outline btn-lg" id="ctaPlayground">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.5L8.5 19a2 2 0 0 0 1.8 3h5.4a2 2 0 0 0 1.8-3L14 9.5V2"/><path d="M8.5 22h7"/></svg>
+          Open Playground
+        </button>
+      </div>
+      <div class="hero-stats" id="heroStats"></div>
+    </div>
+  </section>
+
+  <main class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="side-block">
+        <h3>Dashboard</h3>
+        <ul>
+          <li><a href="#home" data-nav="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg> Dashboard</a></li>
+          <li><a href="#content" data-nav="categories"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3H22z"/></svg> All Excel Formulas</a></li>
+        </ul>
+      </div>
+      <div class="side-block">
+        <h3>Categories</h3>
+        <ul id="sidebarCategories"></ul>
+      </div>
+      <div class="side-block">
+        <h3>Difficulty Level</h3>
+        <div id="levelFilters" class="level-filters"></div>
+      </div>
+      <div class="side-block">
+        <h3>Premium</h3>
+        <ul>
+          <li><a href="#bonus" data-nav="bonus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M5 12v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"></path><path d="M12 8v13"></path><path d="M12 8c-1.5 0-4.5-.5-4.5-3a2.5 2.5 0 0 1 4.5 0"></path><path d="M12 8c1.5 0 4.5-.5 4.5-3a2.5 2.5 0 0 0-4.5 0"></path></svg> BONUS – Premium Excel Resources</a></li>
+        </ul>
+      </div>
+      <div class="side-block">
+        <h3>Practice &amp; Resources</h3>
+        <ul>
+          <li><a href="#test" data-nav="test"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M9 13h6"/><path d="M9 17h4"/></svg> Practice Tests</a></li>
+          <li><a href="#projects" data-nav="projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V8l6-2 6 2v14"/><path d="M16 14V8l-2-1.5-2 1.5v7"/><path d="M2 11l10-8 10 8"/></svg> Office Projects</a></li>
+          <li><a href="#comparisons" data-nav="comparisons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 21h14"/><path d="M7 21l5-14 5 14z"/></svg> Comparisons</a></li>
+          <li><a href="#compatibility" data-nav="compatibility"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Compatibility</a></li>
+        </ul>
+      </div>
+      <div class="side-block">
+        <h3>Your Progress</h3>
+        <div class="progress-block">
+          <div class="pb-top"><span>Learning progress</span><b id="progressText">0%</b></div>
+          <div class="progress-bar"><div id="progressBar" style="width: 0%"></div></div>
+        </div>
+      </div>
+      <div class="side-block">
+        <h3>Account</h3>
+        <ul>
+          <li><a href="#bookmarks" data-nav="bookmarks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Bookmarks</a></li>
+          <li><a href="#creator" data-nav="creator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/></svg> About Creator</a></li>
+          <li><a href="#settings" data-nav="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/><path d="M4.9 4.9l2.1 2.1"/><path d="M17 17l2.1 2.1"/><path d="M19.8 4.9a2 2 0 0 1 2.4 2.4l-2.1 2.1"/><path d="M6.3 17a2 2 0 0 1-2.4 2.4l-2.1-2.1"/></svg> Settings</a></li>
+        </ul>
+      </div>
+    </aside>
+    <section class="content" id="content"></section>
+  </main>
+
+  <section class="section" id="playground">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.5L8.5 19a2 2 0 0 0 1.8 3h5.4a2 2 0 0 0 1.8-3L14 9.5V2"/><path d="M8.5 22h7"/></svg> Interactive Formula Playground</h2>
+      <p>Select any formula, change the sample inputs, see the expected output, calculate live and copy the formula with one click.</p>
+    </div>
+    <div class="pg-controls">
+      <label class="pg-label" for="pgFormula">Select Formula</label>
+      <select id="pgFormula"></select>
+      <button id="pgCopy" class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg> Copy Formula</button>
+    </div>
+    <div class="pg-grid">
+      <div class="pg-card" id="pgSyntaxCard">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Syntax</h4>
+        <pre id="pgSyntax" class="code"></pre>
+      </div>
+      <div class="pg-card" id="pgInputsCard">
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg> Sample Inputs</h4>
+        <div id="pgInputs"></div>
+      </div>
+    </div>
+    <div class="pg-result">
+      <div class="pg-result-item">
+        <span>Actual Formula</span>
+        <code id="pgFormulaPreview"></code>
+      </div>
+      <div class="pg-result-item">
+        <span>Expected Output</span>
+        <b id="pgExpected"></b>
+      </div>
+      <div class="pg-result-item">
+        <span>Calculated Output (live)</span>
+        <b id="pgCalculated"></b>
+      </div>
+    </div>
+    <div class="pg-card" id="pgExampleCard">
+      <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Real Office Example</h4>
+      <p id="pgExample"></p>
+    </div>
+  </section>
+
+  <section class="section" id="comparisons">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 21h14"/><path d="M7 21l5-14 5 14z"/></svg> Formula Comparison</h2>
+      <p>Side-by-side comparison of popular formula pairs to help you choose the right one.</p>
+    </div>
+    <div id="comparisonList" class="compare-grid"></div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V8l6-2 6 2v14"/><path d="M16 14V8l-2-1.5-2 1.5v7"/><path d="M2 11l10-8 10 8"/></svg> Real Office Projects</h2>
+      <p>Practical Excel formula combinations used in real business offices.</p>
+    </div>
+    <div id="projectGrid" class="project-grid"></div>
+  </section>
+
+  <section class="section" id="test">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M9 13h6"/><path d="M9 17h4"/></svg> Practice Test</h2>
+      <p>Formula based multiple choice questions with instant scoring and explanations.</p>
+    </div>
+    <div id="testArea">
+      <div class="test-setup" id="testSetup">
+        <button class="btn btn-primary" id="testStartBeginner">Beginner Test</button>
+        <button class="btn btn-primary" id="testStartIntermediate">Intermediate Test</button>
+        <button class="btn btn-primary" id="testStartAdvanced">Advanced Test</button>
+      </div>
+      <div id="testQuestions"></div>
+      <div id="testResult"></div>
+    </div>
+  </section>
+
+  <section class="section" id="compatibility">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Excel Compatibility &amp; Limitations</h2>
+      <p>Which formulas need Microsoft 365 / Excel 2021 or newer, and general compatibility notes.</p>
+    </div>
+    <div id="compatList" class="compat-list"></div>
+  </section>
+
+  <section class="section" id="bookmarks">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Bookmark Formulas</h2>
+      <p>Star formulas from the library and keep your most important references here.</p>
+    </div>
+    <div id="bookmarkList" class="bookmark-grid"></div>
+  </section>
+
+  <section class="section" id="bonus">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M5 12v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"></path><path d="M12 8v13"></path><path d="M12 8c-1.5 0-4.5-.5-4.5-3a2.5 2.5 0 0 1 4.5 0"></path><path d="M12 8c1.5 0 4.5-.5 4.5-3a2.5 2.5 0 0 0-4.5 0"></path></svg> BONUS – Premium Excel Resources</h2>
+      <p>Exclusive Excel Learning Resources. Master Excel with professionally prepared formula guides.</p>
+    </div>
+
+    <!-- Locked state (shown until unlocked) -->
+    <div class="bonus-gate" id="bonusGate">
+      <div class="bonus-gate-card">
+        <div class="bonus-gate-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path><circle cx="12" cy="15.5" r="1.4" fill="currentColor" stroke="none"></circle></svg>
+        </div>
+        <h3>Exclusive Excel Learning Resources</h3>
+        <p class="bonus-gate-sub">Master Excel with professionally prepared formula guides.</p>
+        <p class="bonus-gate-desc">This premium library holds 10 bilingual (English + Roman Hindi) PDF handbooks covering Basic to Advanced Excel formulas, MIS workflows and formula combinations – every guide with syntax, examples, office usage, common mistakes and version compatibility.</p>
+        <div class="bonus-gate-bullets">
+          <span>10 Premium PDFs</span><span>English + Roman Hindi</span><span>200+ Formulas</span><span>Version Compatibility</span>
+        </div>
+        <form class="bonus-gate-form" id="bonusGateForm" autocomplete="off">
+          <label class="bonus-gate-label" for="bonusPassword">Password</label>
+          <div class="bonus-pass-row">
+            <input id="bonusPassword" type="password" placeholder="Enter password" autocomplete="off" spellcheck="false" />
+            <button type="button" class="bonus-eye" id="bonusTogglePass" aria-label="Show or hide password" title="Show or hide password">
+              <svg id="bonusEyeOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <svg id="bonusEyeClosed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M2 12s3.5-7 10-7c1.8 0 3.4.5 4.8 1.3M22 12s-3.5 7-10 7c-1.8 0-3.4-.5-4.8-1.3"></path><path d="M3 3l18 18"></path></svg>
+            </button>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" id="bonusUnlockBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 7.5-2"></path></svg> Unlock Resources</button>
+          <p class="bonus-error" id="bonusError" hidden>Incorrect password. Please try again.</p>
+        </form>
+        <p class="bonus-note">Access is free for learners. This is a front-end convenience gate, not strong security: the password is shipped in the page code and can be seen in browser Developer Tools. For genuinely secure access, server-side authentication would be required in the future.</p>
+      </div>
+    </div>
+
+    <!-- Unlocked state (hidden until unlocked) -->
+    <div class="bonus-library" id="bonusLibrary" hidden>
+      <div class="bonus-toolbar">
+        <div class="bonus-search-row">
+          <span class="bonus-search-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.8-3.8"></path></svg>
+          </span>
+          <input id="bonusSearch" type="text" placeholder="Search PDFs by formula, topic, category or level..." autocomplete="off" aria-label="Search BONUS PDFs" />
+          <button type="button" class="bonus-search-clear" id="bonusSearchClear" aria-label="Clear search">×</button>
+        </div>
+        <div class="bonus-filters" id="bonusFilters" role="group" aria-label="Filter PDFs"></div>
+        <div class="bonus-toolbar-foot">
+          <span class="bonus-count" id="bonusCount">10 PDFs</span>
+          <button type="button" class="btn" id="bonusLockBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg> Lock Resources</button>
+        </div>
+      </div>
+      <div class="bonus-grid" id="bonusGrid"></div>
+      <div class="empty-state" id="bonusEmpty" hidden>
+        <h3>No PDFs match your search</h3>
+        <p>Try a different keyword like SUM, VLOOKUP, MIS or Advanced, or clear the filters.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="settings">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/><path d="M4.9 4.9l2.1 2.1"/><path d="M17 17l2.1 2.1"/><path d="M19.8 4.9a2 2 0 0 1 2.4 2.4l-2.1 2.1"/><path d="M6.3 17a2 2 0 0 1-2.4 2.4l-2.1-2.1"/></svg> Settings</h2>
+      <p>Personalize your Excel Master Index workspace.</p>
+    </div>
+    <div id="settingsCard" class="settings-card">
+      <div class="settings-row">
+        <div>
+          <div class="sr-label">Language</div>
+          <div class="sr-sub">Switch between English and simple Roman Hindi explanations.</div>
+        </div>
+        <button id="langToggleSettings" class="btn">Switch Language</button>
+      </div>
+      <div class="settings-row">
+        <div>
+          <div class="sr-label">Reset Learning Progress</div>
+          <div class="sr-sub">Clear saved completion progress for all formulas.</div>
+        </div>
+        <button class="btn btn-danger" id="resetProgressBtn">Reset Progress</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="creator">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/></svg> About the Creator</h2>
+      <p>The mind behind Excel Master Index – Basic to Advanced.</p>
+    </div>
+    <div class="creator-card">
+      <div class="creator-photo-wrap">
+        <img class="creator-photo" id="creatorPhoto" src="assets/images/utkarsh-bajpai.jpg" alt="Utkarsh Bajpai, creator of Excel Master Index" onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="creator-monogram" aria-hidden="true" style="display:none">UB</div>
+        <span class="creator-badge">Creator</span>
+      </div>
+      <div class="creator-body">
+        <span class="creator-kicker">Created &amp; Developed by</span>
+        <h3>Utkarsh Bajpai</h3>
+        <p class="creator-role">Excel Master Index – Basic to Advanced</p>
+        <p class="creator-bio">Utkarsh Bajpai built Excel Master Index to help students, Data Entry Operators, MIS Executives, Accountants, Data Analysts and office professionals master Microsoft Excel – from basic formulas to advanced dynamic arrays – in clear English and simple Roman Hindi. Every formula includes syntax, examples, common mistakes, tips and version compatibility.</p>
+        <a class="creator-email" href="mailto:utkarshbajpai068@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> utkarshbajpai068@gmail.com</a>
+        <div class="creator-tags">
+          <span>Excel Expert</span><span>MIS &amp; Reporting</span><span>Data Analysis</span><span>Bilingual Learning</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><rect x="7" y="10" width="3" height="8"></rect><rect x="12" y="6" width="3" height="12"></rect><rect x="17" y="13" width="3" height="5"></rect></svg> Excel Master Index</h4>
+        <p>The complete Microsoft Excel formula library – Basic to Advanced.</p>
+      </div>
+      <div>
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> Languages</h4>
+        <p>English &amp; simple Roman Hindi explanations.</p>
+      </div>
+      <div>
+        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Resources</h4>
+        <p>Formulas • Examples • Comparisons • Projects • Tests</p>
+      </div>
+    </div>
+    <div class="footer-bottom">Built for students, Data Entry Operators, MIS Executives, Accountants, Data Analysts and Office Professionals.<span class="footer-credit">Created &amp; Developed by <b>Utkarsh Bajpai</b> · <a href="mailto:utkarshbajpai068@gmail.com">utkarshbajpai068@gmail.com</a></span></div>
+  </footer>
+
+  <!-- ================= FLOATING ACTIONS ================= -->
+  <div class="float-cluster">
+    <button class="float-btn float-recent" id="recentFab" type="button" data-action="recent" title="Recently Viewed Formulas" aria-label="Recently Viewed Formulas">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+    </button>
+    <button class="float-btn float-help" id="helpFab" type="button" data-action="help" title="Help & Support" aria-label="Help and Support">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" x2="12" y1="17" y2="17"></line></svg>
+    </button>
+    <button class="float-btn float-quick" id="quickSearchFab" type="button" data-action="quicksearch" title="Quick Search" aria-label="Quick Search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+    </button>
+  </div>
+  <button class="float-btn float-backtop" id="backTop" type="button" data-action="backtop" title="Back to Top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg>
+  </button>
+  <button class="float-btn float-ai" id="aiFab" type="button" data-action="ai" title="AI Excel Instructor" aria-label="AI Excel Instructor">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+  </button>
+
+  <!-- AI Instructor Panel -->
+  <div class="float-panel ai-panel" id="aiPanel" hidden>
+    <div class="ai-head">
+      <span class="ai-avatar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      </span>
+      <div class="ai-head-text">
+        <b>AI Excel Instructor</b>
+        <span class="ai-status">Excel problem-solving expert</span>
+      </div>
+      <button class="ai-icon" id="aiClose" type="button" data-action="aiclose" title="Close Instructor" aria-label="Close AI Instructor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="ai-lang" role="tablist" aria-label="Instructor language">
+      <button class="ai-lang-btn active" type="button" data-ai-lang="en">English</button>
+      <button class="ai-lang-btn" type="button" data-ai-lang="hi">Hindi</button>
+      <button class="ai-lang-btn" type="button" data-ai-lang="hing">Hinglish</button>
+    </div>
+    <div class="ai-msgs" id="aiMessages"></div>
+    <div class="ai-sugg" id="aiSuggestions"></div>
+    <div class="ai-input-row">
+      <input id="aiInput" type="text" placeholder="Describe your Excel problem..." autocomplete="off" />
+      <button class="ai-send" id="aiSend" type="button" data-action="aiSend" title="Send">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7-7-7"></path><path d="M5 12l7-7 7 7"></path></svg>
+      </button>
+    </div>
+    <div class="ai-foot">
+      <button class="ai-clear" id="aiClear" type="button" data-action="aiclear">Clear conversation</button>
+      <span class="ai-note">Local guidance · not a live AI model</span>
+    </div>
+  </div>
+
+  <!-- Recently Viewed Panel -->
+  <div class="float-panel recent-panel" id="recentPanel" hidden>
+    <div class="ai-head">
+      <span class="ai-avatar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+      </span>
+      <div class="ai-head-text">
+        <b>Recently Viewed</b>
+        <span class="ai-status">Your learning trail</span>
+      </div>
+      <button class="ai-icon" id="recentClose" type="button" data-action="recentclose" title="Close" aria-label="Close recently viewed">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="ai-msgs" id="recentList"></div>
+  </div>
+
+  <!-- Help Modal -->
+  <div class="modal-overlay" id="helpModal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Help and Support">
+      <div class="modal-head">
+        <h3>Help &amp; Support</h3>
+        <button class="ai-icon" id="helpClose" type="button" data-action="helpclose" title="Close" aria-label="Close help">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="helpBody">
+        <p>Welcome to Excel Master Index – Basic to Advanced.</p>
+        <h4>Getting Started</h4>
+        <ul>
+          <li>Use the search bar to find a formula by name, keyword, or office task.</li>
+          <li>Open any formula card to read purpose, syntax, dataset, steps and office use.</li>
+          <li>Use the Interactive Playground to change sample inputs and see live output.</li>
+          <li>Star formulas to save them as bookmarks.</li>
+          <li>Switch language using the language button in the top bar.</li>
+        </ul>
+        <h4>Keyboard Shortcuts</h4>
+        <ul>
+          <li><b>Enter</b> in search: open top result.</li>
+          <li><b>Esc</b> in search/instructor: close panel or clear.</li>
+          <li><b>Up / Down</b> in search: move between results.</li>
+        </ul>
+        <button class="btn btn-primary" id="welcomeGuideBtn" type="button" data-action="welcome">Show Welcome Guide</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Welcome Guide Modal -->
+  <div class="modal-overlay" id="welcomeModal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Welcome guide">
+      <div class="modal-head">
+        <h3>Welcome to Excel Master Index</h3>
+        <button class="ai-icon" id="welcomeClose" type="button" data-action="welcomeclose" title="Close" aria-label="Close welcome">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Learn Excel formulas from <b>Basic to Advanced</b> with English and simple Roman Hindi explanations.</p>
+        <div class="welcome-steps">
+          <div class="welcome-step"><span class="welcome-num">1</span><div><b>Search</b><p>Find any formula or office task instantly.</p></div></div>
+          <div class="welcome-step"><span class="welcome-num">2</span><div><b>Learn</b><p>Open a formula card for syntax, dataset and steps.</p></div></div>
+          <div class="welcome-step"><span class="welcome-num">3</span><div><b>Practice</b><p>Use the playground and practice tests.</p></div></div>
+          <div class="welcome-step"><span class="welcome-num">4</span><div><b>Teach</b><p>Ask the AI Instructor for a guided solution.</p></div></div>
+        </div>
+        <button class="btn btn-primary" id="welcomeStart" type="button" data-action="welcomestart">Start Learning</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/d1.js"></script>
+  <script src="js/d2.js"></script>
+  <script src="js/d3.js"></script>
+  <script src="js/d4.js"></script>
+  <script src="js/d5.js"></script>
+  <script src="js/d6.js"></script>
+  <script src="js/d7.js"></script>
+  <script src="js/d8.js"></script>
+  <script src="js/d9.js"></script>
+  <script src="js/d10.js"></script>
+  <script src="js/d11.js"></script>
+  <script src="js/d12.js"></script>
+  <script src="js/d13.js"></script>
+  <script src="js/d14.js"></script>
+  <script src="js/d15.js"></script>
+  <script src="js/d16.js"></script>
+  <script src="js/d17.js"></script>
+  <script src="js/d18.js"></script>
+  <script src="js/d19.js"></script>
+  <script src="js/d20.js"></script>
+  <script src="js/d21.js"></script>
+  <script src="js/d22.js"></script>
+  <script src="js/d23.js"></script>
+  <script src="js/d24.js"></script>
+  <script src="js/d25.js"></script>
+  <script src="js/d26.js"></script>
+  <script src="js/d27.js"></script>
+  <script src="js/d28.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/bonus.js"></script>
+</body>
+</html>
