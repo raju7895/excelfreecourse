@@ -1,0 +1,319 @@
+/* ================= FOUR FLOATING 3D CATEGORY DOORS ================= */
+.doors-section {
+  padding: 60px 20px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.doors-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.doors-header h2 {
+  font-family: var(--font-head);
+  font-size: 32px;
+  color: var(--green-900);
+  margin: 0 0 10px;
+}
+
+.doors-header p {
+  color: var(--text-2);
+  font-size: 16px;
+  margin: 0;
+}
+
+.doors-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  perspective: 1500px;
+  padding: 20px;
+}
+
+.door-card {
+  position: relative;
+  height: 380px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+  animation: doorFloat 4s ease-in-out infinite;
+}
+
+.door-card:nth-child(1) { animation-delay: 0s; }
+.door-card:nth-child(2) { animation-delay: 0.3s; }
+.door-card:nth-child(3) { animation-delay: 0.6s; }
+.door-card:nth-child(4) { animation-delay: 0.9s; }
+
+@keyframes doorFloat {
+  0%, 100% { transform: translateY(0px) rotateX(0deg); }
+  50% { transform: translateY(-15px) rotateX(2deg); }
+}
+
+.door-card:hover {
+  animation-play-state: paused;
+  transform: translateY(-10px) rotateY(var(--tilt-y, 0deg)) rotateX(var(--tilt-x, 0deg)) scale(1.02);
+}
+
+.door-frame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a2f28 0%, #0f1f19 100%);
+  border-radius: 12px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.1);
+  padding: 16px;
+}
+
+.door-panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.6s ease;
+  transform-origin: left center;
+  box-shadow: inset 0 0 60px rgba(0,0,0,0.2);
+}
+
+.door-card:hover .door-panel {
+  transform: rotateY(-35deg);
+}
+
+.door-1 .door-panel {
+  background: linear-gradient(145deg, #173F35 0%, #0f2a23 50%, #173F35 100%);
+  border: 3px solid #1f4f42;
+}
+
+.door-2 .door-panel {
+  background: linear-gradient(145deg, #1e3a5f 0%, #0f1f3a 50%, #1e3a5f 100%);
+  border: 3px solid #2a4a7a;
+}
+
+.door-3 .door-panel {
+  background: linear-gradient(145deg, #4a2d5c 0%, #2d1a3a 50%, #4a2d5c 100%);
+  border: 3px solid #5a3d6c;
+}
+
+.door-4 .door-panel {
+  background: linear-gradient(145deg, #8b7355 0%, #5c4a2d 50%, #8b7355 100%);
+  border: 3px solid #9b8365;
+}
+
+.door-handle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 40px;
+  background: linear-gradient(90deg, #d4af37 0%, #f0d98c 50%, #d4af37 100%);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.4);
+}
+
+.door-handle::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle, #f0d98c 0%, #d4af37 100%);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.door-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
+}
+
+.door-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.door-title {
+  font-family: var(--font-head);
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 12px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  letter-spacing: 0.5px;
+}
+
+.door-desc {
+  color: rgba(255,255,255,0.9);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 14px;
+  max-width: 260px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+}
+
+.door-count {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.door-explore {
+  color: #f0d98c;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-top: 8px;
+  text-shadow: 0 0 10px rgba(240,217,140,0.6);
+}
+
+.door-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.05) 100%);
+  pointer-events: none;
+}
+
+.category-view {
+  display: none;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.category-view.active {
+  display: block;
+}
+
+.category-header {
+  margin-bottom: 40px;
+}
+
+.category-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--green-900);
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 24px;
+  transition: all 0.2s;
+}
+
+.category-back:hover {
+  background: var(--soft-green);
+  border-color: var(--green-900);
+}
+
+.category-title {
+  font-family: var(--font-head);
+  font-size: 36px;
+  color: var(--green-900);
+  margin: 0 0 12px;
+}
+
+.category-subtitle {
+  font-size: 18px;
+  color: var(--text-2);
+  margin: 0;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.subcat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.subcat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(23, 63, 53, 0.15);
+  border-color: var(--green-900);
+}
+
+.subcat-card h3 {
+  font-family: var(--font-head);
+  font-size: 20px;
+  color: var(--green-900);
+  margin: 0 0 10px;
+}
+
+.subcat-card p {
+  color: var(--text-2);
+  font-size: 14px;
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+
+.subcat-count {
+  display: inline-block;
+  background: var(--soft-green);
+  color: var(--green-900);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@media (max-width: 968px) {
+  .doors-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .door-card {
+    height: 320px;
+  }
+  .door-title {
+    font-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .door-card {
+    animation: none !important;
+  }
+  .door-card:hover {
+    transform: scale(1.01) !important;
+  }
+  .door-panel {
+    transition: none !important;
+  }
+}

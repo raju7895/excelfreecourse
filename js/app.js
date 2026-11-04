@@ -1997,8 +1997,16 @@ function bindGlobalEvents() {
 }
 
 function navigate(section) {
-  var map = { home: "home", dashboard: "home", categories: "content", all: "content", playground: "playground", comparisons: "comparisons", projects: "projects", test: "test", compatibility: "compatibility", bookmarks: "bookmarks", settings: "settings", bonus: "bonus", creator: "creator" };
+  var map = { home: "home", dashboard: "home", categories: "content", all: "content", playground: "playground", comparisons: "comparisons", projects: "projects", test: "test", compatibility: "compatibility", bookmarks: "bookmarks", settings: "settings", bonus: "bonus", creator: "creator", charts: "charts", mis: "mis", fundamentals: "fundamentals", cleaning: "cleaning", tools: "tools", automation: "automation", practicelab: "practicelab" };
   var id = map[section] || "home";
+  if (id === "content") {
+    var contentEl = document.getElementById("content");
+    if (contentEl) contentEl.style.display = "block";
+    var doorsSec = document.getElementById("doorsSection");
+    var catView = document.getElementById("categoryView");
+    if (doorsSec) doorsSec.style.display = "none";
+    if (catView) catView.classList.remove("active");
+  }
   var el = document.getElementById(id);
   if (el) { el.scrollIntoView({ behavior: "smooth", block: "start" }); }
 }
