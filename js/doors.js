@@ -463,22 +463,25 @@
       
       if (doorType === 'advanced') {
         const advancedTopics = {
-          'PivotTables & PivotCharts': ['Creating PivotTables','Rows, Columns, Values & Filters','Value Field Settings','Grouping','Calculated Fields','Slicers & Timelines','PivotCharts & GETPIVOTDATA'],
-          'Power Query': ['Importing Data','Data Cleaning','Remove Duplicates & Blanks','Split & Merge Columns','Append & Merge Queries','Group By & Unpivot','Load & Refresh'],
-          'Data Cleaning & Management': ['Data Validation','Drop-down Lists','Conditional Formatting','Advanced Filter','Text to Columns','Flash Fill','Excel Tables','Named Ranges'],
-          'Advanced Tools': ['What-If Analysis','Goal Seek','Scenario Manager','Data Tables','Forecast Sheet','Data Model','Dynamic Arrays']
+          'PivotTables & PivotCharts': ['Creating PivotTables','Rows, Columns, Values & Filters','Value Field Settings','Grouping Dates & Numbers','Calculated Fields','Sorting & Filtering','Slicers & Timelines','PivotCharts','Show Values As','Running Total','Percentage of Total','GETPIVOTDATA','Refresh & Update'],
+          'Power Query': ['Importing Data','Data Cleaning','Remove Duplicates','Remove Blank Rows','Change Data Types','Split Columns','Merge Columns','Append Queries','Merge Queries','Group By','Unpivot Columns','Replace Values','Load to Excel','Refresh Queries','Multi-Sheet Compilation'],
+          'Power Pivot & Data Model': ['Introduction to Data Model','Creating Relationships','Power Pivot Window','Calculated Columns','Measures','DAX Basics - SUM/CALCULATE','COUNTROWS & DISTINCTCOUNT','RELATED Function','Building Reports','Practical Example'],
+          'Data Cleaning & Management': ['TRIM & CLEAN','Text to Columns','Flash Fill','Remove Duplicates','Data Validation','Drop-down Lists','Conditional Formatting','Excel Tables','Structured References','Advanced Filter','Find & Replace','Standardizing Data'],
+          'Advanced Tools': ['What-If Analysis','Goal Seek','Scenario Manager','Data Tables (One/Two Variable)','Forecast Sheet','Named Ranges','Dynamic Named Ranges','Solver Overview','Dynamic Arrays','Data Consolidation'],
+          'Excel Automation & VBA': ['Macro Recording','Running Macros','Relative vs Absolute References','VBA Editor Basics','Simple VBA Examples','Button to Run Macro','Workbook Events Basics','Macro Security'],
+          'Excel Fundamentals': ['Cell References (Relative/Absolute/Mixed)','Named Ranges','Excel Tables','Shortcuts','Formatting','Formulas vs Functions']
         };
         if (advancedTopics[categoryName]) {
           const topics = advancedTopics[categoryName];
           grid.innerHTML = `
             <div class="content-section">
-              <h2 style="color: var(--green-900); margin-bottom: 12px;">${categoryName}</h2>
-              <p style="color: var(--text-2); margin-bottom: 24px;">Practical tutorials with examples & exercises</p>
+              <h2 style="color: var(--green-900); margin-bottom: 12px;">${categoryName} - Complete Masterclass</h2>
+              <p style="color: var(--text-2); margin-bottom: 24px;">Practical tutorials with datasets, step-by-step instructions & exercises</p>
               <div class="formula-topic-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
                 ${topics.map(topic => `
                   <div class="topic-card" style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: all 0.2s ease;" onclick="showAdvancedLesson('${categoryName.replace(/'/g, "\\'")}', '${topic.replace(/'/g, "\\'")}')" onmouseover="this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='var(--green-500)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='var(--border)'">
                     <h3 style="color: var(--green-900); margin: 0 0 8px 0; font-size: 17px;">${escapeHtml(topic)}</h3>
-                    <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 13px;">Complete step-by-step tutorial</p>
+                    <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 13px;">Complete tutorial with examples & practice</p>
                     <span style="color: var(--green-700); font-weight: 600; font-size: 13px;">View Lesson →</span>
                   </div>
                 `).join('')}
@@ -491,16 +494,16 @@
       
       if (doorType === 'mis') {
         if (categoryName === 'MIS Executive Training') {
-          const reports = ['Daily Sales Report','Monthly Sales Report','Order Tracking Report','Delivery Performance Report','Pending Order Report','Employee Performance Report','Attendance Report','Working Hours Report','Overtime Report','Salary and Incentive Report','Inventory Report','Stock In and Stock Out Report','Target Achievement Report','Customer Database Report','City-wise Performance Report','Daily MIS Summary','Weekly Management Report','Monthly Management Report'];
+          const reports = ['Introduction to MIS Reporting','Daily Sales Report','Monthly Sales Report','Order Management Report','Order Tracking Report','Delivery Performance Report','Pending Order Report','Cancelled Order Report','Employee Performance Report','Attendance Report','Working Hours Report','Overtime Report','Salary and Incentive Report','Inventory Report','Stock In and Stock Out Report','Target vs Achievement Report','Customer Database Report','City-wise Performance Report','Product-wise Performance Report','Management Summary Report','Daily MIS Summary','Weekly Management Report','Monthly Management Report'];
           grid.innerHTML = `
             <div class="content-section">
-              <h2 style="color: var(--green-900); margin-bottom: 12px;">${categoryName} - Real-World Reports</h2>
-              <p style="color: var(--text-2); margin-bottom: 24px;">Practical MIS reports with datasets, formulas & calculations</p>
+              <h2 style="color: var(--green-900); margin-bottom: 12px;">${categoryName} - Complete MIS Reports Library</h2>
+              <p style="color: var(--text-2); margin-bottom: 24px;">Practical MIS reports with datasets, formulas, calculations & management-ready formats</p>
               <div class="formula-topic-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
                 ${reports.map(report => `
                   <div class="topic-card" style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: all 0.2s ease;" onclick="showMISReport('${report.replace(/'/g, "\\'")}')" onmouseover="this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='var(--green-500)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='var(--border)'">
                     <h3 style="color: var(--green-900); margin: 0 0 8px 0; font-size: 17px;">${escapeHtml(report)}</h3>
-                    <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 13px;">Complete with raw data, formulas & dashboard</p>
+                    <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 13px;">Complete with raw data, formulas, calculations & output</p>
                     <span style="color: var(--green-700); font-weight: 600; font-size: 13px;">View Report →</span>
                   </div>
                 `).join('')}
@@ -509,18 +512,37 @@
           `;
           return;
         }
-        if (categoryName === 'Excel Practice Lab' || categoryName === 'Practice Tests') {
-          const tasks = ['Beginner Practice Set','Intermediate Practice Set','Advanced Practice Set','Job-Level Challenge','Data Compilation Task','Reconciliation Exercise'];
+        if (categoryName === 'Excel Practice Lab') {
+          const tasks = ['Beginner Practice Set','Intermediate Practice Set','Advanced Practice Set','Job-Level Challenge','Data Compilation Task','Reconciliation Exercise','Master Sheet Creation','MIS Dashboard Task'];
           grid.innerHTML = `
             <div class="content-section">
-              <h2 style="color: var(--green-900); margin-bottom: 12px;">${categoryName}</h2>
-              <p style="color: var(--text-2); margin-bottom: 24px;">Hands-on practice with solutions</p>
+              <h2 style="color: var(--green-900); margin-bottom: 12px;">${categoryName} - Hands-On Practice</h2>
+              <p style="color: var(--text-2); margin-bottom: 24px;">Real office tasks with solutions - attempt first, then view solution</p>
               <div class="formula-topic-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
                 ${tasks.map(task => `
                   <div class="topic-card" style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: all 0.2s ease;" onclick="showPracticeTask('${task.replace(/'/g, "\\'")}')" onmouseover="this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='var(--green-500)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='var(--border)'">
                     <h3 style="color: var(--green-900); margin: 0 0 8px 0; font-size: 17px;">${escapeHtml(task)}</h3>
-                    <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 13px;">Attempt first, then view solution</p>
+                    <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 13px;">Practical task with dataset & solution</p>
                     <span style="color: var(--green-700); font-weight: 600; font-size: 13px;">Start Task →</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+          return;
+        }
+        if (categoryName === 'Practice Tests') {
+          const tests = ['Beginner Excel Test','Intermediate Excel Test','Advanced Excel Test','MIS Executive Test','Job Readiness Test'];
+          grid.innerHTML = `
+            <div class="content-section">
+              <h2 style="color: var(--green-900); margin-bottom: 12px;">${categoryName}</h2>
+              <p style="color: var(--text-2); margin-bottom: 24px;">Test your knowledge with timed practice tests</p>
+              <div class="formula-topic-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+                ${tests.map(test => `
+                  <div class="topic-card" style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px;">
+                    <h3 style="color: var(--green-900); margin: 0 0 8px 0;">${escapeHtml(test)}</h3>
+                    <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 13px;">MCQ-based test with instant results</p>
+                    <span style="color: var(--green-700); font-weight: 600;">Use Practice Test tab →</span>
                   </div>
                 `).join('')}
               </div>
@@ -826,43 +848,94 @@
       const grid = document.getElementById('categoryViewGrid');
       grid.innerHTML = `
         <div class="lesson-detail">
-          <div style="margin-bottom: 20px;">
-            <button class="btn" onclick="openCategoryContent('mis', 'MIS Executive Training')">← Back to Reports</button>
+          <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn" onclick="openCategoryContent('mis', 'MIS Executive Training')">← Back to MIS Reports</button>
             <button class="btn" onclick="goBackToDoor()">← Back to Door</button>
           </div>
-          <h1 style="color: var(--green-900); margin-bottom: 30px;">${escapeHtml(reportName)} - Complete MIS Tutorial</h1>
+          <h1 style="color: var(--green-900); margin-bottom: 10px;">${escapeHtml(reportName)} - Complete MIS Tutorial</h1>
+          <p style="color: var(--text-2); margin-bottom: 30px;">Chapter: MIS Reporting | Difficulty: Intermediate</p>
+          
           <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
-            <h2 style="color: var(--green-900); margin-top: 0;">Business Requirement</h2>
-            <p style="line-height: 1.8;">Prepare ${reportName} with accurate calculations, analysis and management-ready format.</p>
-            <h3>Required Calculations</h3>
+            <h2 style="color: var(--green-900); margin-top: 0;">1. Business Requirement</h2>
+            <p style="line-height: 1.8;">Prepare ${reportName} with accurate calculations, data analysis, and management-ready format for decision making.</p>
+            <h3 style="color: var(--green-900);">Objectives</h3>
             <ul style="line-height: 2;">
-              <li>Gross Sales / Total Amount</li>
-              <li>Delivered/Pending/Cancelled Orders</li>
-              <li>Percentage Calculations</li>
-              <li>Employee/City-wise Performance</li>
-              <li>Target vs Achievement</li>
+              <li>Collect and organize raw sales/order data</li>
+              <li>Apply correct formulas and calculations</li>
+              <li>Generate summary with KPIs</li>
+              <li>Create management-friendly report format</li>
             </ul>
           </div>
+          
           <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
-            <h2 style="color: var(--green-900); margin-top: 0;">Raw Sales Data</h2>
+            <h2 style="color: var(--green-900); margin-top: 0;">2. Raw Data Set</h2>
             <div style="overflow-x: auto;">
-              <table style="width: 100%; border-collapse: collapse; min-width: 800px;">
-                <tr style="background: var(--soft-green);"><th style="padding: 8px; border: 1px solid var(--border);">Order Date</th><th style="padding: 8px; border: 1px solid var(--border);">Order ID</th><th style="padding: 8px; border: 1px solid var(--border);">Sales Rep</th><th style="padding: 8px; border: 1px solid var(--border);">City</th><th style="padding: 8px; border: 1px solid var(--border);">Product</th><th style="padding: 8px; border: 1px solid var(--border);">Qty</th><th style="padding: 8px; border: 1px solid var(--border);">Rate</th><th style="padding: 8px; border: 1px solid var(--border);">Amount</th><th style="padding: 8px; border: 1px solid var(--border);">Target</th><th style="padding: 8px; border: 1px solid var(--border);">Status</th></tr>
-                <tr><td style="padding: 6px; border: 1px solid var(--border);">01-Oct-25</td><td style="padding: 6px; border: 1px solid var(--border);">SO-001</td><td style="padding: 6px; border: 1px solid var(--border);">Rahul</td><td style="padding: 6px; border: 1px solid var(--border);">Delhi</td><td style="padding: 6px; border: 1px solid var(--border);">Laptop</td><td style="padding: 6px; border: 1px solid var(--border);">2</td><td style="padding: 6px; border: 1px solid var(--border);">45000</td><td style="padding: 6px; border: 1px solid var(--border);">90000</td><td style="padding: 6px; border: 1px solid var(--border);">80000</td><td style="padding: 6px; border: 1px solid var(--border);">Delivered</td></tr>
-                <tr><td style="padding: 6px; border: 1px solid var(--border);">05-Oct-25</td><td style="padding: 6px; border: 1px solid var(--border);">SO-002</td><td style="padding: 6px; border: 1px solid var(--border);">Priya</td><td style="padding: 6px; border: 1px solid var(--border);">Mumbai</td><td style="padding: 6px; border: 1px solid var(--border);">Mobile</td><td style="padding: 6px; border: 1px solid var(--border);">4</td><td style="padding: 6px; border: 1px solid var(--border);">15000</td><td style="padding: 6px; border: 1px solid var(--border);">60000</td><td style="padding: 6px; border: 1px solid var(--border);">70000</td><td style="padding: 6px; border: 1px solid var(--border);">Delivered</td></tr>
-                <tr><td style="padding: 6px; border: 1px solid var(--border);">10-Oct-25</td><td style="padding: 6px; border: 1px solid var(--border);">SO-003</td><td style="padding: 6px; border: 1px solid var(--border);">Amit</td><td style="padding: 6px; border: 1px solid var(--border);">Kolkata</td><td style="padding: 6px; border: 1px solid var(--border);">Tablet</td><td style="padding: 6px; border: 1px solid var(--border);">3</td><td style="padding: 6px; border: 1px solid var(--border);">20000</td><td style="padding: 6px; border: 1px solid var(--border);">60000</td><td style="padding: 6px; border: 1px solid var(--border);">50000</td><td style="padding: 6px; border: 1px solid var(--border);">Pending</td></tr>
+              <table style="width: 100%; border-collapse: collapse; min-width: 900px;">
+                <tr style="background: var(--soft-green);">
+                  <th style="padding: 8px; border: 1px solid var(--border);">Order Date</th>
+                  <th style="padding: 8px; border: 1px solid var(--border);">Order ID</th>
+                  <th style="padding: 8px; border: 1px solid var(--border);">Sales Rep</th>
+                  <th style="padding: 8px; border: 1px solid var(--border);">City</th>
+                  <th style="padding: 8px; border: 1px solid var(--border);">Product</th>
+                  <th style="padding: 8px; border: 1px solid var(--border);">Qty</th>
+                  <th style="padding: 8px; border: 1px solid var(--border);">Rate</th>
+                  <th style="padding: 8px; border: 1px solid var(--border);">Amount</th>
+                  <th style="padding: 8px; border: 1px solid var(--border);">Target</th>
+                  <th style="padding: 8px; border: 1px solid var(--border);">Status</th>
+                </tr>
+                <tr><td style="padding: 6px; border: 1px solid var(--border);">01-Oct-25</td><td style="padding: 6px; border: 1px solid var(--border);">SO-001</td><td style="padding: 6px; border: 1px solid var(--border);">Rahul Sharma</td><td style="padding: 6px; border: 1px solid var(--border);">Delhi</td><td style="padding: 6px; border: 1px solid var(--border);">Laptop</td><td style="padding: 6px; border: 1px solid var(--border);">2</td><td style="padding: 6px; border: 1px solid var(--border);">45000</td><td style="padding: 6px; border: 1px solid var(--border);">90000</td><td style="padding: 6px; border: 1px solid var(--border);">80000</td><td style="padding: 6px; border: 1px solid var(--border);">Delivered</td></tr>
+                <tr><td style="padding: 6px; border: 1px solid var(--border);">05-Oct-25</td><td style="padding: 6px; border: 1px solid var(--border);">SO-002</td><td style="padding: 6px; border: 1px solid var(--border);">Priya Singh</td><td style="padding: 6px; border: 1px solid var(--border);">Mumbai</td><td style="padding: 6px; border: 1px solid var(--border);">Mobile</td><td style="padding: 6px; border: 1px solid var(--border);">4</td><td style="padding: 6px; border: 1px solid var(--border);">15000</td><td style="padding: 6px; border: 1px solid var(--border);">60000</td><td style="padding: 6px; border: 1px solid var(--border);">70000</td><td style="padding: 6px; border: 1px solid var(--border);">Delivered</td></tr>
+                <tr><td style="padding: 6px; border: 1px solid var(--border);">10-Oct-25</td><td style="padding: 6px; border: 1px solid var(--border);">SO-003</td><td style="padding: 6px; border: 1px solid var(--border);">Amit Kumar</td><td style="padding: 6px; border: 1px solid var(--border);">Kolkata</td><td style="padding: 6px; border: 1px solid var(--border);">Tablet</td><td style="padding: 6px; border: 1px solid var(--border);">3</td><td style="padding: 6px; border: 1px solid var(--border);">20000</td><td style="padding: 6px; border: 1px solid var(--border);">60000</td><td style="padding: 6px; border: 1px solid var(--border);">50000</td><td style="padding: 6px; border: 1px solid var(--border);">Pending</td></tr>
+                <tr><td style="padding: 6px; border: 1px solid var(--border);">15-Oct-25</td><td style="padding: 6px; border: 1px solid var(--border);">SO-004</td><td style="padding: 6px; border: 1px solid var(--border);">Sneha Patel</td><td style="padding: 6px; border: 1px solid var(--border);">Bangalore</td><td style="padding: 6px; border: 1px solid var(--border);">Laptop</td><td style="padding: 6px; border: 1px solid var(--border);">1</td><td style="padding: 6px; border: 1px solid var(--border);">45000</td><td style="padding: 6px; border: 1px solid var(--border);">45000</td><td style="padding: 6px; border: 1px solid var(--border);">40000</td><td style="padding: 6px; border: 1px solid var(--border);">Delivered</td></tr>
               </table>
             </div>
           </div>
+          
           <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
-            <h2 style="color: var(--green-900); margin-top: 0;">Formulas to Use</h2>
-            <ul style="line-height: 2;">
-              <li><strong>Total Sales:</strong> =SUM(H2:H10)</li>
-              <li><strong>Delivered Count:</strong> =COUNTIF(J2:J10,"Delivered")</li>
-              <li><strong>Delivery %:</strong> =COUNTIF(J2:J10,"Delivered")/COUNTA(J2:J10)</li>
-              <li><strong>Target Achievement:</strong> =H2/I2</li>
-              <li><strong>Performance:</strong> =IF(H2>=I2,"Achieved","Not Achieved")</li>
+            <h2 style="color: var(--green-900); margin-top: 0;">3. Calculations & Formulas</h2>
+            <ul style="line-height: 2.2;">
+              <li><strong>Total Sales (Gross):</strong> <code style="background: var(--soft-green); padding: 4px 10px;">=SUM(H2:H10)</code></li>
+              <li><strong>Total Orders:</strong> <code style="background: var(--soft-green); padding: 4px 10px;">=COUNTA(B2:B10)</code></li>
+              <li><strong>Delivered Orders:</strong> <code style="background: var(--soft-green); padding: 4px 10px;">=COUNTIF(J2:J10,"Delivered")</code></li>
+              <li><strong>Pending Orders:</strong> <code style="background: var(--soft-green); padding: 4px 10px;">=COUNTIF(J2:J10,"Pending")</code></li>
+              <li><strong>Delivery Percentage:</strong> <code style="background: var(--soft-green); padding: 4px 10px;">=COUNTIF(J2:J10,"Delivered")/COUNTA(J2:J10)</code> Format as %</li>
+              <li><strong>Target Achievement:</strong> <code style="background: var(--soft-green); padding: 4px 10px;">=H2/I2</code> Format as %</li>
+              <li><strong>Performance Status:</strong> <code style="background: var(--soft-green); padding: 4px 10px;">=IF(H2>=I2,"Achieved","Not Achieved")</code></li>
+              <li><strong>Average Order Value:</strong> <code style="background: var(--soft-green); padding: 4px 10px;">=AVERAGE(H2:H10)</code></li>
             </ul>
+          </div>
+          
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">4. Step-by-Step Process</h2>
+            <ol style="line-height: 2.2; padding-left: 24px;">
+              <li>Prepare raw data in proper format</li>
+              <li>Create summary table for KPIs</li>
+              <li>Apply formulas for calculations</li>
+              <li>Create employee-wise/city-wise summary using PivotTable</li>
+              <li>Add conditional formatting for highlights</li>
+              <li>Format numbers as currency/percentage</li>
+              <li>Create charts for visual analysis</li>
+              <li>Prepare management summary</li>
+            </ol>
+          </div>
+          
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">5. Practice Exercise</h2>
+            <div style="background: #fff3cd; padding: 20px; border-left: 4px solid #ffc107; border-radius: 4px;">
+              <p><strong>Task:</strong> Using the data above, create a complete ${reportName} with all KPIs, employee-wise summary, and target achievement analysis.</p>
+              <details style="margin-top: 16px;">
+                <summary style="cursor: pointer; color: var(--green-900); font-weight: 700;">Show Expected Output Summary</summary>
+                <div style="margin-top: 12px; background: white; padding: 16px; border-radius: 6px;">
+                  <ul style="line-height: 2;">
+                    <li>Total Sales: ₹2,55,000</li>
+                    <li>Total Orders: 4</li>
+                    <li>Delivered: 3 (75%)</li>
+                    <li>Pending: 1 (25%)</li>
+                    <li>Best Performer: Rahul Sharma (₹90,000)</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
           </div>
         </div>
       `;
