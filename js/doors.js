@@ -234,37 +234,310 @@
       return 'Complete learning material for ' + categoryName;
     }
 
+    const formulaDataByCategory = {
+      'Basic Formulas': [
+        { name: 'SUM', desc: 'Adds all numbers in a range' },
+        { name: 'AVERAGE', desc: 'Returns average of numbers' },
+        { name: 'COUNT', desc: 'Counts cells with numbers' },
+        { name: 'COUNTA', desc: 'Counts non-blank cells' },
+        { name: 'COUNTBLANK', desc: 'Counts blank cells' },
+        { name: 'MAX', desc: 'Returns maximum value' },
+        { name: 'MIN', desc: 'Returns minimum value' },
+        { name: 'PRODUCT', desc: 'Multiplies all numbers' },
+        { name: 'ROUND', desc: 'Rounds to specified decimals' },
+        { name: 'ROUNDUP', desc: 'Rounds up' },
+        { name: 'ROUNDDOWN', desc: 'Rounds down' },
+        { name: 'ABS', desc: 'Returns absolute value' },
+        { name: 'INT', desc: 'Rounds down to integer' },
+        { name: 'MOD', desc: 'Returns remainder' },
+        { name: 'POWER', desc: 'Raises to power' },
+        { name: 'SQRT', desc: 'Square root' }
+      ],
+      'Logical Formulas': [
+        { name: 'IF', desc: 'Conditional logic' },
+        { name: 'IFS', desc: 'Multiple conditions' },
+        { name: 'AND', desc: 'All conditions true' },
+        { name: 'OR', desc: 'Any condition true' },
+        { name: 'NOT', desc: 'Reverses logic' },
+        { name: 'XOR', desc: 'Exclusive OR' },
+        { name: 'IFERROR', desc: 'Handles errors' },
+        { name: 'IFNA', desc: 'Handles #N/A errors' },
+        { name: 'SWITCH', desc: 'Value matching' },
+        { name: 'TRUE', desc: 'Logical TRUE' },
+        { name: 'FALSE', desc: 'Logical FALSE' }
+      ],
+      'Text Formulas': [
+        { name: 'LEFT', desc: 'Extracts from left' },
+        { name: 'RIGHT', desc: 'Extracts from right' },
+        { name: 'MID', desc: 'Extracts from middle' },
+        { name: 'LEN', desc: 'Counts characters' },
+        { name: 'TRIM', desc: 'Removes extra spaces' },
+        { name: 'CLEAN', desc: 'Removes non-printable chars' },
+        { name: 'UPPER', desc: 'Converts to uppercase' },
+        { name: 'LOWER', desc: 'Converts to lowercase' },
+        { name: 'PROPER', desc: 'Proper case' },
+        { name: 'CONCATENATE', desc: 'Joins text' },
+        { name: 'CONCAT', desc: 'Modern concat' },
+        { name: 'TEXTJOIN', desc: 'Joins with delimiter' },
+        { name: 'FIND', desc: 'Finds text (case-sensitive)' },
+        { name: 'SEARCH', desc: 'Finds text (case-insensitive)' },
+        { name: 'SUBSTITUTE', desc: 'Replaces text' },
+        { name: 'REPLACE', desc: 'Replaces by position' },
+        { name: 'TEXT', desc: 'Formats numbers as text' },
+        { name: 'VALUE', desc: 'Converts text to number' },
+        { name: 'TEXTBEFORE', desc: 'Text before delimiter' },
+        { name: 'TEXTAFTER', desc: 'Text after delimiter' },
+        { name: 'TEXTSPLIT', desc: 'Splits text' }
+      ],
+      'Date & Time Formulas': [
+        { name: 'TODAY', desc: 'Current date' },
+        { name: 'NOW', desc: 'Current date and time' },
+        { name: 'DATE', desc: 'Creates date' },
+        { name: 'TIME', desc: 'Creates time' },
+        { name: 'DAY', desc: 'Extracts day' },
+        { name: 'MONTH', desc: 'Extracts month' },
+        { name: 'YEAR', desc: 'Extracts year' },
+        { name: 'DATEDIF', desc: 'Date difference' },
+        { name: 'DAYS', desc: 'Days between dates' },
+        { name: 'EDATE', desc: 'Add months' },
+        { name: 'EOMONTH', desc: 'End of month' },
+        { name: 'WORKDAY', desc: 'Workdays' },
+        { name: 'NETWORKDAYS', desc: 'Net workdays' },
+        { name: 'WEEKDAY', desc: 'Day of week' },
+        { name: 'WEEKNUM', desc: 'Week number' },
+        { name: 'YEARFRAC', desc: 'Year fraction' }
+      ],
+      'Lookup & Reference': [
+        { name: 'VLOOKUP', desc: 'Vertical lookup' },
+        { name: 'HLOOKUP', desc: 'Horizontal lookup' },
+        { name: 'XLOOKUP', desc: 'Modern lookup' },
+        { name: 'LOOKUP', desc: 'Legacy lookup' },
+        { name: 'INDEX', desc: 'Returns value by position' },
+        { name: 'MATCH', desc: 'Returns position' },
+        { name: 'XMATCH', desc: 'Modern match' },
+        { name: 'INDEX+MATCH', desc: 'Flexible lookup combo' },
+        { name: 'CHOOSE', desc: 'Selects from list' },
+        { name: 'OFFSET', desc: 'Reference offset' },
+        { name: 'INDIRECT', desc: 'Reference from text' },
+        { name: 'TRANSPOSE', desc: 'Transposes range' },
+        { name: 'ROW', desc: 'Row number' },
+        { name: 'ROWS', desc: 'Number of rows' },
+        { name: 'COLUMN', desc: 'Column number' },
+        { name: 'COLUMNS', desc: 'Number of columns' },
+        { name: 'HYPERLINK', desc: 'Creates link' }
+      ],
+      'Conditional Formulas': [
+        { name: 'SUMIF', desc: 'Sum with condition' },
+        { name: 'SUMIFS', desc: 'Sum with multiple conditions' },
+        { name: 'COUNTIF', desc: 'Count with condition' },
+        { name: 'COUNTIFS', desc: 'Count with multiple conditions' },
+        { name: 'AVERAGEIF', desc: 'Average with condition' },
+        { name: 'AVERAGEIFS', desc: 'Average with multiple conditions' },
+        { name: 'MAXIFS', desc: 'Max with conditions' },
+        { name: 'MINIFS', desc: 'Min with conditions' },
+        { name: 'SUMPRODUCT', desc: 'Product sum with logic' }
+      ],
+      'Statistical Formulas': [
+        { name: 'MEDIAN', desc: 'Middle value' },
+        { name: 'MODE.SNGL', desc: 'Most frequent' },
+        { name: 'LARGE', desc: 'Kth largest' },
+        { name: 'SMALL', desc: 'Kth smallest' },
+        { name: 'RANK.EQ', desc: 'Rank' },
+        { name: 'STDEV.S', desc: 'Sample std dev' },
+        { name: 'STDEV.P', desc: 'Population std dev' },
+        { name: 'VAR.S', desc: 'Sample variance' },
+        { name: 'CORREL', desc: 'Correlation' },
+        { name: 'FORECAST.LINEAR', desc: 'Forecast' }
+      ],
+      'Dynamic Arrays': [
+        { name: 'FILTER', desc: 'Filters data' },
+        { name: 'SORT', desc: 'Sorts data' },
+        { name: 'SORTBY', desc: 'Sort by range' },
+        { name: 'UNIQUE', desc: 'Unique values' },
+        { name: 'SEQUENCE', desc: 'Generates sequence' },
+        { name: 'RANDARRAY', desc: 'Random array' },
+        { name: 'TAKE', desc: 'Takes rows/cols' },
+        { name: 'DROP', desc: 'Drops rows/cols' },
+        { name: 'VSTACK', desc: 'Vertical stack' },
+        { name: 'HSTACK', desc: 'Horizontal stack' },
+        { name: 'CHOOSEROWS', desc: 'Choose rows' },
+        { name: 'CHOOSECOLS', desc: 'Choose columns' }
+      ],
+      'Financial Formulas': [
+        { name: 'PMT', desc: 'Loan payment' },
+        { name: 'IPMT', desc: 'Interest payment' },
+        { name: 'PPMT', desc: 'Principal payment' },
+        { name: 'FV', desc: 'Future value' },
+        { name: 'PV', desc: 'Present value' },
+        { name: 'NPV', desc: 'Net present value' },
+        { name: 'IRR', desc: 'Internal rate of return' },
+        { name: 'RATE', desc: 'Interest rate' },
+        { name: 'NPER', desc: 'Number of periods' }
+      ],
+      'Advanced Formulas': [
+        { name: 'LET', desc: 'Named variables' },
+        { name: 'LAMBDA', desc: 'Custom functions' },
+        { name: 'MAP', desc: 'Apply to array' },
+        { name: 'REDUCE', desc: 'Reduce array' },
+        { name: 'SCAN', desc: 'Scan array' },
+        { name: 'BYROW', desc: 'By rows' },
+        { name: 'BYCOL', desc: 'By columns' },
+        { name: 'GROUPBY', desc: 'Group data' },
+        { name: 'PIVOTBY', desc: 'Pivot by' }
+      ],
+      'Formula Combinations': [
+        { name: 'INDEX+MATCH', desc: 'Powerful lookup combo' },
+        { name: 'VLOOKUP+IFERROR', desc: 'Error handling' },
+        { name: 'IF+AND+OR', desc: 'Complex logic' },
+        { name: 'SUMIFS+DATE', desc: 'Date range sum' },
+        { name: 'XLOOKUP+IFERROR', desc: 'Modern safe lookup' }
+      ]
+    };
+
     function renderCategoryContent(doorType, categoryName) {
       const grid = document.getElementById('categoryViewGrid');
       
-      if (doorType === 'formula' && categoryName === 'Lookup & Reference') {
-        grid.innerHTML = `
-          <div class="content-section">
-            <h2 style="color: var(--green-900); margin-bottom: 20px;">Lookup & Reference Formulas - Complete Library</h2>
-            <p style="color: var(--text-2); margin-bottom: 30px;">Master all lookup functions with complete tutorials, examples and practice</p>
-            
-            <div class="formula-topic-list">
-              ${['VLOOKUP', 'HLOOKUP', 'XLOOKUP', 'LOOKUP', 'INDEX', 'MATCH', 'XMATCH', 'INDEX + MATCH', 'INDEX + XMATCH', 'CHOOSE', 'OFFSET', 'INDIRECT', 'TRANSPOSE', 'ROW', 'ROWS', 'COLUMN', 'COLUMNS', 'HYPERLINK'].map(formula => `
-                <div class="topic-card" onclick="showFormulaTopic('${formula}')">
-                  <h3>${formula}</h3>
-                  <p>Complete tutorial with syntax, examples, and practice</p>
-                  <span class="topic-badge">View Lesson →</span>
-                </div>
-              `).join('')}
+      if (doorType === 'formula') {
+        if (formulaDataByCategory[categoryName]) {
+          const formulas = formulaDataByCategory[categoryName];
+          grid.innerHTML = `
+            <div class="content-section">
+              <h2 style="color: var(--green-900); margin-bottom: 12px;">${categoryName} - Complete Library</h2>
+              <p style="color: var(--text-2); margin-bottom: 24px;">${formulas.length} formulas with complete tutorials, syntax, examples, practice & solutions</p>
+              
+              <div class="formula-topic-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+                ${formulas.map(formula => `
+                  <div class="topic-card" style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: all 0.2s ease; box-shadow: var(--shadow-sm);" onclick="showFormulaTopic('${formula.name.replace(/'/g, "\\'")}')" onmouseover="this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='var(--green-500)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='var(--border)'">
+                    <h3 style="color: var(--green-900); margin: 0 0 8px 0; font-size: 18px;">${escapeHtml(formula.name)}</h3>
+                    <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 14px;">${escapeHtml(formula.desc)}</p>
+                    <span class="topic-badge" style="color: var(--green-700); font-weight: 600; font-size: 13px;">View Complete Lesson →</span>
+                  </div>
+                `).join('')}
+              </div>
             </div>
-          </div>
-        `;
-        return;
+          `;
+          return;
+        }
+      }
+      
+      if (doorType === 'charts') {
+        if (categoryName === 'Charts & Data Visualization') {
+          const charts = ['Clustered Column','Stacked Column','100% Stacked Column','Clustered Bar','Stacked Bar','Line Chart','Area Chart','Pie Chart','Doughnut Chart','Scatter Chart','Bubble Chart','Histogram','Pareto Chart','Waterfall Chart','Funnel Chart','Treemap','Sunburst','Radar Chart','Combo Chart','Stock Chart','Box and Whisker','Map Chart','PivotChart','Sparklines'];
+          grid.innerHTML = `
+            <div class="content-section">
+              <h2 style="color: var(--green-900); margin-bottom: 12px;">${categoryName} - Complete Guide</h2>
+              <p style="color: var(--text-2); margin-bottom: 24px;">Learn all chart types with datasets, steps, formatting & examples</p>
+              <div class="formula-topic-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px;">
+                ${charts.map(chart => `
+                  <div class="topic-card" style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: all 0.2s ease;" onclick="showChartLesson('${chart.replace(/'/g, "\\'")}')" onmouseover="this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='var(--green-500)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='var(--border)'">
+                    <h3 style="color: var(--green-900); margin: 0 0 8px 0; font-size: 17px;">${escapeHtml(chart)}</h3>
+                    <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 13px;">Step-by-step tutorial with sample data</p>
+                    <span style="color: var(--green-700); font-weight: 600; font-size: 13px;">View Lesson →</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+          return;
+        }
+        if (categoryName === 'Dashboard Masterclass' || categoryName === 'Dashboard Projects') {
+          const dashboards = ['Sales Dashboard','Order Tracking Dashboard','Employee Performance Dashboard','Delivery Performance Dashboard','Attendance Dashboard','Inventory Dashboard','Target vs Achievement Dashboard'];
+          grid.innerHTML = `
+            <div class="content-section">
+              <h2 style="color: var(--green-900); margin-bottom: 12px;">${categoryName}</h2>
+              <p style="color: var(--text-2); margin-bottom: 24px;">Build professional dashboards with KPIs, charts, slicers & formulas</p>
+              <div class="formula-topic-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+                ${dashboards.map(dash => `
+                  <div class="topic-card" style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: all 0.2s ease;" onclick="showDashboardLesson('${dash.replace(/'/g, "\\'")}')" onmouseover="this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='var(--green-500)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='var(--border)'">
+                    <h3 style="color: var(--green-900); margin: 0 0 8px 0; font-size: 17px;">${escapeHtml(dash)}</h3>
+                    <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 13px;">Complete with data, KPIs, formulas & charts</p>
+                    <span style="color: var(--green-700); font-weight: 600; font-size: 13px;">View Tutorial →</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+          return;
+        }
+      }
+      
+      if (doorType === 'advanced') {
+        const advancedTopics = {
+          'PivotTables & PivotCharts': ['Creating PivotTables','Rows, Columns, Values & Filters','Value Field Settings','Grouping','Calculated Fields','Slicers & Timelines','PivotCharts & GETPIVOTDATA'],
+          'Power Query': ['Importing Data','Data Cleaning','Remove Duplicates & Blanks','Split & Merge Columns','Append & Merge Queries','Group By & Unpivot','Load & Refresh'],
+          'Data Cleaning & Management': ['Data Validation','Drop-down Lists','Conditional Formatting','Advanced Filter','Text to Columns','Flash Fill','Excel Tables','Named Ranges'],
+          'Advanced Tools': ['What-If Analysis','Goal Seek','Scenario Manager','Data Tables','Forecast Sheet','Data Model','Dynamic Arrays']
+        };
+        if (advancedTopics[categoryName]) {
+          const topics = advancedTopics[categoryName];
+          grid.innerHTML = `
+            <div class="content-section">
+              <h2 style="color: var(--green-900); margin-bottom: 12px;">${categoryName}</h2>
+              <p style="color: var(--text-2); margin-bottom: 24px;">Practical tutorials with examples & exercises</p>
+              <div class="formula-topic-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+                ${topics.map(topic => `
+                  <div class="topic-card" style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: all 0.2s ease;" onclick="showAdvancedLesson('${categoryName.replace(/'/g, "\\'")}', '${topic.replace(/'/g, "\\'")}')" onmouseover="this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='var(--green-500)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='var(--border)'">
+                    <h3 style="color: var(--green-900); margin: 0 0 8px 0; font-size: 17px;">${escapeHtml(topic)}</h3>
+                    <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 13px;">Complete step-by-step tutorial</p>
+                    <span style="color: var(--green-700); font-weight: 600; font-size: 13px;">View Lesson →</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+          return;
+        }
+      }
+      
+      if (doorType === 'mis') {
+        if (categoryName === 'MIS Executive Training') {
+          const reports = ['Daily Sales Report','Monthly Sales Report','Order Tracking Report','Delivery Performance Report','Pending Order Report','Employee Performance Report','Attendance Report','Working Hours Report','Overtime Report','Salary and Incentive Report','Inventory Report','Stock In and Stock Out Report','Target Achievement Report','Customer Database Report','City-wise Performance Report','Daily MIS Summary','Weekly Management Report','Monthly Management Report'];
+          grid.innerHTML = `
+            <div class="content-section">
+              <h2 style="color: var(--green-900); margin-bottom: 12px;">${categoryName} - Real-World Reports</h2>
+              <p style="color: var(--text-2); margin-bottom: 24px;">Practical MIS reports with datasets, formulas & calculations</p>
+              <div class="formula-topic-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+                ${reports.map(report => `
+                  <div class="topic-card" style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: all 0.2s ease;" onclick="showMISReport('${report.replace(/'/g, "\\'")}')" onmouseover="this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='var(--green-500)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='var(--border)'">
+                    <h3 style="color: var(--green-900); margin: 0 0 8px 0; font-size: 17px;">${escapeHtml(report)}</h3>
+                    <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 13px;">Complete with raw data, formulas & dashboard</p>
+                    <span style="color: var(--green-700); font-weight: 600; font-size: 13px;">View Report →</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+          return;
+        }
+        if (categoryName === 'Excel Practice Lab' || categoryName === 'Practice Tests') {
+          const tasks = ['Beginner Practice Set','Intermediate Practice Set','Advanced Practice Set','Job-Level Challenge','Data Compilation Task','Reconciliation Exercise'];
+          grid.innerHTML = `
+            <div class="content-section">
+              <h2 style="color: var(--green-900); margin-bottom: 12px;">${categoryName}</h2>
+              <p style="color: var(--text-2); margin-bottom: 24px;">Hands-on practice with solutions</p>
+              <div class="formula-topic-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+                ${tasks.map(task => `
+                  <div class="topic-card" style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; cursor: pointer; transition: all 0.2s ease;" onclick="showPracticeTask('${task.replace(/'/g, "\\'")}')" onmouseover="this.style.boxShadow='var(--shadow-md)'; this.style.borderColor='var(--green-500)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'; this.style.borderColor='var(--border)'">
+                    <h3 style="color: var(--green-900); margin: 0 0 8px 0; font-size: 17px;">${escapeHtml(task)}</h3>
+                    <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 13px;">Attempt first, then view solution</p>
+                    <span style="color: var(--green-700); font-weight: 600; font-size: 13px;">Start Task →</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+          return;
+        }
       }
       
       // Default content
       grid.innerHTML = `
         <div class="content-section">
-          <h2 style="color: var(--green-900); margin-bottom: 20px;">${categoryName}</h2>
-          <p style="color: var(--text-2); margin-bottom: 30px;">Complete learning content for ${categoryName}</p>
+          <h2 style="color: var(--green-900); margin-bottom: 12px;">${escapeHtml(categoryName)}</h2>
+          <p style="color: var(--text-2); margin-bottom: 24px;">Complete learning content for ${escapeHtml(categoryName)}</p>
           <div style="background: var(--card); padding: 40px; border-radius: var(--radius); border: 1px solid var(--border); text-align: center;">
-            <h3 style="color: var(--green-900);">Content Coming Soon</h3>
-            <p style="color: var(--text-2);">Full tutorial with examples, datasets, and practice exercises will be available here.</p>
+            <h3 style="color: var(--green-900);">Loading Complete Content</h3>
+            <p style="color: var(--text-2);">Full tutorials with datasets, formulas, examples and practice exercises coming soon.</p>
           </div>
         </div>
       `;
@@ -274,68 +547,316 @@
       const grid = document.getElementById('categoryViewGrid');
       grid.innerHTML = `
         <div class="lesson-detail">
-          <div style="margin-bottom: 20px;">
-            <button class="btn" onclick="openCategoryContent('formula', 'Lookup & Reference')">← Back to Lookup Formulas</button>
+          <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn" onclick="goBackToCategory()">← Back to Category</button>
+            <button class="btn" onclick="goBackToDoor()">← Back to Door</button>
           </div>
-          <h1 style="color: var(--green-900); margin-bottom: 30px;">${formulaName} - Complete Tutorial</h1>
+          <h1 style="color: var(--green-900); margin-bottom: 10px;">${escapeHtml(formulaName)} - Complete Tutorial</h1>
+          <p style="color: var(--text-2); margin-bottom: 30px;">Formula Name: ${escapeHtml(formulaName)} | Difficulty: Beginner-Intermediate</p>
           
-          <div class="lesson-section">
-            <h2>1. What is ${formulaName}?</h2>
-            <p><strong>English:</strong> ${getFormulaDesc(formulaName).en}</p>
-            <p><strong>Roman Hindi:</strong> ${getFormulaDesc(formulaName).hi}</p>
-          </div>
-          
-          <div class="lesson-section">
-            <h2>2. Syntax</h2>
-            <code style="background: var(--soft-green); padding: 12px 20px; display: block; border-radius: 8px; font-family: var(--font-mono);">${getFormulaSyntax(formulaName)}</code>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">1. What it does (English)</h2>
+            <p style="line-height: 1.8;">${getFormulaDesc(formulaName).en}</p>
+            <h2 style="color: var(--green-900);">Explanation (Easy Roman Hindi)</h2>
+            <p style="line-height: 1.8;">${getFormulaDesc(formulaName).hi}</p>
           </div>
           
-          <div class="lesson-section">
-            <h2>3. Sample Dataset</h2>
-            <div style="background: var(--card); padding: 20px; border: 1px solid var(--border); border-radius: 8px; overflow-x: auto;">
-              <table style="width: 100%; border-collapse: collapse;">
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">2. Syntax</h2>
+            <code style="background: var(--soft-green); padding: 12px 20px; display: block; border-radius: 8px; font-family: var(--font-mono); font-size: 15px;">${getFormulaSyntax(formulaName)}</code>
+            <h3 style="color: var(--green-900); margin-top: 20px;">Arguments Explained</h3>
+            <ul style="line-height: 2;">
+              <li><strong>lookup_value/value:</strong> The value you want to find or use</li>
+              <li><strong>range/table_array:</strong> The range of cells to look in</li>
+              <li><strong>[optional]:</strong> Additional arguments for specific behavior</li>
+            </ul>
+          </div>
+          
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">3. Sample Dataset</h2>
+            <div style="background: var(--bg); padding: 20px; border: 1px solid var(--border); border-radius: 8px; overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; min-width: 500px;">
                 <tr style="background: var(--soft-green);">
                   <th style="padding: 10px; border: 1px solid var(--border); text-align: left;">Employee ID</th>
-                  <th style="padding: 10px; border: 1px solid var(--border); text-align: left;">Name</th>
+                  <th style="padding: 10px; border: 1px solid var(--border); text-align: left;">Employee Name</th>
                   <th style="padding: 10px; border: 1px solid var(--border); text-align: left;">Department</th>
+                  <th style="padding: 10px; border: 1px solid var(--border); text-align: left;">City</th>
                   <th style="padding: 10px; border: 1px solid var(--border); text-align: left;">Salary</th>
                 </tr>
-                <tr><td style="padding: 8px; border: 1px solid var(--border);">101</td><td style="padding: 8px; border: 1px solid var(--border);">Rahul Sharma</td><td style="padding: 8px; border: 1px solid var(--border);">Sales</td><td style="padding: 8px; border: 1px solid var(--border);">45000</td></tr>
-                <tr><td style="padding: 8px; border: 1px solid var(--border);">102</td><td style="padding: 8px; border: 1px solid var(--border);">Priya Singh</td><td style="padding: 8px; border: 1px solid var(--border);">Marketing</td><td style="padding: 8px; border: 1px solid var(--border);">52000</td></tr>
-                <tr><td style="padding: 8px; border: 1px solid var(--border);">103</td><td style="padding: 8px; border: 1px solid var(--border);">Amit Kumar</td><td style="padding: 8px; border: 1px solid var(--border);">HR</td><td style="padding: 8px; border: 1px solid var(--border);">48000</td></tr>
+                <tr><td style="padding: 8px; border: 1px solid var(--border);">101</td><td style="padding: 8px; border: 1px solid var(--border);">Rahul Sharma</td><td style="padding: 8px; border: 1px solid var(--border);">Sales</td><td style="padding: 8px; border: 1px solid var(--border);">Delhi</td><td style="padding: 8px; border: 1px solid var(--border);">45000</td></tr>
+                <tr><td style="padding: 8px; border: 1px solid var(--border);">102</td><td style="padding: 8px; border: 1px solid var(--border);">Priya Singh</td><td style="padding: 8px; border: 1px solid var(--border);">Marketing</td><td style="padding: 8px; border: 1px solid var(--border);">Mumbai</td><td style="padding: 8px; border: 1px solid var(--border);">52000</td></tr>
+                <tr><td style="padding: 8px; border: 1px solid var(--border);">103</td><td style="padding: 8px; border: 1px solid var(--border);">Amit Kumar</td><td style="padding: 8px; border: 1px solid var(--border);">HR</td><td style="padding: 8px; border: 1px solid var(--border);">Kolkata</td><td style="padding: 8px; border: 1px solid var(--border);">48000</td></tr>
+                <tr><td style="padding: 8px; border: 1px solid var(--border);">104</td><td style="padding: 8px; border: 1px solid var(--border);">Sneha Patel</td><td style="padding: 8px; border: 1px solid var(--border);">Finance</td><td style="padding: 8px; border: 1px solid var(--border);">Bangalore</td><td style="padding: 8px; border: 1px solid var(--border);">58000</td></tr>
               </table>
             </div>
           </div>
           
-          <div class="lesson-section">
-            <h2>4. Example Formula</h2>
-            <p><strong>Task:</strong> Get employee name for ID 102</p>
-            <code style="background: var(--soft-green); padding: 12px 20px; display: block; border-radius: 8px; font-family: var(--font-mono);">${getFormulaExample(formulaName)}</code>
-            <p><strong>Result:</strong> <span style="color: var(--green-900); font-weight: 600;">Priya Singh</span></p>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">4. Actual Working Formula & Output</h2>
+            <p><strong>Task:</strong> Get employee name for Employee ID 102</p>
+            <code style="background: var(--soft-green); padding: 12px 20px; display: block; border-radius: 8px; font-family: var(--font-mono); margin: 12px 0;">${getFormulaExample(formulaName)}</code>
+            <p><strong>Expected Output:</strong> <span style="color: var(--green-900); font-weight: 700; font-size: 18px;">Priya Singh</span></p>
           </div>
           
-          <div class="lesson-section">
-            <h2>5. Step by Step</h2>
-            <ol style="line-height: 2;">
-              <li>Select the cell where you want the result</li>
-              <li>Type the formula as shown above</li>
-              <li>Press Enter to get the result</li>
-              <li>Copy down if needed for multiple lookups</li>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">5. Step-by-Step Explanation</h2>
+            <ol style="line-height: 2.2; padding-left: 24px;">
+              <li>Select the cell where you want the result (e.g., F2)</li>
+              <li>Type =${formulaName}(</li>
+              <li>Enter the lookup value or reference</li>
+              <li>Select the table/range array</li>
+              <li>Add required arguments as per syntax</li>
+              <li>Close parenthesis and press Enter</li>
+              <li>Verify the result matches expected output</li>
             </ol>
           </div>
           
-          <div class="lesson-section">
-            <h2>6. Practice Question</h2>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">6. Real Office/MIS Example</h2>
+            <p style="line-height: 1.8;"><strong>Scenario:</strong> In HR MIS, you need to fetch employee details from master data based on Employee ID. Use ${formulaName} to pull department, salary or name quickly for reports.</p>
+            <p style="line-height: 1.8;"><strong>Practical Use:</strong> Salary reports, attendance sheets, customer data, product price lists.</p>
+          </div>
+          
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">7. Common Mistakes & Solutions</h2>
+            <ul style="line-height: 2;">
+              <li><strong>Mistake:</strong> Wrong column index → <strong>Solution:</strong> Count columns from left starting at 1</li>
+              <li><strong>Mistake:</strong> Not using absolute references ($) → <strong>Solution:</strong> Lock table array when copying</li>
+              <li><strong>Mistake:</strong> Using approximate match when need exact → <strong>Solution:</strong> Use FALSE/0 for exact match</li>
+              <li><strong>Mistake:</strong> Data type mismatch → <strong>Solution:</strong> Ensure lookup value matches format</li>
+            </ul>
+          </div>
+          
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">8. Important Tips</h2>
+            <ul style="line-height: 2;">
+              <li>Always use FALSE for exact match in lookup functions</li>
+              <li>Use absolute references ($A$2:$E$5) when copying formula</li>
+              <li>Combine with IFERROR to handle #N/A gracefully</li>
+              <li>Consider XLOOKUP in modern Excel for more flexibility</li>
+            </ul>
+            <p style="margin-top: 16px;"><strong>Excel Version Compatibility:</strong> Compatible with Excel 2007+, Excel 365, Excel 2021, Excel 2024</p>
+          </div>
+          
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">9. Practice Question</h2>
             <div style="background: #fff3cd; padding: 20px; border-left: 4px solid #ffc107; border-radius: 4px;">
-              <p><strong>Question:</strong> Using the above data, find the salary of employee with ID 103.</p>
-              <details style="margin-top: 10px;">
-                <summary style="cursor: pointer; color: var(--green-900); font-weight: 600;">Show Answer</summary>
-                <div style="margin-top: 10px;">
-                  <p><strong>Formula:</strong> =VLOOKUP(103,A2:D4,4,FALSE)</p>
-                  <p><strong>Answer:</strong> 48000</p>
+              <p style="margin-top: 0;"><strong>Question:</strong> Using the employee dataset above, find the Salary of employee with Employee ID 103.</p>
+              <details style="margin-top: 16px;">
+                <summary style="cursor: pointer; color: var(--green-900); font-weight: 700; padding: 8px 0;">Click to Show Answer & Explanation</summary>
+                <div style="margin-top: 12px; background: white; padding: 16px; border-radius: 6px;">
+                  <p><strong>Formula:</strong> <code style="background: var(--soft-green); padding: 6px 12px;">=VLOOKUP(103,A2:E5,5,FALSE)</code></p>
+                  <p><strong>Answer:</strong> <strong style="color: var(--green-900); font-size: 16px;">48000</strong></p>
+                  <p><strong>Explanation:</strong> Lookup value 103 in column A, return value from column 5 (Salary), use FALSE for exact match.</p>
                 </div>
               </details>
             </div>
+          </div>
+          
+          <div style="margin-top: 30px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <button class="btn btn-primary" onclick="goBackToCategory()">← Back to Category</button>
+            <button class="btn" onclick="goBackToDoor()">← Back to Door</button>
+          </div>
+        </div>
+      `;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.goBackToCategory = function() {
+      if (window.currentDoorType && window.currentDoorData) {
+        // Try to go back to the category we came from
+        const categoryViewTitle = document.getElementById('categoryViewTitle');
+        const cat = categoryViewTitle.textContent;
+        openCategoryContent(window.currentDoorType, cat);
+      } else {
+        backToCategoryList();
+      }
+    };
+
+    window.goBackToDoor = function() {
+      backToCategoryList();
+    };
+
+    window.showChartLesson = function(chartName) {
+      const grid = document.getElementById('categoryViewGrid');
+      grid.innerHTML = `
+        <div class="lesson-detail">
+          <div style="margin-bottom: 20px;">
+            <button class="btn" onclick="openCategoryContent('charts', 'Charts & Data Visualization')">← Back to Charts</button>
+            <button class="btn" onclick="goBackToDoor()">← Back to Door</button>
+          </div>
+          <h1 style="color: var(--green-900); margin-bottom: 30px;">${escapeHtml(chartName)} - Complete Tutorial</h1>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">What is ${chartName}?</h2>
+            <p style="line-height: 1.8;">A ${chartName} is used to visualize data in Excel for better analysis and presentation.</p>
+            <h3>When to Use</h3>
+            <p>Use ${chartName} when comparing categories or showing trends in your data.</p>
+            <h3>When NOT to Use</h3>
+            <p>Avoid using it with too many categories or when data is not suitable for comparison.</p>
+          </div>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">Sample Dataset</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr style="background: var(--soft-green);"><th style="padding: 10px; border: 1px solid var(--border);">Month</th><th style="padding: 10px; border: 1px solid var(--border);">Sales</th><th style="padding: 10px; border: 1px solid var(--border);">Profit</th></tr>
+              <tr><td style="padding: 8px; border: 1px solid var(--border);">Jan</td><td style="padding: 8px; border: 1px solid var(--border);">45000</td><td style="padding: 8px; border: 1px solid var(--border);">8000</td></tr>
+              <tr><td style="padding: 8px; border: 1px solid var(--border);">Feb</td><td style="padding: 8px; border: 1px solid var(--border);">52000</td><td style="padding: 8px; border: 1px solid var(--border);">9500</td></tr>
+              <tr><td style="padding: 8px; border: 1px solid var(--border);">Mar</td><td style="padding: 8px; border: 1px solid var(--border);">48000</td><td style="padding: 8px; border: 1px solid var(--border);">8200</td></tr>
+              <tr><td style="padding: 8px; border: 1px solid var(--border);">Apr</td><td style="padding: 8px; border: 1px solid var(--border);">61000</td><td style="padding: 8px; border: 1px solid var(--border);">11000</td></tr>
+            </table>
+          </div>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">Steps to Create</h2>
+            <ol style="line-height: 2;">
+              <li>Select the data range (A1:C5)</li>
+              <li>Go to Insert → Charts → ${chartName}</li>
+              <li>Select the desired chart type</li>
+              <li>Chart will appear on worksheet</li>
+              <li>Format using Chart Design & Format tabs</li>
+            </ol>
+          </div>
+        </div>
+      `;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.showDashboardLesson = function(dashName) {
+      const grid = document.getElementById('categoryViewGrid');
+      grid.innerHTML = `
+        <div class="lesson-detail">
+          <div style="margin-bottom: 20px;">
+            <button class="btn" onclick="openCategoryContent('charts', 'Dashboard Masterclass')">← Back to Dashboards</button>
+            <button class="btn" onclick="goBackToDoor()">← Back to Door</button>
+          </div>
+          <h1 style="color: var(--green-900); margin-bottom: 30px;">${escapeHtml(dashName)} - Complete Tutorial</h1>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">Dashboard Objectives</h2>
+            <p style="line-height: 1.8;">Create an interactive ${dashName} with KPIs, charts, and slicers for data-driven decisions.</p>
+            <h3>Key KPIs</h3>
+            <ul style="line-height: 2;">
+              <li>Total Sales</li>
+              <li>Total Orders</li>
+              <li>Delivered/Pending Orders</li>
+              <li>Target Achievement %</li>
+              <li>Top Performer</li>
+            </ul>
+          </div>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">Sample Sales Dataset</h2>
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; min-width: 700px;">
+                <tr style="background: var(--soft-green);"><th style="padding: 8px; border: 1px solid var(--border);">Order ID</th><th style="padding: 8px; border: 1px solid var(--border);">Date</th><th style="padding: 8px; border: 1px solid var(--border);">Employee</th><th style="padding: 8px; border: 1px solid var(--border);">City</th><th style="padding: 8px; border: 1px solid var(--border);">Product</th><th style="padding: 8px; border: 1px solid var(--border);">Qty</th><th style="padding: 8px; border: 1px solid var(--border);">Rate</th><th style="padding: 8px; border: 1px solid var(--border);">Amount</th><th style="padding: 8px; border: 1px solid var(--border);">Status</th></tr>
+                <tr><td style="padding: 6px; border: 1px solid var(--border);">ORD001</td><td style="padding: 6px; border: 1px solid var(--border);">01-10-2025</td><td style="padding: 6px; border: 1px solid var(--border);">Rahul</td><td style="padding: 6px; border: 1px solid var(--border);">Delhi</td><td style="padding: 6px; border: 1px solid var(--border);">Laptop</td><td style="padding: 6px; border: 1px solid var(--border);">2</td><td style="padding: 6px; border: 1px solid var(--border);">45000</td><td style="padding: 6px; border: 1px solid var(--border);">90000</td><td style="padding: 6px; border: 1px solid var(--border);">Delivered</td></tr>
+                <tr><td style="padding: 6px; border: 1px solid var(--border);">ORD002</td><td style="padding: 6px; border: 1px solid var(--border);">02-10-2025</td><td style="padding: 6px; border: 1px solid var(--border);">Priya</td><td style="padding: 6px; border: 1px solid var(--border);">Mumbai</td><td style="padding: 6px; border: 1px solid var(--border);">Mobile</td><td style="padding: 6px; border: 1px solid var(--border);">5</td><td style="padding: 6px; border: 1px solid var(--border);">15000</td><td style="padding: 6px; border: 1px solid var(--border);">75000</td><td style="padding: 6px; border: 1px solid var(--border);">Delivered</td></tr>
+                <tr><td style="padding: 6px; border: 1px solid var(--border);">ORD003</td><td style="padding: 6px; border: 1px solid var(--border);">03-10-2025</td><td style="padding: 6px; border: 1px solid var(--border);">Amit</td><td style="padding: 6px; border: 1px solid var(--border);">Delhi</td><td style="padding: 6px; border: 1px solid var(--border);">Tablet</td><td style="padding: 6px; border: 1px solid var(--border);">3</td><td style="padding: 6px; border: 1px solid var(--border);">20000</td><td style="padding: 6px; border: 1px solid var(--border);">60000</td><td style="padding: 6px; border: 1px solid var(--border);">Pending</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.showAdvancedLesson = function(category, topic) {
+      const grid = document.getElementById('categoryViewGrid');
+      grid.innerHTML = `
+        <div class="lesson-detail">
+          <div style="margin-bottom: 20px;">
+            <button class="btn" onclick="openCategoryContent('advanced', '${category.replace(/'/g, "\\'")}')">← Back to ${category}</button>
+            <button class="btn" onclick="goBackToDoor()">← Back to Door</button>
+          </div>
+          <h1 style="color: var(--green-900); margin-bottom: 30px;">${escapeHtml(topic)} - Complete Tutorial</h1>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">Overview</h2>
+            <p style="line-height: 1.8;">Complete practical tutorial on ${topic} with step-by-step instructions, examples, and exercises.</p>
+            <h3>Learning Objectives</h3>
+            <ul style="line-height: 2;">
+              <li>Understand the concept</li>
+              <li>Apply in real scenarios</li>
+              <li>Practice with exercises</li>
+              <li>Troubleshoot common issues</li>
+            </ul>
+          </div>
+        </div>
+      `;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.showMISReport = function(reportName) {
+      const grid = document.getElementById('categoryViewGrid');
+      grid.innerHTML = `
+        <div class="lesson-detail">
+          <div style="margin-bottom: 20px;">
+            <button class="btn" onclick="openCategoryContent('mis', 'MIS Executive Training')">← Back to Reports</button>
+            <button class="btn" onclick="goBackToDoor()">← Back to Door</button>
+          </div>
+          <h1 style="color: var(--green-900); margin-bottom: 30px;">${escapeHtml(reportName)} - Complete MIS Tutorial</h1>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">Business Requirement</h2>
+            <p style="line-height: 1.8;">Prepare ${reportName} with accurate calculations, analysis and management-ready format.</p>
+            <h3>Required Calculations</h3>
+            <ul style="line-height: 2;">
+              <li>Gross Sales / Total Amount</li>
+              <li>Delivered/Pending/Cancelled Orders</li>
+              <li>Percentage Calculations</li>
+              <li>Employee/City-wise Performance</li>
+              <li>Target vs Achievement</li>
+            </ul>
+          </div>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">Raw Sales Data</h2>
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; min-width: 800px;">
+                <tr style="background: var(--soft-green);"><th style="padding: 8px; border: 1px solid var(--border);">Order Date</th><th style="padding: 8px; border: 1px solid var(--border);">Order ID</th><th style="padding: 8px; border: 1px solid var(--border);">Sales Rep</th><th style="padding: 8px; border: 1px solid var(--border);">City</th><th style="padding: 8px; border: 1px solid var(--border);">Product</th><th style="padding: 8px; border: 1px solid var(--border);">Qty</th><th style="padding: 8px; border: 1px solid var(--border);">Rate</th><th style="padding: 8px; border: 1px solid var(--border);">Amount</th><th style="padding: 8px; border: 1px solid var(--border);">Target</th><th style="padding: 8px; border: 1px solid var(--border);">Status</th></tr>
+                <tr><td style="padding: 6px; border: 1px solid var(--border);">01-Oct-25</td><td style="padding: 6px; border: 1px solid var(--border);">SO-001</td><td style="padding: 6px; border: 1px solid var(--border);">Rahul</td><td style="padding: 6px; border: 1px solid var(--border);">Delhi</td><td style="padding: 6px; border: 1px solid var(--border);">Laptop</td><td style="padding: 6px; border: 1px solid var(--border);">2</td><td style="padding: 6px; border: 1px solid var(--border);">45000</td><td style="padding: 6px; border: 1px solid var(--border);">90000</td><td style="padding: 6px; border: 1px solid var(--border);">80000</td><td style="padding: 6px; border: 1px solid var(--border);">Delivered</td></tr>
+                <tr><td style="padding: 6px; border: 1px solid var(--border);">05-Oct-25</td><td style="padding: 6px; border: 1px solid var(--border);">SO-002</td><td style="padding: 6px; border: 1px solid var(--border);">Priya</td><td style="padding: 6px; border: 1px solid var(--border);">Mumbai</td><td style="padding: 6px; border: 1px solid var(--border);">Mobile</td><td style="padding: 6px; border: 1px solid var(--border);">4</td><td style="padding: 6px; border: 1px solid var(--border);">15000</td><td style="padding: 6px; border: 1px solid var(--border);">60000</td><td style="padding: 6px; border: 1px solid var(--border);">70000</td><td style="padding: 6px; border: 1px solid var(--border);">Delivered</td></tr>
+                <tr><td style="padding: 6px; border: 1px solid var(--border);">10-Oct-25</td><td style="padding: 6px; border: 1px solid var(--border);">SO-003</td><td style="padding: 6px; border: 1px solid var(--border);">Amit</td><td style="padding: 6px; border: 1px solid var(--border);">Kolkata</td><td style="padding: 6px; border: 1px solid var(--border);">Tablet</td><td style="padding: 6px; border: 1px solid var(--border);">3</td><td style="padding: 6px; border: 1px solid var(--border);">20000</td><td style="padding: 6px; border: 1px solid var(--border);">60000</td><td style="padding: 6px; border: 1px solid var(--border);">50000</td><td style="padding: 6px; border: 1px solid var(--border);">Pending</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">Formulas to Use</h2>
+            <ul style="line-height: 2;">
+              <li><strong>Total Sales:</strong> =SUM(H2:H10)</li>
+              <li><strong>Delivered Count:</strong> =COUNTIF(J2:J10,"Delivered")</li>
+              <li><strong>Delivery %:</strong> =COUNTIF(J2:J10,"Delivered")/COUNTA(J2:J10)</li>
+              <li><strong>Target Achievement:</strong> =H2/I2</li>
+              <li><strong>Performance:</strong> =IF(H2>=I2,"Achieved","Not Achieved")</li>
+            </ul>
+          </div>
+        </div>
+      `;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.showPracticeTask = function(taskName) {
+      const grid = document.getElementById('categoryViewGrid');
+      grid.innerHTML = `
+        <div class="lesson-detail">
+          <div style="margin-bottom: 20px;">
+            <button class="btn" onclick="openCategoryContent('mis', 'Excel Practice Lab')">← Back to Practice Lab</button>
+            <button class="btn" onclick="goBackToDoor()">← Back to Door</button>
+          </div>
+          <h1 style="color: var(--green-900); margin-bottom: 30px;">${escapeHtml(taskName)}</h1>
+          <div class="lesson-section" style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">Task Instructions</h2>
+            <p style="line-height: 1.8;">Complete this practical assignment using Excel. Follow the requirements and create the report as instructed.</p>
+            <h3>Requirements</h3>
+            <ol style="line-height: 2;">
+              <li>Prepare the data as per format</li>
+              <li>Apply required formulas</li>
+              <li>Create summary report</li>
+              <li>Format professionally</li>
+              <li>Verify all calculations</li>
+            </ol>
+          </div>
+          <div class="lesson-section" style="background: #fff3cd; padding: 24px; border-radius: var(--radius); border-left: 4px solid #ffc107; margin-bottom: 24px;">
+            <h2 style="color: var(--green-900); margin-top: 0;">Solution (Try First)</h2>
+            <details>
+              <summary style="cursor: pointer; font-weight: 700; color: var(--green-900); padding: 8px 0;">Show Solution & Explanation</summary>
+              <div style="margin-top: 12px; background: white; padding: 16px; border-radius: 6px;">
+                <p>Complete solution with formulas and step-by-step approach will be shown here. Attempt the task first before viewing.</p>
+              </div>
+            </details>
           </div>
         </div>
       `;
