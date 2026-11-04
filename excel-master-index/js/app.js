@@ -1598,43 +1598,123 @@ function editDistance(a, b) {
   return prev[n];
 }
 function buildFormulasIndex() { var arr = []; for (var i = 0; i < FORMULAS.length; i++) { var f = FORMULAS[i]; var syn = SEARCH_SYNONYMS[f.id] || ""; var hay = ((f.name || "") + " " + (f.id || "") + " " + (f.category || "") + " " + (f.level || "") + " " + (f.purpose ? f.purpose.en + " " + f.purpose.hi : "") + " " + (f.syntax ? f.syntax.en : "") + " " + (f.formula || "") + " " + (f.office ? f.office.en + " " + f.office.hi : "") + " " + syn).toLowerCase(); var tokens = hay.split(/[^a-z0-9+]+/).filter(Boolean); arr.push({ f: f, hay: hay, tokens: tokens }); } return arr; }
+function escapeRegExp(s) { return String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+function hasWordCI(hay, needle) {
+  if (!hay || !needle) return false;
+  try { return new RegExp("(^|[^a-z0-9])" + escapeRegExp(needle.toLowerCase()) + "([^a-z0-9]|$)", "i").test(String(hay).toLowerCase()); }
+  catch (e) { return false; }
+}
+function highlightMatch(text, q) {
+  if (!q) return esc(text);
+  var e = esc(text);
+  var qe = esc(q).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  try { return e.replace(new RegExp("(" + qe + ")", "ig"), '<mark class="sd-mark">$1</mark>'); } catch (err) { return e; }
+}
 function searchIndex(q) {
-  var tokens = (q || "").toLowerCase().split(/[^a-z0-9+]+/).filter(Boolean);
+  var raw = (q || "").trim();
   var out = { best: null, formulas: [], solutions: [], related: [] };
+  if (raw === "") { return out; }
+  var ql = raw.toLowerCase();
+  var tokens = ql.split(/[^a-z0-9+]+/).filter(Boolean);
   if (tokens.length === 0) { return out; }
+
   var scored = [];
   for (var i = 0; i < FORMULAS.length; i++) {
     var e = FORMULAS_INDEX[i];
-    var score = 0;
-    for (var t = 0; t < tokens.length; t++) {
-      var tok = tokens[t];
-      if (e.tokens.indexOf(tok) !== -1) { score += 3; continue; }
-      var matched = false;
-      if (tok.length >= 3) {
-        for (var et = 0; et < e.tokens.length; et++) {
-          var cand = e.tokens[et];
-          if (cand.indexOf(tok) === 0 || tok.indexOf(cand) === 0) { score += 2; matched = true; break; }
-        }
-      }
-      if (!matched && tok.length >= 4) {
-        var limit = tok.length <= 6 ? 1 : 2;
-        for (var ft = 0; ft < e.tokens.length; ft++) {
-          if (Math.abs(e.tokens[ft].length - tok.length) <= limit && editDistance(tok, e.tokens[ft]) <= limit) { score += 1; break; }
+    var f = e.f;
+    var nm = (f.name || "").toLowerCase();
+    var id = (f.id || "").toLowerCase();
+    var catId = (f.category || "").toLowerCase();
+    var level = (f.level || "").toLowerCase();
+    var syn = (f.syntax && (f.syntax.en + " " + f.syntax.hi)) || "";
+    syn = syn.toLowerCase();
+    var formula = (f.formula || "").toLowerCase();
+    var catTitle = "";
+    var cat = catById(f.category);
+    if (cat) { catTitle = (cat.titleEn + " " + cat.titleHi).toLowerCase(); }
+    var purp = ((f.purpose && (f.purpose.en + " " + f.purpose.hi)) || "").toLowerCase();
+    var office = ((f.office && (f.office.en + " " + f.office.hi)) || "").toLowerCase();
+    var hay = e.hay;
+
+    // ---------- Deterministic tier ranking ----------
+    var tier = -1;
+
+    // Priority 1: exact name (case-sensitive)
+    if ((f.name || "") === raw || (f.id || "") === raw) { tier = 100000; }
+    // Priority 2: exact name match regardless of case
+    else if (nm === ql || id === ql) { tier = 90000; }
+    // Priority 3: exact formula / exact syntax
+    else if (formula === ql) { tier = 85000; }
+    else if (syn.length && (syn === ql || (f.syntax && ((f.syntax.en || "").toLowerCase() === ql || (f.syntax.hi || "").toLowerCase() === ql)))) { tier = 80000; }
+    // Priority 4: exact description / keyword / category / level match
+    else if (purp.length && purp === ql) { tier = 72000; }
+    else if (catTitle && catTitle === ql) { tier = 71000; }
+    else if (level === ql) { tier = 70000; }
+    else {
+      var kwHits = 0;
+      var kwSets = [purp, office, syn, catTitle, level];
+      for (var k = 0; k < kwSets.length; k++) { if (kwSets[k] && hasWordCI(kwSets[k], ql)) kwHits++; }
+      if (kwHits > 0) { tier = 60000 + kwHits * 500; }
+      // Priority 5a: name starts with query (partial name match)
+      else if (nm.indexOf(ql) === 0 || id.indexOf(ql) === 0) { tier = 40000 + Math.max(0, 500 - nm.length); }
+      // Priority 5b: name contains query
+      else if (nm.indexOf(ql) !== -1 || id.indexOf(ql) !== -1) { tier = 20000 + Math.max(0, 300 - nm.indexOf(ql)); }
+      // Priority 5c: every token present as a substring (deterministic, no fuzzy noise)
+      else {
+        var allIn = true;
+        for (var tt = 0; tt < tokens.length; tt++) { if (hay.indexOf(tokens[tt]) === -1) { allIn = false; break; } }
+        if (allIn) {
+          var wholeWords = 0;
+          for (var wt = 0; wt < tokens.length; wt++) { if (hasWordCI(hay, tokens[wt])) wholeWords++; }
+          tier = 10000 + wholeWords * 1000 + tokens.length;
         }
       }
     }
-    var nm = (e.f.name || "").toLowerCase();
-    for (var t2 = 0; t2 < tokens.length; t2++) {
-      if (nm.indexOf(tokens[t2]) === 0) { score += 4; } else if (nm.indexOf(tokens[t2]) > 0) { score += 2; }
-    }
-    if (score > 0) { scored.push({ e: e, score: score }); }
+    if (tier >= 0) scored.push({ f: f, tier: tier, name: nm });
   }
-  scored.sort(function (a, b) { return b.score - a.score; });
-  var bestEntry = scored[0] || null;
-  if (bestEntry) { out.best = bestEntry.e.f; out.formulas = scored.slice(0, 6).map(function (x) { return x.e.f; }); out.related = getRelated(bestEntry.e.f); }
-  var solScored = []; for (var p = 0; p < PROJECTS.length; p++) { var pr = PROJECTS[p]; var phay = ((pr.titleEn || "") + " " + (pr.descEn || "") + " " + (pr.roleEn || "") + " " + ((pr.formulas || []).join(" "))).toLowerCase(); var pscore = 0; for (var t3 = 0; t3 < tokens.length; t3++) { if (phay.indexOf(tokens[t3]) !== -1) pscore += 2; } if (pscore > 0) solScored.push({ pr: pr, pscore: pscore }); }
+  scored.sort(function (a, b) {
+    if (b.tier !== a.tier) return b.tier - a.tier;
+    if (a.name.length !== b.name.length) return a.name.length - b.name.length;
+    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+  });
+
+  var seen = {};
+  for (var si = 0; si < scored.length; si++) {
+    var key = scored[si].f.id;
+    if (seen[key]) continue;
+    seen[key] = true;
+    out.formulas.push(scored[si].f);
+    if (out.formulas.length >= 8) break;
+  }
+  if (out.formulas.length) {
+    out.best = out.formulas[0];
+    // Related formulas = next best matches (the rest of the list), shown under their own heading
+    out.related = [];
+    var rel = getRelated(out.best) || [];
+    out.related = rel.slice(0, 4);
+  }
+
+  // Practical solutions (projects) – separate list, unchanged behaviour
+  var solScored = [];
+  for (var p = 0; p < PROJECTS.length; p++) {
+    var pr = PROJECTS[p];
+    var phay = ((pr.titleEn || "") + " " + (pr.descEn || "") + " " + (pr.roleEn || "") + " " + ((pr.formulas || []).join(" "))).toLowerCase();
+    var pscore = 0;
+    for (var t3 = 0; t3 < tokens.length; t3++) { if (phay.indexOf(tokens[t3]) !== -1) pscore += 2; }
+    if (pscore > 0) solScored.push({ pr: pr, pscore: pscore });
+  }
   solScored.sort(function (a, b) { return b.pscore - a.pscore; });
-  for (var s2 = 0; s2 < solScored.length && out.solutions.length < 3; s2++) { var sol = solScored[s2]; var target = null; var bestSc = -1; for (var fidx = 0; fidx < sol.pr.formulas.length; fidx++) { var tf = getFormula(sol.pr.formulas[fidx]); if (!tf) continue; var tsc = 0; for (var t4 = 0; t4 < tokens.length; t4++) { if ((tf.name || "").toLowerCase().indexOf(tokens[t4]) !== -1) tsc += 2; } if (tsc > bestSc) { bestSc = tsc; target = tf; } } if (target) { out.solutions.push(target); } }
+  for (var s2 = 0; s2 < solScored.length && out.solutions.length < 3; s2++) {
+    var sol = solScored[s2];
+    var target = null, bestSc = -1;
+    for (var fidx = 0; fidx < sol.pr.formulas.length; fidx++) {
+      var tf = getFormula(sol.pr.formulas[fidx]); if (!tf) continue;
+      var tsc = 0;
+      for (var t4 = 0; t4 < tokens.length; t4++) { if ((tf.name || "").toLowerCase().indexOf(tokens[t4]) !== -1) tsc += 2; }
+      if (tsc > bestSc) { bestSc = tsc; target = tf; }
+    }
+    if (target) out.solutions.push(target);
+  }
   return out;
 }
 
@@ -1642,6 +1722,7 @@ function renderSearchDrop(q, dropId) {
   var target = document.getElementById(dropId) || document.getElementById("searchDrop");
   if (!target) return;
   target.hidden = false;
+  var raw = (q || "").trim();
   var results = searchIndex(q);
   if (q === "") {
     var html = '<div class="sd-head"><span>' + t("recentSearched") + "</span></div><div class=\"sd-list\">";
@@ -1654,8 +1735,11 @@ function renderSearchDrop(q, dropId) {
     return;
   }
   var html = "";
-  if (results.best) { html += '<div class="sd-head"><span>' + t("bestMatch") + "</span><button class=\"sd-clearall\" data-sd-clear>" + t("clear") + "</button></div><div class=\"sd-list\"><button class=\"sd-item\" data-sd-open=\"" + esc(results.best.id) + "\"><span class=\"sd-ico\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 5v14M5 12h14\"></path></svg></span><span style=\"min-width:0;\"><span class=\"sd-name\">" + esc(results.best.name) + "</span><span class=\"sd-desc\">" + esc(tx(results.best.purpose)) + "</span></span></button></div>"; }
-  if (results.formulas.length) { html += '<div class="sd-head"><span>' + t("formulaResults") + "</span></div><div class=\"sd-list\">"; for (var fi = 0; fi < results.formulas.length; fi++) { var ff = results.formulas[fi]; html += '<button class="sd-item" data-sd-open="' + esc(ff.id) + '"><span class="sd-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span><span style="min-width:0;"><span class="sd-name">' + esc(ff.name) + "</span><span class=\"sd-desc\">" + esc(tx(ff.purpose)) + "</span></span><span class=\"sd-cat\">" + esc(ff.level || "") + "</span></button>"; } html += "</div>"; }
+  var bestId = results.best ? results.best.id : null;
+  if (results.best) { html += '<div class="sd-head"><span>' + t("bestMatch") + "</span><button class=\"sd-clearall\" data-sd-clear>" + t("clear") + "</button></div><div class=\"sd-list\"><button class=\"sd-item\" data-sd-open=\"" + esc(results.best.id) + "\"><span class=\"sd-ico\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 5v14M5 12h14\"></path></svg></span><span style=\"min-width:0;\"><span class=\"sd-name\">" + highlightMatch(results.best.name, raw) + "</span><span class=\"sd-desc\">" + highlightMatch(tx(results.best.purpose), raw) + "</span></span></button></div>"; }
+
+  var rest = results.formulas.filter(function (ff) { return !bestId || ff.id !== bestId; });
+  if (rest.length) { html += '<div class="sd-head"><span>' + t("formulaResults") + "</span></div><div class=\"sd-list\">"; for (var fi = 0; fi < rest.length; fi++) { var ff = rest[fi]; html += '<button class="sd-item" data-sd-open="' + esc(ff.id) + '"><span class="sd-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span><span style="min-width:0;"><span class="sd-name">' + highlightMatch(ff.name, raw) + "</span><span class=\"sd-desc\">" + highlightMatch(tx(ff.purpose), raw) + "</span></span><span class=\"sd-cat\">" + esc(ff.level || "") + "</span></button>"; } html += "</div>"; }
   if (results.solutions.length) { html += '<div class="sd-head"><span>' + t("practicalSolutions") + "</span></div><div class=\"sd-list\">"; for (var si = 0; si < results.solutions.length; si++) { var sf = results.solutions[si]; html += '<button class="sd-item" data-sd-open="' + esc(sf.id) + '"><span class="sd-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path><path d="M3 15h18"></path></svg></span><span style="min-width:0;"><span class="sd-name">' + esc(sf.name) + "</span><span class=\"sd-desc\">" + esc(tx(sf.office)) + "</span></span><span class=\"sd-cat\">" + esc(sf.level || "") + "</span></button>"; } html += "</div>"; }
   if (results.related && results.related.length) { html += '<div class="sd-head"><span>' + t("relatedTopics") + "</span></div><div class=\"sd-list\">"; for (var ri = 0; ri < results.related.length; ri++) { var rf2 = getFormula(results.related[ri]); if (!rf2) continue; html += '<button class="sd-item" data-sd-open="' + esc(rf2.id) + '"><span class="sd-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></svg></span><span style="min-width:0;"><span class="sd-name">' + esc(rf2.name) + "</span><span class=\"sd-desc\">" + esc(tx(rf2.purpose)) + "</span></span><span class=\"sd-cat\">" + esc(rf2.level || "") + "</span></button>"; } html += "</div>"; }
   if (html === "") {
@@ -1997,7 +2081,7 @@ function bindGlobalEvents() {
 }
 
 function navigate(section) {
-  var map = { home: "home", dashboard: "home", categories: "content", all: "content", playground: "playground", comparisons: "comparisons", projects: "projects", test: "test", compatibility: "compatibility", bookmarks: "bookmarks", settings: "settings", bonus: "bonus", creator: "creator" };
+  var map = { home: "home", dashboard: "dashboard", categories: "content", all: "content", playground: "playground", comparisons: "comparisons", projects: "projects", test: "test", compatibility: "compatibility", bookmarks: "bookmarks", settings: "settings", bonus: "bonus", creator: "creator", charts: "charts", mis: "mis", fundamentals: "fundamentals", cleaning: "cleaning", tools: "tools", automation: "automation", practicelab: "practicelab" };
   var id = map[section] || "home";
   var el = document.getElementById(id);
   if (el) { el.scrollIntoView({ behavior: "smooth", block: "start" }); }

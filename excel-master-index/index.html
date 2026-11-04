@@ -59,6 +59,22 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V8l6-2 6 2v14"/><path d="M16 14V8l-2-1.5-2 1.5v7"/><path d="M2 11l10-8 10 8"/></svg>
         Office Projects
       </button>
+      <button class="nav-btn" data-nav="charts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><line x1="18" x2="18" y1="20" y2="10"></line><line x1="12" x2="12" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="14"></line></svg>
+        Charts
+      </button>
+      <button class="nav-btn" data-nav="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><rect x="7" y="10" width="3" height="8"></rect><rect x="12" y="6" width="3" height="12"></rect><rect x="17" y="13" width="3" height="5"></rect></svg>
+        Dashboard
+      </button>
+      <button class="nav-btn" data-nav="mis">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+        MIS
+      </button>
+      <button class="nav-btn" data-nav="practicelab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3-3a1 1 0 0 0 0-1.4l-1.6-1.6a1 1 0 0 0-1.4 0z"></path><path d="M9 11l-6 6 3 3 6-6"></path><path d="M13 5l6 6"></path></svg>
+        Practice Lab
+      </button>
       <button class="nav-btn" data-nav="test">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M9 13h6"/><path d="M9 17h4"/></svg>
         Practice Test
@@ -118,6 +134,19 @@
       <div class="side-block">
         <h3>Difficulty Level</h3>
         <div id="levelFilters" class="level-filters"></div>
+      </div>
+      <div class="side-block">
+        <h3>Learning Path</h3>
+        <ul>
+          <li><a href="#charts" data-nav="charts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><line x1="18" x2="18" y1="20" y2="10"></line><line x1="12" x2="12" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="14"></line></svg> Charts &amp; Data Visualization</a></li>
+          <li><a href="#dashboard" data-nav="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><rect x="7" y="10" width="3" height="8"></rect><rect x="12" y="6" width="3" height="12"></rect><rect x="17" y="13" width="3" height="5"></rect></svg> Dashboard Masterclass</a></li>
+          <li><a href="#mis" data-nav="mis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> MIS Executive Training</a></li>
+          <li><a href="#fundamentals" data-nav="fundamentals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Excel Fundamentals</a></li>
+          <li><a href="#cleaning" data-nav="cleaning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path></svg> Data Cleaning</a></li>
+          <li><a href="#tools" data-nav="tools"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3-3a1 1 0 0 0 0-1.4l-1.6-1.6a1 1 0 0 0-1.4 0z"></path><path d="M9 11l-6 6 3 3 6-6"></path></svg> Advanced Tools</a></li>
+          <li><a href="#automation" data-nav="automation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Automation &amp; VBA</a></li>
+          <li><a href="#practicelab" data-nav="practicelab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3-3a1 1 0 0 0 0-1.4l-1.6-1.6a1 1 0 0 0-1.4 0z"></path><path d="M9 11l-6 6 3 3 6-6"></path></svg> Practice Lab</a></li>
+        </ul>
       </div>
       <div class="side-block">
         <h3>Premium</h3>
@@ -207,6 +236,128 @@
       <p>Practical Excel formula combinations used in real business offices.</p>
     </div>
     <div id="projectGrid" class="project-grid"></div>
+  </section>
+
+  <!-- ================= CHARTS & DATA VISUALIZATION ================= -->
+  <section class="section" id="charts">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><line x1="18" x2="18" y1="20" y2="10"></line><line x1="12" x2="12" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="14"></line></svg> Charts &amp; Data Visualization</h2>
+      <p>Learn every important Excel chart type — what it is, when to use it, how to build it, and how to present it like a professional. Try the live chart playground and the chart finder.</p>
+    </div>
+
+    <div class="charts-playground-card">
+      <div class="charts-playground-head">
+        <h3>Interactive Chart Playground</h3>
+        <p>Change the sample values below and switch chart types — the chart redraws instantly from actual data.</p>
+      </div>
+      <div class="charts-playground-body">
+        <div class="charts-sample-inputs" id="chartSampleInputs" aria-label="Editable sample data"></div>
+        <div class="charts-playground-canvas">
+          <div class="charts-type-toggle" role="tablist" aria-label="Chart type">
+            <button class="charts-type-btn active" type="button" data-chart-type="column">Clustered Column</button>
+            <button class="charts-type-btn" type="button" data-chart-type="stacked">Stacked Column</button>
+            <button class="charts-type-btn" type="button" data-chart-type="line">Line</button>
+            <button class="charts-type-btn" type="button" data-chart-type="pie">Pie</button>
+            <button class="charts-type-btn" type="button" data-chart-type="doughnut">Doughnut</button>
+            <button class="charts-type-btn" type="button" data-chart-type="scatter">Scatter</button>
+          </div>
+          <canvas id="chartPlaygroundCanvas" class="charts-canvas" width="620" height="360" role="img" aria-label="Live chart rendered from the sample data"></canvas>
+          <div class="charts-canvas-legend" id="chartCanvasLegend" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="charts-finder-card">
+      <h3>Which chart should I use?</h3>
+      <p>Describe your data or reporting need — e.g. <em>“monthly sales trend”</em>, <em>“city-wise delivered orders”</em>, <em>“target vs achievement”</em>, <em>“budget utilisation”</em>.</p>
+      <div class="charts-finder-row">
+        <input id="chartFinderInput" type="text" placeholder="Describe your data or requirement..." autocomplete="off" aria-label="Chart finder" />
+        <button id="chartFinderBtn" type="button" class="btn btn-primary">Find Chart</button>
+      </div>
+      <div id="chartFinderResults" class="chart-finder-results" aria-live="polite"></div>
+      <div class="chart-guide-grid" id="chartGuideGrid"></div>
+    </div>
+
+    <div class="charts-lessons-head">
+      <h3>All 25 Excel Chart Types — Complete Lessons</h3>
+      <p>Search the library or filter by chart family. Every lesson covers what it is, when (not) to use it, dataset, exact steps, formatting, mistakes, advantages, interview questions and a practice task.</p>
+      <div class="charts-lessons-tools">
+        <input id="chartLessonSearch" type="text" placeholder="Search chart lessons (e.g. pie, waterfall, trend, comparison)..." autocomplete="off" aria-label="Search chart lessons" />
+        <select id="chartLessonFamily" aria-label="Filter chart family">
+          <option value="">All families</option>
+        </select>
+      </div>
+    </div>
+    <div class="chart-lesson-grid" id="chartLessonGrid"></div>
+  </section>
+
+  <!-- ================= DASHBOARD MASTERCLASS ================= -->
+  <section class="section" id="dashboard">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><rect x="7" y="10" width="3" height="8"></rect><rect x="12" y="6" width="3" height="12"></rect><rect x="17" y="13" width="3" height="5"></rect></svg> Excel Dashboard &amp; Reporting Masterclass</h2>
+      <p>Build professional MIS dashboards from raw data: KPI cards, slicers, PivotCharts, dynamic titles, conditional formatting, layout grid and PDF export.</p>
+    </div>
+    <div class="module-grid" id="dashboardModuleGrid"></div>
+  </section>
+
+  <!-- ================= MIS EXECUTIVE TRAINING ================= -->
+  <section class="section" id="mis">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Real-World MIS Executive Training</h2>
+      <p>20 real office reporting jobs — from daily sales to management dashboards — with raw data, business requirement, step-by-step task, formulas, expected output, mistakes and difficulty.</p>
+    </div>
+    <div class="module-grid" id="misProjectGrid"></div>
+  </section>
+
+  <!-- ================= EXCEL FUNDAMENTALS ================= -->
+  <section class="section" id="fundamentals">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Excel Fundamentals</h2>
+      <p>Workbook, cells, references, named ranges, formatting, Flash Fill, page setup — the foundation every Excel user needs.</p>
+    </div>
+    <div class="lesson-grid" id="fundamentalGrid"></div>
+  </section>
+
+  <!-- ================= DATA CLEANING & MANAGEMENT ================= -->
+  <section class="section" id="cleaning">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path></svg> Data Cleaning &amp; Data Management</h2>
+      <p>Remove duplicates, standardise text, validate inputs, dedupe, filter and sort — the skills that decide data quality.</p>
+    </div>
+    <div class="lesson-grid" id="cleaningGrid"></div>
+  </section>
+
+  <!-- ================= ADVANCED EXCEL TOOLS ================= -->
+  <section class="section" id="tools">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3-3a1 1 0 0 0 0-1.4l-1.6-1.6a1 1 0 0 0-1.4 0z"></path><path d="M9 11l-6 6 3 3 6-6"></path><path d="M13 5l6 6"></path></svg> Advanced Excel Tools</h2>
+      <p>PivotTables, PivotCharts, slicers, Power Query, Data Model, DAX basics, What-If Analysis, dynamic arrays — with version notes.</p>
+    </div>
+    <div class="lesson-grid" id="toolsGrid"></div>
+  </section>
+
+  <!-- ================= AUTOMATION & PRODUCTIVITY ================= -->
+  <section class="section" id="automation">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Excel Automation &amp; Productivity</h2>
+      <p>Macros, VBA basics, automated reports, protection and keyboard shortcuts. Advanced topics are clearly marked; VBA requires desktop Excel and may be restricted by IT policy.</p>
+    </div>
+    <div class="lesson-grid" id="automationGrid"></div>
+  </section>
+
+  <!-- ================= EXCEL PRACTICE LAB ================= -->
+  <section class="section" id="practicelab">
+    <div class="section-head">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3-3a1 1 0 0 0 0-1.4l-1.6-1.6a1 1 0 0 0-1.4 0z"></path><path d="M9 11l-6 6 3 3 6-6"></path><path d="M13 5l6 6"></path></svg> Excel Practice Lab</h2>
+      <p>Real tasks with datasets, instructions, hints and reveal-on-demand answers. Your progress is saved in this browser (LocalStorage) — no account or database needed.</p>
+    </div>
+    <div class="practice-summary">
+      <div class="practice-stat"><b id="practiceSolved">0</b><span>Tasks solved</span></div>
+      <div class="practice-stat"><b id="practiceTotal">0</b><span>Total tasks</span></div>
+      <div class="practice-stat"><b id="practicePercent">0%</b><span>Progress</span></div>
+      <button class="btn" id="practiceResetBtn" type="button">Reset Progress</button>
+    </div>
+    <div class="lesson-grid" id="practiceTaskGrid"></div>
   </section>
 
   <section class="section" id="test">
@@ -513,7 +664,10 @@
   <script src="js/d26.js"></script>
   <script src="js/d27.js"></script>
   <script src="js/d28.js"></script>
+  <script src="js/sections-data.js"></script>
+  <script src="js/sections-data2.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/sections.js"></script>
   <script src="js/bonus.js"></script>
 </body>
 </html>
