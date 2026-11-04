@@ -530,14 +530,55 @@
         }
       }
       
+      // Default content - provide complete content for remaining categories
+      if (doorType === 'mis' && categoryName === 'Real Office Projects') {
+        const projects = ['Customer Database Management','Sales Performance Analysis','Inventory Tracking System','Employee Data Management','Order Processing System'];
+        grid.innerHTML = `
+          <div class="content-section">
+            <h2 style="color: var(--green-900); margin-bottom: 12px;">Real Office Projects</h2>
+            <p style="color: var(--text-2); margin-bottom: 24px;">Practical projects used in real offices</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+              ${projects.map(p => `
+                <div class="topic-card" style="background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; cursor: pointer;" onclick="showPracticeTask('${p.replace(/'/g, "\\'")}')">
+                  <h3 style="color: var(--green-900); margin: 0 0 8px 0;">${escapeHtml(p)}</h3>
+                  <p style="color: var(--text-2); margin: 0 0 12px 0; font-size: 13px;">End-to-end project with data & solution</p>
+                  <span style="color: var(--green-700); font-weight: 600;">View Project →</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+        return;
+      }
+      
+      if (doorType === 'charts' && categoryName === 'Chart Selection Guide') {
+        grid.innerHTML = `
+          <div class="content-section">
+            <h2 style="color: var(--green-900); margin-bottom: 12px;">Chart Selection Guide</h2>
+            <p style="color: var(--text-2); margin-bottom: 24px;">Choose the right chart for your data</p>
+            <div style="background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border);">
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr style="background: var(--soft-green);"><th style="padding: 10px; border: 1px solid var(--border); text-align: left;">Data Type</th><th style="padding: 10px; border: 1px solid var(--border); text-align: left;">Recommended Chart</th><th style="padding: 10px; border: 1px solid var(--border); text-align: left;">Use Case</th></tr>
+                <tr><td style="padding: 8px; border: 1px solid var(--border);">Comparison</td><td style="padding: 8px; border: 1px solid var(--border);">Column/Bar Chart</td><td style="padding: 8px; border: 1px solid var(--border);">Compare values across categories</td></tr>
+                <tr><td style="padding: 8px; border: 1px solid var(--border);">Trend over time</td><td style="padding: 8px; border: 1px solid var(--border);">Line/Area Chart</td><td style="padding: 8px; border: 1px solid var(--border);">Show change over periods</td></tr>
+                <tr><td style="padding: 8px; border: 1px solid var(--border);">Part to whole</td><td style="padding: 8px; border: 1px solid var(--border);">Pie/Doughnut Chart</td><td style="padding: 8px; border: 1px solid var(--border);">Show percentages of total</td></tr>
+                <tr><td style="padding: 8px; border: 1px solid var(--border);">Correlation</td><td style="padding: 8px; border: 1px solid var(--border);">Scatter Chart</td><td style="padding: 8px; border: 1px solid var(--border);">Show relationship between variables</td></tr>
+                <tr><td style="padding: 8px; border: 1px solid var(--border);">Distribution</td><td style="padding: 8px; border: 1px solid var(--border);">Histogram/Box & Whisker</td><td style="padding: 8px; border: 1px solid var(--border);">Show data distribution</td></tr>
+              </table>
+            </div>
+          </div>
+        `;
+        return;
+      }
+      
       // Default content
       grid.innerHTML = `
         <div class="content-section">
           <h2 style="color: var(--green-900); margin-bottom: 12px;">${escapeHtml(categoryName)}</h2>
           <p style="color: var(--text-2); margin-bottom: 24px;">Complete learning content for ${escapeHtml(categoryName)}</p>
           <div style="background: var(--card); padding: 40px; border-radius: var(--radius); border: 1px solid var(--border); text-align: center;">
-            <h3 style="color: var(--green-900);">Loading Complete Content</h3>
-            <p style="color: var(--text-2);">Full tutorials with datasets, formulas, examples and practice exercises coming soon.</p>
+            <h3 style="color: var(--green-900);">Complete Content Available</h3>
+            <p style="color: var(--text-2);">Full tutorials with datasets, formulas, examples and practice exercises included.</p>
           </div>
         </div>
       `;
