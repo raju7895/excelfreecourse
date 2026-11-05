@@ -36,23 +36,12 @@
   height: 380px;
   cursor: pointer;
   transform-style: preserve-3d;
-  transition: transform 0.3s ease;
-  animation: doorFloat 4s ease-in-out infinite;
-}
-
-.door-card:nth-child(1) { animation-delay: 0s; }
-.door-card:nth-child(2) { animation-delay: 0.3s; }
-.door-card:nth-child(3) { animation-delay: 0.6s; }
-.door-card:nth-child(4) { animation-delay: 0.9s; }
-
-@keyframes doorFloat {
-  0%, 100% { transform: translateY(0px) rotateX(0deg); }
-  50% { transform: translateY(-15px) rotateX(2deg); }
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .door-card:hover {
-  animation-play-state: paused;
-  transform: translateY(-10px) rotateY(var(--tilt-y, 0deg)) rotateX(var(--tilt-x, 0deg)) scale(1.02);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
 }
 
 .door-frame {
@@ -82,7 +71,7 @@
 }
 
 .door-card:hover .door-panel {
-  transform: rotateY(-35deg);
+  transform: rotateY(-18deg);
 }
 
 .door-1 .door-panel {
