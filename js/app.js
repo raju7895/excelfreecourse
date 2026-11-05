@@ -36,7 +36,7 @@ const UI_TEXT = {
   copied: "Copied!",
   complete: "Complete",
   completed: "Completed",
-  openPlayground: "Playground",
+
   purpose: "Purpose",
   syntax: "Syntax",
   expectedOutput: "Expected Output",
@@ -59,7 +59,7 @@ const UI_TEXT = {
   welcomeStep2: "Learn",
   welcomeStep2d: "Open a formula card for syntax, dataset and steps.",
   welcomeStep3: "Practice",
-  welcomeStep3d: "Use the playground and practice tests.",
+  welcomeStep3d: "Use formula examples and practice tests.",
   welcomeStep4: "Teach",
   welcomeStep4d: "Ask the AI Instructor for a guided solution.",
   welcomeCta: "Start Learning",
@@ -69,7 +69,7 @@ const UI_TEXT = {
   helpGettingStarted: "Getting Started",
   helpGs1: "Use the search bar to find a formula by name, keyword, or office task.",
   helpGs2: "Open any formula card to read purpose, syntax, dataset, steps and office use.",
-  helpGs3: "Use the Interactive Playground to change sample inputs and see live output.",
+  helpGs3: "Use formula examples and details to understand syntax and real usage.",
   helpGs4: "Star formulas to save them as bookmarks.",
   helpGs5: "Switch language using the language button in the top bar.",
   helpShortcuts: "Keyboard Shortcuts",
@@ -118,7 +118,7 @@ function t(key) {
   if (key === "copied") return UI_TEXT.copied;
   if (key === "complete") return UI_TEXT.complete;
   if (key === "completed") return UI_TEXT.completed;
-  if (key === "openPlayground") return UI_TEXT.openPlayground;
+
   if (key === "purpose") return UI_TEXT.purpose;
   if (key === "syntax") return UI_TEXT.syntax;
   if (key === "expectedOutput") return UI_TEXT.expectedOutput;
@@ -289,7 +289,7 @@ function formulaCardHTML(f, catTitle) {
   head += '<button class="icon-btn' + (fav ? " faved" : "") + '" type="button" data-action="fav" title="' + t("favourite") + '" aria-label="' + t("favourite") + '"><svg viewBox="0 0 24 24" fill="' + (fav ? "currentColor" : "none") + '" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6.5 7 .7-5.2 4.7 1.5 6.8L12 17.2 5.3 20.7l1.5-6.8L2 9.2l7-.7z"></path></svg></button>';
   head += '<button class="icon-btn" type="button" data-action="copy" title="' + t("copy") + '" aria-label="' + t("copy") + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg></button>';
   head += '<button class="icon-btn' + (done ? " done" : "") + '" type="button" data-action="complete" title="' + t("complete") + '" aria-label="' + t("complete") + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="m8.5 12.5 2.5 2.5 4.5-5"></path></svg></button>';
-  head += '<button class="icon-btn" type="button" data-action="pg" title="' + t("openPlayground") + '" aria-label="' + t("openPlayground") + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.5L8.5 19a2 2 0 0 0 1.8 3h5.4a2 2 0 0 0 1.8-3L14 9.5V2"></path><path d="M8.5 22h7"></path></svg></button>';
+
   head += "</div></div>";
 
   var html = '<div class="formula-card" data-fid="' + esc(f.id) + '">';
@@ -483,72 +483,7 @@ function renderCompatibility() {
   document.getElementById("compatList").innerHTML = html + items;
 }
 
-function renderPlayground() {
-  var sel = document.getElementById("pgFormula");
-  sel.innerHTML = "";
-  for (var i = 0; i < FORMULAS.length; i++) {
-    var f = FORMULAS[i];
-    var opt = document.createElement("option");
-    opt.value = f.id;
-    opt.textContent = f.name + " (" + f.level + ")";
-    sel.appendChild(opt);
-  }
-}
 
-function pgFormula() { return getFormula(document.getElementById("pgFormula").value); }
-
-function renderPG() {
-  var f = pgFormula();
-  if (!f) { document.getElementById("pgSyntax").textContent = ""; document.getElementById("pgExpected").textContent = ""; document.getElementById("pgCalculated").textContent = ""; document.getElementById("pgExample").textContent = ""; return; }
-  document.getElementById("pgSyntax").textContent = f.syntax.en;
-  document.getElementById("pgFormulaPreview").textContent = f.formula;
-  document.getElementById("pgExpected").textContent = f.output;
-  document.getElementById("pgExample").textContent = tx(f.office);
-  var holder = document.getElementById("pgInputs");
-  holder.innerHTML = "";
-  var inputs = (f.dataset && f.dataset.inputs) || [];
-  if (inputs.length === 0) { holder.innerHTML = '<p class="muted">No sample inputs for this formula.</p>'; return; }
-  pgValues[f.id] = pgValues[f.id] || {};
-  for (var i = 0; i < inputs.length; i++) {
-    var row = document.createElement("div");
-    row.className = "pg-input-row";
-    var label = document.createElement("span");
-    label.className = "ref";
-    label.textContent = inputs[i].ref;
-    var inp = document.createElement("input");
-    inp.type = "text";
-    inp.value = inputs[i].value;
-    inp.dataset.ref = inputs[i].ref;
-    inp.addEventListener("input", function (e) { pgValues[f.id][e.target.dataset.ref] = e.target.value; recomputePG(); });
-    row.appendChild(label);
-    row.appendChild(inp);
-    holder.appendChild(row);
-    pgValues[f.id][inputs[i].ref] = inputs[i].value;
-  }
-  recomputePG();
-}
-
-let pgValues = {};
-function formatLiveVal(val, f) {
-  if (val === null || val === undefined) return "N/A";
-  if (typeof val === "boolean") return val ? "TRUE" : "FALSE";
-  if (typeof val === "number") { var r2 = Math.round(val * 10000) / 10000; var expRaw = f ? String(f.output || "") : ""; if (/%$/.test(expRaw)) return r2 * 100 + "%"; if (/^\d{4}[-/]/.test(String(val))) return String(val); return String(r2); }
-  if (typeof val === "object" && val && val.__error) return String(val.__error);
-  if (typeof val === "object" && val._meta) { var m2 = val._meta, arr2 = []; for (var rr = 0; rr < m2.rows; rr++) { var rowStr = []; for (var cc = 0; cc < m2.cols; cc++) { var ccVal = val[rr * m2.cols + cc]; rowStr.push(typeof ccVal === "object" && ccVal && ccVal.__error ? ccVal.__error : (typeof ccVal === "object" && ccVal ? JSON.stringify(ccVal) : String(ccVal))); } arr2.push(rowStr.join(",")); } return "{" + arr2.join(";") + "}"; }
-  if (typeof val === "object") return JSON.stringify(val);
-  return String(val);
-}
-function recomputePG() {
-  var f = pgFormula();
-  if (!f) { return; }
-  var map = pgValues[f.id] || {};
-  var val = evaluateFormula(f.formula, map);
-  var fnName = (String(f.formula || "").match(/^=?\s*([A-Z][A-Z0-9.]*)\s*\(/i) || [])[1];
-  var unsupported = fnName && ["RANDARRAY","LET","LAMBDA","MAP","REDUCE","SCAN","MAKEARRAY","BYROW","BYCOL","ISOMITTED","GROUPBY","PIVOTBY","IMAGE","STOCKHISTORY"].indexOf(fnName.toUpperCase()) !== -1;
-  var bad = val === null || val === undefined || (typeof val === "object" && val && val.__error);
-  if (bad && unsupported) { document.getElementById("pgCalculated").textContent = "Live preview is not available for " + fnName.toUpperCase() + " in this demo engine. The Expected Output is shown here: " + f.output; return; }
-  document.getElementById("pgCalculated").textContent = formatLiveVal(val, f);
-}
 
 /* ---------------- Simple formula evaluator ---------------- */
 function normalizeFormulaExpr(formula) {
@@ -1825,8 +1760,6 @@ function renderAll() {
   renderRecentList();
   renderAISuggestions();
   renderAIMessages();
-  var sel = document.getElementById("pgFormula");
-  if (sel && sel.options.length && sel.value) { renderPG(); }
 }
 
 function setLang(newLang) {
@@ -1839,8 +1772,6 @@ function setLang(newLang) {
   renderComparisons();
   renderProjects();
   renderCompatibility();
-  renderPlayground();
-  renderPG();
   var content = document.getElementById("content");
   if (content && content.querySelector(".cat-card")) { content.querySelector(".cat-card").scrollIntoView({ behavior: "smooth" }); }
 }
@@ -1877,20 +1808,14 @@ function scrollToId(id) {
   if (el) { el.scrollIntoView({ behavior: "smooth", block: "start" }); }
 }
 
-function openInPlayground(id) {
-  var sel = document.getElementById("pgFormula");
-  sel.value = id;
-  renderPG();
-  recomputePG();
-  scrollToId("playground");
-}
+
 
 function handleAction(btn, fid) {
   var action = btn.getAttribute("data-action");
   if (action === "fav") { toggleFav(fid); var card = document.querySelector('.formula-card[data-fid="' + fid + '"]'); if (card) { var hb = card.querySelector('[data-action="fav"]'); if (hb) { hb.classList.toggle("faved"); var sv = hb.querySelector("svg"); if (sv) { sv.setAttribute("fill", hb.classList.contains("faved") ? "currentColor" : "none"); } } } }
   if (action === "copy") { var f = getFormula(fid); if (f) { copyText(f.formula).then(function (ok) { showToast(ok ? t("copied") : t("copyFailed")); }); } }
   if (action === "complete") { toggleComplete(fid); }
-  if (action === "pg") { openInPlayground(fid); }
+
   if (action === "details") { var card = document.querySelector('.formula-card[data-fid="' + fid + '"]'); if (card) { card.classList.toggle("open"); var ch = card.querySelector(".fc-head"); if (ch) { ch.setAttribute("aria-expanded", card.classList.contains("open") ? "true" : "false"); } } }
 }
 
@@ -1976,8 +1901,7 @@ function bindGlobalEvents() {
     if (navBtn) { navigate(navBtn.getAttribute("data-nav")); return; }
     var ctaBrowse = e.target.closest ? e.target.closest("#ctaBrowse") : null;
     if (ctaBrowse) { renderCategories(); renderLevelFilters(); renderHeroStats(); updateProgressUI(); scrollToId("content"); return; }
-    var ctaPlayground = e.target.closest ? e.target.closest("#ctaPlayground") : null;
-    if (ctaPlayground) { navigate("playground"); return; }
+
     var insideSearch = e.target.closest ? e.target.closest(".search-box") : null;
     var insideHero = e.target.closest ? e.target.closest(".hero-search") : null;
     if (!insideSearch && !insideHero) {
@@ -1997,7 +1921,7 @@ function bindGlobalEvents() {
 }
 
 function navigate(section) {
-  var map = { home: "home", dashboard: "home", categories: "content", all: "content", playground: "playground", comparisons: "comparisons", projects: "projects", test: "test", compatibility: "compatibility", bookmarks: "bookmarks", settings: "settings", bonus: "bonus", creator: "creator", charts: "charts", mis: "mis", fundamentals: "fundamentals", cleaning: "cleaning", tools: "tools", automation: "automation", practicelab: "practicelab" };
+  var map = { home: "home", dashboard: "home", categories: "content", all: "content", comparisons: "comparisons", projects: "projects", test: "test", compatibility: "compatibility", bookmarks: "bookmarks", settings: "settings", bonus: "bonus", creator: "creator", charts: "charts", mis: "mis", fundamentals: "fundamentals", cleaning: "cleaning", tools: "tools", automation: "automation", practicelab: "practicelab" };
   var id = map[section] || "home";
   if (id === "content") {
     var contentEl = document.getElementById("content");
@@ -2095,10 +2019,8 @@ function init() {
   if (searchGo) { searchGo.addEventListener("click", function () { runSearchQuery((searchInput ? searchInput.value : "").trim(), "searchDrop", true); }); }
   var langBtn = document.getElementById("langToggle");
   if (langBtn) { langBtn.addEventListener("click", function () { setLang(lang === "hi" ? "en" : "hi"); }); }
-  var pgSel = document.getElementById("pgFormula");
-  if (pgSel) { pgSel.addEventListener("change", function () { pgValues[this.value] = pgValues[this.value] || {}; renderPG(); recomputePG(); }); }
-  var pgCopy = document.getElementById("pgCopy");
-  if (pgCopy) { pgCopy.addEventListener("click", function () { var f = pgFormula(); if (f) { copyText(f.formula); } }); }
+
+
 
   var bBeginner = document.getElementById("testStartBeginner");
   var bIntermediate = document.getElementById("testStartIntermediate");
@@ -2146,8 +2068,6 @@ function init() {
   renderHeroStats();
   renderCategories();
   renderBookmarks();
-  renderPlayground();
-  renderPG();
   renderComparisons();
   renderProjects();
   renderCompatibility();

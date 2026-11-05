@@ -168,7 +168,7 @@ code, pre, .code { font-family: var(--font-mono); }
 .hero {
   background: linear-gradient(135deg, var(--navy) 0%, #1a365d 50%, var(--green-900) 100%);
   color: #F8FAFC;
-  padding: 72px 20px 80px;
+  padding: 56px 20px 64px;
   position: relative;
   overflow: hidden;
 }
@@ -243,10 +243,10 @@ code, pre, .code { font-family: var(--font-mono); }
 .content { min-width: 0; }
 
 /* ============================ SECTIONS ============================ */
-.section { max-width: 1180px; margin: 0 auto 56px; padding: 0 20px; scroll-margin-top: 165px; }
-.section-head { margin-bottom: 24px; max-width: 860px; }
-.section-head h2 { font-size: clamp(23px, 3vw, 31px); margin: 0 0 8px; font-weight: 800; }
-.section-head p { color: var(--text-2); margin: 0; font-size: 15px; }
+.section { max-width: 1180px; margin: 0 auto 40px; padding: 0 20px; scroll-margin-top: 140px; }
+.section-head { margin-bottom: 16px; max-width: 860px; }
+.section-head h2 { font-size: clamp(22px, 2.8vw, 28px); margin: 0 0 6px; font-weight: 800; }
+.section-head p { color: var(--text-2); margin: 0; font-size: 14px; }
 
 /* ============================ CATEGORY CARD ============================ */
 .cat-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 28px; overflow: hidden; }
@@ -307,21 +307,6 @@ code, pre, .code { font-family: var(--font-mono); }
 .chip { border: 1px solid var(--border); background: #fff; padding: 8px 15px; border-radius: 999px; font-size: 13px; font-weight: 700; color: var(--text-2); cursor: pointer; font-family: var(--font-body); }
 .chip:hover { border-color: var(--green-900); color: var(--green-900); }
 .chip.active { background: var(--green-900); color: #fff; border-color: var(--green-900); }
-
-/* ============================ PLAYGROUND ============================ */
-.pg-controls { display: flex; gap: 12px; align-items: center; margin-bottom: 18px; flex-wrap: wrap; }
-.pg-label { font-weight: 700; color: var(--charcoal); font-size: 14px; font-family: var(--font-body); }
-#pgFormula { padding: 11px 12px; border-radius: 8px; border: 1px solid var(--border); font-family: var(--font-mono); font-size: 14px; min-width: 280px; background: #fff; color: var(--charcoal); }
-.pg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-.pg-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
-.pg-card h4 { margin: 0 0 12px; font-size: 15px; display: flex; align-items: center; gap: 8px; font-family: var(--font-head); }
-.pg-result { background: var(--green-900); border-radius: var(--radius); padding: 20px; display: flex; gap: 26px; flex-wrap: wrap; margin-bottom: 16px; }
-.pg-result-item { display: flex; flex-direction: column; gap: 5px; color: #A8C4B4; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; font-family: var(--font-body); }
-.pg-result-item b { color: #F5F3ED; font-size: 21px; font-family: var(--font-mono); }
-.pg-result-item code { color: #C9D6CC; font-size: 14px; }
-.pg-inputs label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--text-2); }
-.pg-inputs .pg-input-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
-.pg-inputs input { flex: 1; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-family: var(--font-mono); font-size: 13px; background: #fff; color: var(--text); }
 
 /* ============================ COMPARISONS ============================ */
 .compare-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
@@ -417,7 +402,6 @@ code, pre, .code { font-family: var(--font-mono); }
   .mainnav { order: 4; flex-wrap: wrap; justify-content: flex-start; padding: 8px 0 12px; }
   .hero { padding: 52px 16px 64px; }
   .section { scroll-margin-top: 120px; }
-  .pg-grid { grid-template-columns: 1fr; }
   .compare-pair { grid-template-columns: 1fr; }
 
 }
@@ -679,7 +663,7 @@ code, pre, .code { font-family: var(--font-mono); }
 .btn-sm { padding: 7px 12px; font-size: 12px; }
 .footer h4 { display: flex; align-items: center; gap: 8px; }
 .footer h4 svg { width: 16px; height: 16px; color: var(--champagne); flex: none; }
-.pg-card h4 svg { width: 16px; height: 16px; color: var(--green-700); flex: none; }
+
 
 /* ============================ BONUS - PREMIUM RESOURCES ============================ */
 .bonus-nav { border: 1px solid #D8C9A7; }
