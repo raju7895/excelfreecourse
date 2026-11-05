@@ -595,11 +595,11 @@ code, pre, .code { font-family: var(--font-mono); }
 /* ============================ BONUS - PREMIUM RESOURCES ============================ */
 .bonus-nav { border: 1px solid #D8C9A7; }
 .bonus-nav:hover { border-color: var(--champagne); background: #F6EFDF; color: #6B5716; }
-.bonus-nav.active { background: var(--forest); border-color: var(--champagne); color: #F5F3ED; }
+.bonus-nav.active { background: var(--green-900); border-color: var(--champagne); color: #F5F3ED; }
 
 .bonus-gate { display: flex; justify-content: center; }
 .bonus-gate[hidden] { display: none; }
-.bonus-gate-card { background: linear-gradient(160deg, var(--forest) 0%, #1E4B3F 60%, #245C4A 100%); color: #F5F3ED; border-radius: 18px; border: 1px solid var(--champagne); padding: 36px 34px; max-width: 680px; width: 100%; text-align: center; box-shadow: 0 30px 60px -30px rgba(23, 63, 53, 0.55), inset 0 1px 0 rgba(216, 201, 167, 0.28); }
+.bonus-gate-card { background: linear-gradient(160deg, var(--green-900) 0%, #1E4B3F 60%, #245C4A 100%); color: #F5F3ED; border-radius: 18px; border: 1px solid var(--champagne); padding: 36px 34px; max-width: 680px; width: 100%; text-align: center; box-shadow: 0 30px 60px -30px rgba(23, 63, 53, 0.55), inset 0 1px 0 rgba(216, 201, 167, 0.28); }
 .bonus-gate-icon { width: 74px; height: 74px; margin: 0 auto 18px; border-radius: 18px; background: rgba(216, 201, 167, 0.16); border: 1px solid rgba(216, 201, 167, 0.4); display: flex; align-items: center; justify-content: center; color: var(--champagne); }
 .bonus-gate-icon svg { width: 34px; height: 34px; }
 .bonus-gate-card h3 { margin: 0 0 8px; font-size: clamp(20px, 3vw, 27px); color: #FCFAF4; letter-spacing: -0.02em; }
@@ -633,7 +633,7 @@ code, pre, .code { font-family: var(--font-mono); }
 .bonus-filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0 12px; }
 .bonus-chip { border: 1px solid var(--border); background: #fff; color: var(--text-2); padding: 8px 15px; border-radius: 999px; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: var(--font-body); transition: all 0.15s; }
 .bonus-chip:hover { border-color: var(--green-900); color: var(--green-900); }
-.bonus-chip.active { background: var(--forest); border-color: var(--forest); color: #F5F3ED; }
+.bonus-chip.active { background: var(--green-900); border-color: var(--green-900); color: #F5F3ED; }
 .bonus-toolbar-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 .bonus-count { font-size: 13px; font-weight: 800; color: var(--green-900); letter-spacing: 0.4px; }
 
